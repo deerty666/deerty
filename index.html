@@ -1,174 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قائمة مطاعم سحايب ديرتي</title>
-    
-    <link rel="stylesheet" href="styles1.css"> 
-    <script src="script.js" defer></script> 
-</head>
-<body>
-
-    <header class="restaurant-header">
-        <img src="https://ymenu.food/media/restaurant_logos/logo-removebg-preview1.webp" alt="شعار المطعم" class="logo">
-        <h1>مطاعم سحايب ديرتي</h1>
-        <p>للتواصل: 920010988</p>
-    </header>
-
-    <nav class="categories">
-        <a href="#appetizers">المقبلات</a>
-        <a href="#chicken">الدجاج والأرز</a>
-        <a href="#meat">اللحوم</a>
-        <a href="#soups">الإيدامات/الشوربات</a>
-        <a href="#rice">الأرز</a>
-        <a href="#grills">المشويات</a>
-        <a href="#drinks">المشروبات</a>
-        <a href="#desserts">الحلا</a>
-    </nav>
-
-    <main class="menu-items">
-
-        <section id="appetizers" class="category-section">
-            <h2>المقبلات</h2>
-            
-            <div class="menu-item" data-name="خيار باللبن" data-price="7">
-                <img src="https://ymenu.food/media/gallery/سلطات/سلطة_زبادي-2a74ab95_small.webp" alt="صورة خيار باللبن">
-                <div class="item-details">
-                    <h3>خيار باللبن</h3>
-                    <p class="price">7 ريال</p>
-                    <p class="description">Cucumber with Yogurt</p>
-                </div>
-                <button class="add-to-cart-btn" onclick="addToCart(this)">+ إضافة</button>
-            </div>
-            
-            <div class="menu-item" data-name="حمص" data-price="14">
-                <img src="https://ymenu.food/media/gallery/مقبلات/حمص-d2f447a1_small.webp" alt="صورة حمص">
-                <div class="item-details">
-                    <h3>حمص</h3>
-                    <p class="price">14 ريال</p>
-                    <p class="description">Hummus</p>
-                </div>
-                <button class="add-to-cart-btn" onclick="addToCart(this)">+ إضافة</button>
-            </div>
-
-            <div class="menu-item" data-name="سلطة حارة" data-price="5">
-                <img src="https://ymenu.food/media/gallery/سلطات/سلطة_حارة-27a3a936_small.webp" alt="صورة سلطة حارة">
-                <div class="item-details">
-                    <h3>سلطة حارة</h3>
-                    <p class="price">5 ريال</p>
-                    <p class="description">Spicy Salad</p>
-                </div>
-                <button class="add-to-cart-btn" onclick="addToCart(this)">+ إضافة</button>
-            </div>
-            
-            <div class="menu-item" data-name="طحينة ديرتي" data-price="5">
-                <img src="https://ymenu.food/media/gallery/سلطات/طحينة-2741d725_small.webp" alt="صورة طحينة ديرتي">
-                <div class="item-details">
-                    <h3>طحينة ديرتي</h3>
-                    <p class="price">5 ريال</p>
-                    <p class="description">Deraty Tahini Sauce</p>
-                </div>
-                <button class="add-to-cart-btn" onclick="addToCart(this)">+ إضافة</button>
-            </div>
-
-        </section>
-
-        <section id="chicken" class="category-section">
-            <h2>الدجاج والأرز</h2>
-            
-            <div class="menu-item" data-name="دجاج مضغوط" data-price="25">
-                <img src="https://ymenu.food/media/gallery/دجاج/مضغوط_مع_الرز-91b29326_small.webp" alt="صورة دجاج مضغوط">
-                <div class="item-details">
-                    <h3>دجاج مضغوط</h3>
-                    <p class="price">25 ريال</p>
-                    <p class="description">Pressed Chicken</p>
-                </div>
-                <button class="add-to-cart-btn" onclick="addToCart(this)">+ إضافة</button>
-            </div>
-            
-            <div class="menu-item" data-name="دجاج مظبي - نصف حبة" data-price="31">
-                <img src="https://ymenu.food/media/gallery/دجاج/مظبي-c0e481e1_small.webp" alt="صورة دجاج مظبي">
-                <div class="item-details">
-                    <h3>دجاج مظبي - نصف حبة</h3>
-                    <p class="price">31 ريال</p>
-                    <p class="description">Mazbi Chicken - Half</p>
-                </div>
-                <button class="add-to-cart-btn" onclick="addToCart(this)">+ إضافة</button>
-            </div>
-            
-            <div class="menu-item" data-name="دجاج مندي - نصف حبة" data-price="31">
-                <img src="https://ymenu.food/media/gallery/دجاج/مندي-e945579f_small.webp" alt="صورة دجاج مندي">
-                <div class="item-details">
-                    <h3>دجاج مندي - نصف حبة</h3>
-                    <p class="price">31 ريال</p>
-                    <p class="description">Mendi Chicken - Half</p>
-                </div>
-                <button class="add-to-cart-btn" onclick="addToCart(this)">+ إضافة</button>
-            </div>
-            
-            <div class="menu-item" data-name="دجاج شواية - حبة كاملة" data-price="62">
-                <img src="https://ymenu.food/media/gallery/دجاج/شواية-31718742_small.webp" alt="صورة دجاج شواية">
-                <div class="item-details">
-                    <h3>دجاج شواية - حبة كاملة</h3>
-                    <p class="price">62 ريال</p>
-                    <p class="description">Grilled Chicken - Whole</p>
-                </div>
-                <button class="add-to-cart-btn" onclick="addToCart(this)">+ إضافة</button>
-            </div>
-        </section>
-        
-        <section id="meat" class="category-section">
-            <h2>اللحوم</h2>
-            
-            <div class="menu-item" data-name="نفر لحم مندي" data-price="114">
-                <img src="https://ymenu.food/media/gallery/لحم/لحم_مندي-69b76282_small.webp" alt="صورة نفر لحم مندي">
-                <div class="item-details">
-                    <h3>نفر لحم مندي</h3>
-                    <p class="price">114 ريال</p>
-                    <p class="description">One Mendi Meat Serving</p>
-                </div>
-                <button class="add-to-cart-btn" onclick="addToCart(this)">+ إضافة</button>
-            </div>
-            
-            <div class="menu-item" data-name="لحم حاشي مكموت" data-price="79">
-                <img src="https://ymenu.food/media/gallery/لحم/لحم_حاشي-8531584c_small.webp" alt="صورة لحم حاشي مكموت">
-                <div class="item-details">
-                    <h3>لحم حاشي مكموت</h3>
-                    <p class="price">79 ريال</p>
-                    <p class="description">Hashed Camel Meat Makmut</p>
-                </div>
-                <button class="add-to-cart-btn" onclick="addToCart(this)">+ إضافة</button>
-            </div>
-            
-            <div class="menu-item" data-name="برمة لحم نعيمي" data-price="96">
-                <img src="https://ymenu.food/media/gallery/لحم/برمة_لحم-802c38d6_small.webp" alt="صورة برمة لحم نعيمي">
-                <div class="item-details">
-                    <h3>برمة لحم نعيمي (أرز شعبي)</h3>
-                    <p class="price">96 ريال</p>
-                    <p class="description">Naeimi Meat Berma (Popular Rice)</p>
-                </div>
-                <button class="add-to-cart-btn" onclick="addToCart(this)">+ إضافة</button>
-            </div>
-        </section>
-        
-        </main> 
-
-    <aside id="cart-container" class="cart-sidebar">
-        <h2>🛍️ سلة الطلبات</h2>
-        
-        <div id="cart-items-list" class="cart-items">
-            <p class="empty-cart-message">السلة فارغة حالياً. ابدأ بإضافة أصناف!</p>
-        </div>
-        
-        <div class="cart-summary">
-            <p>الإجمالي: <span id="cart-total">0</span> ريال</p>
-        </div>
-        
-        <a id="checkout-whatsapp-btn" href="#" target="_blank" class="whatsapp-btn" disabled>
-            إرسال الطلب عبر واتساب
-        </a>
-    </aside>
-
-</body>
-</html>
