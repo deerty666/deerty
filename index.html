@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قائمة مطاعم سحايب ديرتي</title>
+    
+    <link rel="stylesheet" href="styles1.css"> 
+    <script src="script.js" defer></script> 
+</head>
+<body>
+
+    <header class="restaurant-header">
+        <img src="https://ymenu.food/media/restaurant_logos/logo-removebg-preview1.webp" alt="شعار المطعم" class="logo">
+        <h1>مطاعم سحايب ديرتي</h1>
+        <p>للتواصل: 920010988</p>
+    </header>
+
+    <div class="top-controls">
+        <div class="search-bar">
+            <input type="search" placeholder="ابحث عن مشروب أو وجبة...">
+            <span class="search-icon">🔍</span>
+        </div>
+        <div class="main-categories-scroll">
+            <button class="category-btn active">الكل</button>
+            <button class="category-btn">المقبلات</button>
+            <button class="category-btn">المفضلة <span class="fav-count">0</span></button>
+            </div>
+    </div>
+
+    <main class="menu-items">
+
+        <section id="appetizers" class="category-section">
+            <h2>المقبلات</h2>
+            
+            <div class="menu-item" data-name="مشكل سلطات" data-price="13">
+                <img src="https://ymenu.food/media/gallery/سلطات/سلطة_تبولة-49fa2f33_medium.webp" alt="صورة مشكل سلطات">
+                <div class="item-details">
+                    <h3>مشكل سلطات</h3>
+                    <p class="description">Mixed Salads</p>
+                    <p class="price">13 ريال</p>
+                </div>
+                <div class="item-actions">
+                    <button class="add-to-cart-btn" onclick="addToCart(this)">🛒</button>
+                    <button class="favorite-btn">🤍</button>
+                    </div>
+            </div>
+            
+            </section>
+
+        <section id="chicken" class="category-section">
+            <h2>الدجاج والأرز</h2>
+            </section>
+        
+        <section id="meat" class="category-section">
+            <h2>اللحوم</h2>
+            </section>
+        
+        </main> 
+    
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item">
+            <span class="icon">ℹ️</span>
+            <span class="label">حولنا</span>
+        </a>
+        <a href="#" class="nav-item">
+            <span class="icon">📞</span>
+            <span class="label">تواصل معنا</span>
+        </a>
+        <a href="#" class="nav-item">
+            <span class="icon">↗️</span>
+            <span class="label">شارك</span>
+        </a>
+        <a href="#" class="nav-item cart-icon-item" onclick="showCartOverlay(event)">
+            <span class="icon">🧺</span>
+            <span class="cart-badge" id="mobile-cart-badge">0</span>
+            <span class="label">السلة</span>
+        </a>
+        <a href="#" class="nav-item active-nav">
+            <span class="icon">🍴</span>
+            <span class="label">القائمة</span>
+        </a>
+    </nav>
+    
+    <div id="cart-overlay" class="cart-overlay">
+        <div class="cart-content">
+            <button class="close-btn" onclick="hideCartOverlay()">❌</button>
+            <h2>🛍️ سلة الطلبات</h2>
+            
+            <div id="cart-items-list" class="cart-items">
+                <p class="empty-cart-message">السلة فارغة حالياً. ابدأ بإضافة أصناف!</p>
+            </div>
+            
+            <div class="cart-summary-footer">
+                <p>الإجمالي: <span id="cart-total">0.00</span> ريال</p>
+                <a id="checkout-whatsapp-btn" href="#" target="_blank" class="whatsapp-btn" disabled>
+                    إرسال الطلب عبر واتساب
+                </a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
