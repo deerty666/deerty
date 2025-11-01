@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مطاعم سحايب ديرتي</title>
+    <link rel="stylesheet" href="styles1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <header class="restaurant-header">
+        <img src="https://i.ibb.co/L84m4mR/restaurant-logo.png" alt="شعار مطاعم سحايب ديرتي" class="logo">
+        <h1>مطاعم سحايب ديرتي</h1>
+        <p>مأكولات شعبية ومندي</p>
+    </header>
+
+    <div class="top-controls">
+        <div class="search-bar">
+            <input type="text" placeholder="ابحث عن وجبتك المفضلة...">
+            <i class="fas fa-search search-icon"></i>
+        </div>
+
+        <div class="main-categories-scroll categories-icons">
+            <a href="#chicken" class="category-icon-item active-icon">
+                <div class="icon-circle all-icon">
+                    <img src="https://i.ibb.co/3089s3Y/chicken.jpg" alt="الدجاج">
+                </div>
+                <span class="label">الدجاج</span>
+            </a>
+            
+            <a href="#meats" class="category-icon-item">
+                <div class="icon-circle">
+                    <img src="https://i.ibb.co/g7zF8yJ/meat.jpg" alt="اللحوم">
+                </div>
+                <span class="label">اللحوم</span>
+            </a>
+            
+            <a href="#desserts" class="category-icon-item">
+                <div class="icon-circle">
+                    <img src="https://i.ibb.co/D8d30Qz/dessert.jpg" alt="الحلى">
+                </div>
+                <span class="label">الحلى</span>
+            </a>
+
+            <a href="#appetizers" class="category-icon-item">
+                <div class="icon-circle">
+                    <img src="https://i.ibb.co/0Fq7b7f/salad.jpg" alt="المقبلات">
+                </div>
+                <span class="label">المقبلات</span>
+            </a>
+            
+            <a href="#drinks" class="category-icon-item">
+                <div class="icon-circle">
+                    <img src="https://i.ibb.co/Q8Q4M6Z/drinks.jpg" alt="المشروبات">
+                </div>
+                <span class="label">المشروبات</span>
+            </a>
+            
+        </div>
+    </div>
+
+    <main class="menu-items">
+
+        <section id="chicken" class="category-section">
+            <h2>الدجاج والأرز</h2>
+            
+            <div class="menu-item" data-name="دجاج شواية" data-price="24">
+                <img src="https://ymenu.food/media/gallery/دجاج/شواية-31718742_small.webp" alt="صورة دجاج شواية">
+                <div class="item-details">
+                    <h3>دجاج شواية</h3>
+                    <p class="price">من 24 ريال</p>
+                    <p class="description">سعر نصف حبة مع رز شعبي. انقر للإضافة لتخصيص الحجم ونوع الرز.</p>
+                </div>
+                <div class="item-actions">
+                    <button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button>
+                    <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                </div>
+            </div>
+            
+            <div class="menu-item" data-name="دجاج مظبي" data-price="24">
+                <img src="https://ymenu.food/media/gallery/دجاج/مظبي-c0e481e1_small.webp" alt="صورة دجاج مظبي">
+                <div class="item-details">
+                    <h3>دجاج مظبي</h3>
+                    <p class="price">من 24 ريال</p>
+                    <p class="description">سعر نصف حبة مع رز شعبي. انقر للإضافة لتخصيص الحجم ونوع الرز.</p>
+                </div>
+                <div class="item-actions">
+                    <button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button>
+                    <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                </div>
+            </div>
+
+            <div class="menu-item" data-name="دجاج مندي" data-price="24">
+                <img src="https://ymenu.food/media/gallery/دجاج/مندي-e945579f_small.webp" alt="صورة دجاج مندي">
+                <div class="item-details">
+                    <h3>دجاج مندي</h3>
+                    <p class="price">من 24 ريال</p>
+                    <p class="description">سعر نصف حبة مع رز شعبي. انقر للإضافة لتخصيص الحجم ونوع الرز.</p>
+                </div>
+                <div class="item-actions">
+                    <button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button>
+                    <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                </div>
+            </div>
+            
+            <div class="menu-item" data-name="دجاج مدفون" data-price="24">
+                <img src="https://ymenu.food/media/gallery/دجاج/مدفون-133122c4_small.webp" alt="صورة دجاج مدفون">
+                <div class="item-details">
+                    <h3>دجاج مدفون</h3>
+                    <p class="price">من 24 ريال</p>
+                    <p class="description">سعر نصف حبة مع رز شعبي. انقر للإضافة لتخصيص الحجم ونوع الرز.</p>
+                </div>
+                <div class="item-actions">
+                    <button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button>
+                    <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                </div>
+            </div>
+            
+            <div class="menu-item" data-name="دجاج مضغوط" data-price="25">
+                <img src="https://ymenu.food/media/gallery/دجاج/مضغوط_مع_الرز-91b29326_small.webp" alt="صورة دجاج مضغوط">
+                <div class="item-details">
+                    <h3>دجاج مضغوط</h3>
+                    <p class="price">من 25 ريال</p>
+                    <p class="description">سعر نصف حبة مع رز شعبي. انقر للإضافة لتخصيص الحجم ونوع الرز.</p>
+                </div>
+                <div class="item-actions">
+                    <button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button>
+                    <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                </div>
+            </div>
+
+            <div class="menu-item" data-name="دجاج زربيان" data-price="25">
+                <img src="https://ymenu.food/media/gallery/دجاج/زربيان-e17f7b3c_small.webp" alt="صورة دجاج زربيان">
+                <div class="item-details">
+                    <h3>دجاج زربيان</h3>
+                    <p class="price">من 25 ريال</p>
+                    <p class="description">سعر نصف حبة مع رز شعبي. انقر للإضافة لتخصيص الحجم ونوع الرز.</p>
+                </div>
+                <div class="item-actions">
+                    <button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button>
+                    <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                </div>
+            </div>
+
+            <div class="menu-item" data-name="دجاج مقلوبة" data-price="25">
+                <img src="https://ymenu.food/media/gallery/دجاج/مقلوبة-e17f7b3c_small.webp" alt="صورة دجاج مقلوبة">
+                <div class="item-details">
+                    <h3>دجاج مقلوبة</h3>
+                    <p class="price">من 25 ريال</p>
+                    <p class="description">سعر نصف حبة مع رز شعبي. انقر للإضافة لتخصيص الحجم ونوع الرز.</p>
+                </div>
+                <div class="item-actions">
+                    <button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button>
+                    <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                </div>
+            </div>
+            
+        </section>
+
+        <section id="meats" class="category-section">
+            <h2>اللحوم</h2>
+            
+            <div class="menu-item" data-name="نفر لحم مندي" data-price="85">
+                <img src="https://i.ibb.co/g7zF8yJ/meat.jpg" alt="صورة نفر لحم مندي">
+                <div class="item-details">
+                    <h3>نفر لحم مندي</h3>
+                    <p class="price">من 85 ريال</p>
+                    <p class="description">رز شعبي: 85 ريال. متوفر بخيارات بشاور ومندي إضافية.</p>
+                </div>
+                <div class="item-actions">
+                    <button class="add-to-cart-btn" onclick="addToCart(this, 'nfr_mandi')"><i class="fas fa-plus"></i></button>
+                    <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                </div>
+            </div>
+            
+            <div class="menu-item" data-name="ربع تيس مندي" data-price="375">
+                <img src="https://i.ibb.co/g7zF8yJ/meat.jpg" alt="صورة ربع تيس مندي">
+                <div class="item-details">
+                    <h3>ربع تيس مندي</h3>
+                    <p class="price">من 375 ريال</p>
+                    <p class="description">رز شعبي: 375 ريال. متوفر بخيارات بشاور ومندي إضافية.</p>
+                </div>
+                <div class="item-actions">
+                    <button class="add-to-cart-btn" onclick="addToCart(this, 'qrt_mandi')"><i class="fas fa-plus"></i></button>
+                    <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                </div>
+            </div>
+
+            <div class="menu-item" data-name="نص تيس مندي" data-price="750">
+                <img src="https://i.ibb.co/g7zF8yJ/meat.jpg" alt="صورة نص تيس مندي">
+                <div class="item-details">
+                    <h3>نص تيس مندي</h3>
+                    <p class="price">من 750 ريال</p>
+                    <p class="description">رز شعبي: 750 ريال. متوفر بخيارات بشاور ومندي إضافية.</p>
+                </div>
+                <div class="item-actions">
+                    <button class="add-to-cart-btn" onclick="addToCart(this, 'half_mandi')"><i class="fas fa-plus"></i></button>
+                    <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                </div>
+            </div>
+
+            <div class="menu-item" data-name="تيس كامل مندي" data-price="1500">
+                <img src="https://i.ibb.co/g7zF8yJ/meat.jpg" alt="صورة تيس كامل مندي">
+                <div class="item-details">
+                    <h3>تيس كامل مندي</h3>
+                    <p class="price">من 1500 ريال</p>
+                    <p class="description">رز شعبي: 1500 ريال. متوفر بخيارات بشاور ومندي إضافية.</p>
+                </div>
+                <div class="item-actions">
+                    <button class="add-to-cart-btn" onclick="addToCart(this, 'full_mandi')"><i class="fas fa-plus"></i></button>
+                    <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                </div>
+            </div>
+            
+            <div class="menu-item" data-name="نفر لحم حاشي مكموت" data-price="59" data-discount="15">
+                <img src="https://i.ibb.co/g7zF8yJ/meat.jpg" alt="صورة نفر لحم حاشي مكموت">
+                <div class="item-details">
+                    <h3 class="discounted-item">نفر لحم حاشي مكموت <span class="discount-badge">خصم 15%</span></h3>
+                    <p class="price">من <del>59</del> 50 ريال</p>
+                    <p class="description">رز شعبي: 50 ريال (بعد الخصم). متوفر بخيارات بشاور ومندي إضافية.</p>
+                </div>
+                <div class="item-actions">
+                    <button class="add-to-cart-btn" onclick="addToCart(this, 'nfr_hashi')"><i class="fas fa-plus"></i></button>
+                    <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                </div>
+            </div>
+
+            <div class="menu-item" data-name="نفر لحم هرفي برمه مع المرق" data-price="80" data-discount="15">
+                <img src="https://i.ibb.co/g7zF8yJ/meat.jpg" alt="صورة نفر لحم هرفي برمه مع المرق">
+                <div class="item-details">
+                    <h3 class="discounted-item">نفر لحم هرفي برمه مع المرق <span class="discount-badge">خصم 15%</span></h3>
+                    <p class="price">من <del>80</del> 68 ريال</p>
+                    <p class="description">رز شعبي: 68 ريال (بعد الخصم). متوفر بخيارات رز عادية.</p>
+                </div>
+                <div class="item-actions">
+                    <button class="add-to-cart-btn" onclick="addToCart(this, 'nfr_hervi')"><i class="fas fa-plus"></i></button>
+                    <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <section id="appetizers" class="category-section">
+            <h2>المقبلات</h2>
+            <div class="menu-item" data-name="سلطة خضراء" data-price="8">
+                <img src="https://i.ibb.co/0Fq7b7f/salad.jpg" alt="سلطة خضراء">
+                <div class="item-details">
+                    <h3>سلطة خضراء</h3>
+                    <p class="price">8 ريال</p>
+                    <p class="description">خضروات طازجة مقطعة مع صلصة الليمون والزيت.</p>
+                </div>
+                <div class="item-actions">
+                    <button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button>
+                    <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                </div>
+            </div>
+            <div class="menu-item" data-name="حمص" data-price="12">
+                <img src="https://i.ibb.co/2g39K1t/hummus.jpg" alt="حمص">
+                <div class="item-details">
+                    <h3>حمص</h3>
+                    <p class="price">12 ريال</p>
+                    <p class="description">حمص ناعم مع زيت الزيتون والبقدونس.</p>
+                </div>
+                <div class="item-actions">
+                    <button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button>
+                    <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <section id="drinks" class="category-section">
+            <h2>المشروبات</h2>
+            <div class="menu-item" data-name="مشروب غازي" data-price="4">
+                <img src="https://i.ibb.co/Q8Q4M6Z/drinks.jpg" alt="مشروب غازي">
+                <div class="item-details">
+                    <h3>مشروب غازي (كولا)</h3>
+                    <p class="price">4 ريال</p>
+                    <p class="description">مشروب غازي مثلج.</p>
+                </div>
+                <div class="item-actions">
+                    <button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button>
+                    <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <section id="desserts" class="category-section">
+            <h2>الحلويات</h2>
+            <div class="menu-item" data-name="كنافة" data-price="18">
+                <img src="https://i.ibb.co/D8d30Qz/dessert.jpg" alt="كنافة">
+                <div class="item-details">
+                    <h3>كنافة بالقشطة</h3>
+                    <p class="price">18 ريال</p>
+                    <p class="description">كنافة ساخنة بجبنة القشطة.</p>
+                </div>
+                <div class="item-actions">
+                    <button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button>
+                    <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+    
+    <div class="cart-overlay" id="cart-overlay">
+        <div class="cart-content">
+            <button class="close-btn" onclick="closeCartModal()"><i class="fas fa-times"></i></button>
+            <h2>🛒 سلة الطلبات</h2>
+            
+            <div class="order-type-selector">
+                <button id="delivery-option" class="checkout-option-btn delivery-color selected" onclick="selectOrderType('توصيل', this)">
+                    <i class="fas fa-motorcycle"></i> توصيل
+                </button>
+                <button id="pickup-option" class="checkout-option-btn pickup-color" onclick="selectOrderType('استلام من المطعم', this)">
+                    <i class="fas fa-store"></i> استلام من المطعم
+                </button>
+            </div>
+
+            <div class="cart-items" id="cart-items">
+                </div>
+
+            <div class="cart-summary-footer">
+                <p>الإجمالي الفرعي: <span id="cart-subtotal-price">0 ريال</span></p>
+                <p>رسوم التوصيل: <span id="delivery-fee-display">مجاني</span></p>
+                <p>الإجمالي الكلي: <span id="cart-total-price">0 ريال</span></p>
+                
+                <button id="whatsapp-checkout-btn" class="whatsapp-btn" onclick="sendWhatsAppOrder()" disabled>
+                    <i class="fab fa-whatsapp"></i> تأكيد الطلب وإرساله عبر الواتساب
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="item-options-overlay" id="item-options-overlay">
+        <div class="item-options-content">
+            <button class="close-options-btn" onclick="closeItemOptionsModal()"><i class="fas fa-times"></i></button>
+            
+            <h3 id="option-item-name">اسم الصنف</h3>
+            <p id="option-item-description" class="options-description">وصف الصنف هنا</p>
+
+            <input type="hidden" id="base-item-price" value="0">
+            <input type="hidden" id="base-item-name" value="">
+            <input type="hidden" id="current-item-type" value="chicken"> <div class="options-group" id="size-options-group">
+                <h4>اختر الحجم</h4>
+                <label class="option-label">
+                    <input type="radio" name="size" value="نص" data-price-modifier="0" checked onchange="updateOptionTotal()">
+                    نص (<span id="size-half-price">25</span> ريال)
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="size" value="كامل" data-price-modifier="25" onchange="updateOptionTotal()">
+                    حبة كاملة (إضافة <span id="size-full-modifier">25</span> ريال)
+                </label>
+            </div>
+
+            <div class="options-group" id="rice-options-group">
+                <h4>اختر نوع الرز</h4>
+                <label class="option-label">
+                    <input type="radio" name="rice" value="شعبي" data-price-modifier-half="0" data-price-modifier-full="0" checked onchange="updateOptionTotal()">
+                    رز شعبي
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="rice" value="بشاور" data-price-modifier-half="1" data-price-modifier-full="4" onchange="updateOptionTotal()">
+                    رز بشاور (<span class="rice-beshawer-price"></span>)
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="rice" value="مندي" data-price-modifier-half="1" data-price-modifier-full="4" onchange="updateOptionTotal()">
+                    رز مندي (<span class="rice-mandi-price"></span>)
+                </label>
+            </div>
+
+            <button id="confirm-add-to-cart-btn" onclick="confirmAddToCart()" disabled>
+                <span id="option-final-price">25</span> ريال - أضف إلى السلة
+            </button>
+        </div>
+    </div>
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item active-nav">
+            <i class="fas fa-home icon"></i>
+            <span>الرئيسية</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-heart icon"></i>
+            <span>المفضلة</span>
+        </a>
+        <a href="#" class="nav-item" onclick="openCartModal()">
+            <i class="fas fa-shopping-cart icon"></i>
+            <span>السلة</span>
+            <span class="cart-badge" id="cart-badge">0</span>
+        </a>
+        <a href="tel:966536803598" class="nav-item">
+            <i class="fas fa-phone icon"></i>
+            <span>اتصال</span>
+        </a>
+    </nav>
+    <script src="script.js"></script>
+</body>
+</html>
