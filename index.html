@@ -1,0 +1,64 @@
+<div id="item-options-overlay" class="item-options-overlay">
+        <div class="item-options-content">
+            <button class="close-btn" onclick="closeItemOptionsModal()"><i class="fas fa-times"></i></button>
+            <h2>تخصيص الصنف</h2>
+            <h3 id="option-item-name">اسم الصنف</h3>
+            <p id="option-item-description" style="font-size: 0.9em; color: #777; margin-bottom: 20px;"></p>
+            
+            <input type="hidden" id="base-item-price" value="0">
+            <input type="hidden" id="base-item-name" value="">
+
+            <div class="options-group">
+                <h4>1. اختر الحجم</h4>
+                <label class="option-label">
+                    <div class="option-details">
+                        نص (السعر الأساسي)
+                    </div>
+                    <input type="radio" name="size" value="نص" checked data-price-modifier="0" onchange="updateOptionTotal()">
+                </label>
+                <label class="option-label">
+                    <div class="option-details">
+                        كامل (+ 22 ريال)
+                    </div>
+                    <input type="radio" name="size" value="كامل" data-price-modifier="22" onchange="updateOptionTotal()">
+                </label>
+            </div>
+
+            <div class="options-group">
+                <h4>2. اختر نوع الأرز</h4>
+                <label class="option-label">
+                    <div class="option-details">
+                        رز شعبي (مجاني)
+                    </div>
+                    <input type="radio" name="rice" value="شعبي" checked data-price-modifier-half="0" data-price-modifier-full="0" data-price-modifier-nafal="0" onchange="updateOptionTotal()">
+                </label>
+                
+                <label class="option-label">
+                    <div class="option-details">
+                        رز بشاور (<span class="rice-beshawer-price">إضافة 1/4/5</span> ريال)
+                    </div>
+                    <input type="radio" name="rice" value="بشاور" data-price-modifier-half="1" data-price-modifier-full="4" data-price-modifier-nafal="5" onchange="updateOptionTotal()">
+                </label>
+                 
+                <label class="option-label">
+                    <div class="option-details">
+                         رز مندي (<span class="rice-mandi-price">إضافة 1/4/5</span> ريال)
+                    </div>
+                    <input type="radio" name="rice" value="مندي" data-price-modifier-half="1" data-price-modifier-full="4" data-price-modifier-nafal="5" onchange="updateOptionTotal()">
+                </label>
+                
+                 <label class="option-label">
+                    <div class="option-details">
+                         رز مثلوثه (<span class="rice-mathloutha-price">إضافة 1/4/5</span> ريال)
+                    </div>
+                    <input type="radio" name="rice" value="مثلوثه" data-price-modifier-half="1" data-price-modifier-full="4" data-price-modifier-nafal="5" onchange="updateOptionTotal()">
+                </label>
+            </div>
+            
+            <button id="confirm-add-to-cart-btn" onclick="confirmAddToCart()">
+                أضف إلى السلة (<span id="option-final-price">0.00</span> ريال)
+            </button>
+        </div>
+    </div>
+
+
