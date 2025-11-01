@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مطاعم سحايب ديرتي</title>
+    
+    <link rel="stylesheet" href="styles.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    
+    <header>
+        <div class="restaurant-header">
+            <img src="logo.png" alt="شعار المطعم" class="logo"> <h1>مطاعم سحايب ديرتي</h1>
+            <p>966112020203</p>
+        </div>
+    </header>
+
+    <div style="text-align: center; padding: 10px; background-color: #f7e6e6; border-bottom: 2px solid red;">
+        <button onclick="document.getElementById('item-options-overlay').classList.add('show');" 
+                style="background: #e74c3c; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+            اختبار فتح النافذة
+        </button>
+    </div>
+    <div class="top-controls">
+        <div class="search-bar">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" placeholder="ابحث عن وجبتك المفضلة...">
+        </div>
+        <div class="main-categories-scroll">
+            <a href="#chicken-section" class="category-icon-item active-icon">
+                <div class="icon-circle"><i class="fas fa-drumstick-bite"></i></div>
+                <span>دجاج</span>
+            </a>
+            <a href="#meat-section" class="category-icon-item">
+                <div class="icon-circle"><i class="fas fa-skull"></i></div>
+                <span>لحوم</span>
+            </a>
+            <a href="#sides-section" class="category-icon-item">
+                <div class="icon-circle"><i class="fas fa-mortar-pestle"></i></div>
+                <span>جانبية</span>
+            </a>
+             <a href="#drinks-section" class="category-icon-item">
+                <div class="icon-circle"><i class="fas fa-glass-martini-alt"></i></div>
+                <span>مشروبات</span>
+            </a>
+            <a href="#idamat-section" class="category-icon-item">
+                <div class="icon-circle"><i class="fas fa-soup"></i></div>
+                <span>إيدامات</span>
+            </a>
+        </div>
+    </div>
+    
+    <main class="content-wrapper">
+        
+        <section class="category-section" id="meat-section">
+            <h2>قسم اللحوم</h2>
+            
+            <div class="menu-item" data-name="تيس مندي كامل" data-price="1550.00" data-category="meat" data-is-tais="true">
+                <img src="img-tais.jpg" alt="تيس مندي كامل">
+                <div class="item-details"><h3>تيس مندي كامل</h3><p class="description">ذبيحة كاملة مع رز شعبي.</p><p class="price">1550.00 ر.س</p></div>
+                <div class="item-actions"><button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button></div>
+            </div>
+
+            <div class="menu-item" data-name="نص تيس مندي" data-price="750.00" data-category="meat" data-is-tais="true">
+                <img src="img-half-tais.jpg" alt="نص تيس مندي">
+                <div class="item-details"><h3>نص تيس مندي</h3><p class="description">نصف ذبيحة مع رز شعبي.</p><p class="price">750.00 ر.س</p></div>
+                <div class="item-actions"><button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button></div>
+            </div>
+            
+            <div class="menu-item" data-name="ربع تيس مندي" data-price="375.00" data-category="meat" data-is-tais="true">
+                <img src="img-quarter-tais.jpg" alt="ربع تيس مندي">
+                <div class="item-details"><h3>ربع تيس مندي</h3><p class="description">ربع ذبيحة مع رز شعبي.</p><p class="price">375.00 ر.س</p></div>
+                <div class="item-actions"><button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button></div>
+            </div>
+
+            <div class="menu-item" data-name="نفر لحم مندي" data-price="85.00" data-category="meat">
+                <img src="img-nafar.jpg" alt="نفر لحم">
+                <div class="item-details"><h3>نفر لحم مندي</h3><p class="description">نفر لحم مندي فاخر مع رز شعبي.</p><p class="price">85.00 ر.س</p></div>
+                <div class="item-actions"><button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button></div>
+            </div>
+            
+        </section>
+
+        <section class="category-section" id="chicken-section">
+            <h2>قسم الدجاج (شواية، مظبي، مندي، مدفون)</h2>
+            
+            <div class="menu-item" data-name="دجاج شواية كامل" data-price="46.00" data-category="chicken"><img src="img-shawayah.jpg" alt="شواية"><div class="item-details"><h3>دجاج شواية كامل</h3><p class="description">حبة دجاج شواية مع رز شعبي.</p><p class="price">46.00 ر.س</p></div><div class="item-actions"><button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button></div></div>
+            <div class="menu-item" data-name="دجاج شواية نص حبة" data-price="24.00" data-category="chicken"><img src="img-shawayah.jpg" alt="شواية"><div class="item-details"><h3>دجاج شواية نص حبة</h3><p class="description">نص حبة دجاج شواية مع رز شعبي.</p><p class="price">24.00 ر.س</p></div><div class="item-actions"><button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button></div></div>
+            
+            <div class="menu-item" data-name="دجاج مظبي كامل" data-price="46.00" data-category="chicken"><img src="img-mazbi.jpg" alt="مظبي"><div class="item-details"><h3>دجاج مظبي كامل</h3><p class="description">حبة دجاج مظبي مع رز شعبي.</p><p class="price">46.00 ر.س</p></div><div class="item-actions"><button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button></div></div>
+            <div class="menu-item" data-name="دجاج مظبي نص حبة" data-price="24.00" data-category="chicken"><img src="img-mazbi.jpg" alt="مظبي"><div class="item-details"><h3>دجاج مظبي نص حبة</h3><p class="description">نص حبة دجاج مظبي مع رز شعبي.</p><p class="price">24.00 ر.س</p></div><div class="item-actions"><button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button></div></div>
+            
+            <div class="menu-item" data-name="دجاج مندي كامل" data-price="46.00" data-category="chicken"><img src="img-mandi-chicken.jpg" alt="مندي"><div class="item-details"><h3>دجاج مندي كامل</h3><p class="description">حبة دجاج مندي مع رز شعبي.</p><p class="price">46.00 ر.س</p></div><div class="item-actions"><button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button></div></div>
+            <div class="menu-item" data-name="دجاج مندي نص حبة" data-price="24.00" data-category="chicken"><img src="img-mandi-chicken.jpg" alt="مندي"><div class="item-details"><h3>دجاج مندي نص حبة</h3><p class="description">نص حبة دجاج مندي مع رز شعبي.</p><p class="price">24.00 ر.س</p></div><div class="item-actions"><button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button></div></div>
+            
+            <div class="menu-item" data-name="دجاج مدفون كامل" data-price="46.00" data-category="chicken"><img src="img-madfoon.jpg" alt="مدفون"><div class="item-details"><h3>دجاج مدفون كامل</h3><p class="description">حبة دجاج مدفون مع رز شعبي.</p><p class="price">46.00 ر.س</p></div><div class="item-actions"><button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button></div></div>
+            <div class="menu-item" data-name="دجاج مدفون نص حبة" data-price="24.00" data-category="chicken"><img src="img-madfoon.jpg" alt="مدفون"><div class="item-details"><h3>دجاج مدفون نص حبة</h3><p class="description">نص حبة دجاج مدفون مع رز شعبي.</p><p class="price">24.00 ر.س</p></div><div class="item-actions"><button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button></div></div>
+            
+            <div class="menu-item" data-name="دجاج مقلوبة حبة" data-price="50.00" data-category="chicken"><img src="img-maqluba.jpg" alt="مقلوبة"><div class="item-details"><h3>دجاج مقلوبة حبة</h3><p class="description">حبة دجاج مقلوبة.</p><p class="price">50.00 ر.س</p></div><div class="item-actions"><button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button></div></div>
+            <div class="menu-item" data-name="دجاج مقلوبة نص حبة" data-price="25.00" data-category="chicken"><img src="img-maqluba.jpg" alt="مقلوبة"><div class="item-details"><h3>دجاج مقلوبة نص حبة</h3><p class="description">نص حبة دجاج مقلوبة.</p><p class="price">25.00 ر.س</p></div><div class="item-actions"><button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button></div></div>
+            
+            <div class="menu-item" data-name="دجاج مضغوط حبة" data-price="50.00" data-category="chicken"><img src="img-madghout.jpg" alt="مضغوط"><div class="item-details"><h3>دجاج مضغوط حبة</h3><p class="description">حبة دجاج مضغوط.</p><p class="price">50.00 ر.س</p></div><div class="item-actions"><button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button></div></div>
+            <div class="menu-item" data-name="دجاج مضغوط نص حبة" data-price="25.00" data-category="chicken"><img src="img-madghout.jpg" alt="مضغوط"><div class="item-details"><h3>دجاج مضغوط نص حبة</h3><p class="description">نص حبة دجاج مضغوط.</p><p class="price">25.00 ر.س</p></div><div class="item-actions"><button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button></div></div>
+
+            <div class="menu-item" data-name="دجاج زربيان حبة" data-price="50.00" data-category="chicken"><img src="img-zarbian.jpg" alt="زربيان"><div class="item-details"><h3>دجاج زربيان حبة</h3><p class="description">حبة دجاج زربيان.</p><p class="price">50.00 ر.س</p></div><div class="item-actions"><button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button></div></div>
+            <div class="menu-item" data-name="دجاج زربيان نص حبة" data-price="25.00" data-category="chicken"><img src="img-zarbian.jpg" alt="زربيان"><div class="item-details"><h3>دجاج زربيان نص حبة</h3><p class="description">نص حبة دجاج زربيان.</p><p class="price">25.00 ر.س</p></div><div class="item-actions"><button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button></div></div>
+
+        </section>
+        
+        <section class="category-section" id="sides-section">
+            <h2>قسم الأطباق الجانبية والمقبلات</h2>
+            
+            <div class="menu-item" data-name="جريش كبير" data-price="10.00" data-category="sides"><img src="img-jareesh-L.jpg" alt="جريش"><div class="item-details"><h3>جريش كبير</h3><p class="description">طبق الجريش اللذيذ.</p><p class="price">10.00 ر.س</p></div><div class="item-actions"><button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button></div></div>
+            <div class="menu-item" data-name="جريش صغير" data-price="5.00" data-category="sides"><img src="img-jareesh-S.jpg" alt="جريش"><div class="item-details"><h3>جريش صغير</h3><p class="description">طبق الجريش اللذيذ (صغير).</p><p class="price">5.00 ر.س</p></div><div class="item-actions"><button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button></div></div>
+            
+            <div class="menu-item" data-name="قرصان كبير" data-price="10.00" data-category="sides"><img src="img-qursan-L.jpg" alt="قرصان"><div class="item-details"><h3>قرصان كبير</h3><p class="description">طبق القرصان المميز.</p><p class="price">10.00 ر.س</p></div><div class="item-actions"><button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button></div></div>
+            <div class="menu-item" data-name="قرصان صغير" data-price="5.00" data-category="sides"><img src="img-qursan-S.jpg" alt="قرصان"><div class="item-details"><h3>قرصان صغير</h3><p class="description">طبق القرصان المميز (صغير).</p><p class="price">5.00 ر.س</p></div><div class="item-actions"><button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button></div></div>
+            
+            <div class="menu-item" data-name="نفر رز شعبي" data-price="10.00" data-category="sides"><img src="img-rice-shabi.jpg" alt="رز شعبي"><div class="item-details"><h3>نفر رز شعبي</h3><p class="description">رز شعبي إضافي.</p><p class="price">10.00 ر.س</p></div><div class="item-actions"><button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button></div></div>
+             <div class="menu-item" data-name="نفر رز بشاور" data-price="10.00" data-category="sides"><img src="img-rice-beshawer.jpg" alt="رز بشاور"><div class="item-details"><h3>نفر رز بشاور</h3><p class="description">رز بشاور إضافي.</p><p class="price">10.00 ر.س</p></div><div class="item-actions"><button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button></div></div>
+             <div class="menu-item" data-name="نفر رز مندي" data-price="10.00" data-category="sides"><img src="img-rice-mandi.jpg" alt="رز مندي"><div class="item-details"><h3>نفر رز مندي</h3><p class="description">رز مندي إضافي.</p><p class="price">10.00 ر.س</p></div><div class="item-actions"><button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button></div></div>
+            
+            <div class="menu-item" data-name="طحينة" data-price="3.00" data-category="sides"><img src="img-tahini.jpg" alt="طحينة"><div class="item-details"><h3>طحينة</h3><p class="description">طحينة إضافية.</p><p class="price">3.00 ر.س</p></div><div class="item-actions"><button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button></div></div>
+            <div class="menu-item" data-name="سلطة حارة" data-price="3.00" data-category="sides"><img src="img-spicy-salad.jpg" alt="سلطة حارة"><div class="item-details"><h3>سلطة حارة</h3><p class="description">سلطة حارة إضافية.</p><p class="price">3.00 ر.س</p></div><div class="item-actions"><button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button></div></div>
+        
+            <div class="menu-item" data-name="سلطة خضار صغير" data-price="7.00" data-category="sides"><img src="img-salad.jpg" alt="سلطة خضار"><div class="item-details"><h3>سلطة خضار صغير</h3><p class="description">سلطة خضار طازجة.</p><p class="price">7.00 ر.س</p></div><div class="item-actions"><button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button></div></div>
+            <div class="menu-item" data-name="خيار لبن صغير" data-price="7.00" data-category="sides"><img src="img-khiar-laban.jpg" alt="خيار لبن"><div class="item-details"><h3>خيار لبن صغير</h3><p class="description">خيار باللبن.</p><p class="price">7.00 ر.س</p></div><div class="item-actions"><button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button></div></div>
+        </section>
+
+        <section class="category-section" id="idamat-section">
+            <h2>قسم الايدامات</h2>
+            <div class="menu-item" data-name="ملوخية" data-price="10.00" data-category="idamat"><img src="img-molokhia.jpg" alt="ملوخية"><div class="item-details"><h3>ملوخية</h3><p class="description">طبق ملوخية ساخن.</p><p class="price">10.00 ر.س</p></div><div class="item-actions"><button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button></div></div>
+            <div class="menu-item" data-name="بامية" data-price="10.00" data-category="idamat"><img src="img-bamya.jpg" alt="بامية"><div class="item-details"><h3>بامية</h3><p class="description">طبق بامية ساخن.</p><p class="price">10.00 ر.س</p></div><div class="item-actions"><button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button></div></div>
+        </section>
+        
+        <section class="category-section" id="drinks-section">
+            <h2>قسم المشروبات</h2>
+            <div class="menu-item" data-name="بيبسي صغير" data-price="3.00" data-category="drinks"><img src="img-pepsi-s.jpg" alt="بيبسي"><div class="item-details"><h3>بيبسي صغير</h3><p class="description">زجاجة بيبسي صغيرة.</p><p class="price">3.00 ر.س</p></div><div class="item-actions"><button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button></div></div>
+            <div class="menu-item" data-name="بيبسي وسط" data-price="6.00" data-category="drinks"><img src="img-pepsi-m.jpg" alt="بيبسي"><div class="item-details"><h3>بيبسي وسط</h3><p class="description">زجاجة بيبسي وسط.</p><p class="price">6.00 ر.س</p></div><div class="item-actions"><button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button></div></div>
+        </section>
+
+        <section class="category-section" id="konafa-section">
+            <h2>قسم الكنافة</h2>
+            <div class="menu-item" data-name="كنافة قشطة" data-price="10.00" data-category="desserts"><img src="img-konafa-q.jpg" alt="كنافة قشطة"><div class="item-details"><h3>كنافة قشطة</h3><p class="description">كنافة بالقشطة.</p><p class="price">10.00 ر.س</p></div><div class="item-actions"><button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button></div></div>
+        </section>
+
+    </main>
+
+    <div class="bottom-nav">
+        <a href="#chicken-section" class="nav-item active-nav">
+            <i class="fas fa-utensils icon"></i>
+            <span>القائمة</span>
+        </a>
+        <a href="#" class="nav-item" onclick="openCartModal()">
+            <i class="fas fa-shopping-basket icon"></i>
+            <span>السلة</span>
+            <span class="cart-badge" id="cart-badge">0</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-user-circle icon"></i>
+            <span>حسابي</span>
+        </a>
+    </div>
+
+    <div id="item-options-overlay" class="item-options-overlay">
+        <div class="item-options-content">
+            <button class="close-btn" onclick="closeItemOptionsModal()"><i class="fas fa-times"></i></button>
+            <h2>تخصيص الصنف</h2>
+            <h3 id="option-item-name">اسم الصنف</h3>
+            <p id="option-item-description" style="font-size: 0.9em; color: #777; margin-bottom: 20px;"></p>
+            
+            <input type="hidden" id="base-item-price" value="0">
+            <input type="hidden" id="base-item-name" value="">
+
+            <div class="options-group">
+                <h4>1. اختر الحجم</h4>
+                <label class="option-label">
+                    <div class="option-details">
+                        نص (السعر الأساسي)
+                    </div>
+                    <input type="radio" name="size" value="نص" checked data-price-modifier="0" onchange="updateOptionTotal()">
+                </label>
+                <label class="option-label">
+                    <div class="option-details">
+                        كامل (+ 22 ريال)
+                    </div>
+                    <input type="radio" name="size" value="كامل" data-price-modifier="22" onchange="updateOptionTotal()">
+                </label>
+            </div>
+
+            <div class="options-group">
+                <h4>2. اختر نوع الأرز</h4>
+                <label class="option-label">
+                    <div class="option-details">
+                        رز شعبي (مجاني)
+                    </div>
+                    <input type="radio" name="rice" value="شعبي" checked data-price-modifier-half="0" data-price-modifier-full="0" data-price-modifier-nafal="0" data-price-modifier-tais-full="0" data-price-modifier-tais-half="0" data-price-modifier-tais-quarter="0" onchange="updateOptionTotal()">
+                </label>
+                
+                <label class="option-label">
+                    <div class="option-details">
+                        رز بشاور (<span class="rice-beshawer-price">إضافة مخصص</span> ريال)
+                    </div>
+                    <input type="radio" name="rice" value="بشاور" data-price-modifier-half="1" data-price-modifier-full="4" data-price-modifier-nafal="5" data-price-modifier-tais-full="50" data-price-modifier-tais-half="25" data-price-modifier-tais-quarter="13" onchange="updateOptionTotal()">
+                </label>
+                 
+                <label class="option-label">
+                    <div class="option-details">
+                         رز مندي (<span class="rice-mandi-price">إضافة مخصص</span> ريال)
+                    </div>
+                    <input type="radio" name="rice" value="مندي" data-price-modifier-half="1" data-price-modifier-full="4" data-price-modifier-nafal="5" data-price-modifier-tais-full="50" data-price-modifier-tais-half="25" data-price-modifier-tais-quarter="13" onchange="updateOptionTotal()">
+                </label>
+                
+                 <label class="option-label">
+                    <div class="option-details">
+                         رز مثلوثه (<span class="rice-mathloutha-price">إضافة مخصص</span> ريال)
+                    </div>
+                    <input type="radio" name="rice" value="مثلوثه" data-price-modifier-half="1" data-price-modifier-full="4" data-price-modifier-nafal="5" data-price-modifier-tais-full="50" data-price-modifier-tais-half="25" data-price-modifier-tais-quarter="13" onchange="updateOptionTotal()">
+                </label>
+            </div>
+            
+            <button id="confirm-add-to-cart-btn" onclick="confirmAddToCart()">
+                أضف إلى السلة (<span id="option-final-price">0.00</span> ريال)
+            </button>
+        </div>
+    </div>
+    
+    <div id="cart-overlay" class="cart-overlay">
+        <div class="cart-content">
+            <button class="close-btn" onclick="closeCartModal()"><i class="fas fa-times"></i></button>
+            <h2>سلة المشتريات</h2>
+            
+            <div class="order-type-selector">
+                <button class="checkout-option-btn selected" id="delivery-option" onclick="selectOrderType('توصيل', this)">
+                    <i class="fas fa-motorcycle"></i> توصيل
+                </button>
+                <button class="checkout-option-btn" id="pickup-option" onclick="selectOrderType('استلام', this)">
+                    <i class="fas fa-store"></i> استلام من المطعم
+                </button>
+            </div>
+            
+            <div class="cart-items" id="cart-items">
+                </div>
+            
+            <div class="cart-summary-footer">
+                <p><span>مجموع الأصناف:</span> <span id="cart-subtotal-price">0.00 ريال</span></p>
+                <p><span>رسوم التوصيل:</span> <span id="delivery-fee-display">5.00 ريال</span></p>
+                <hr>
+                <p><span>المجموع الإجمالي:</span> <span id="cart-total-price">0.00 ريال</span></p>
+            </div>
+            
+            <button class="whatsapp-btn" id="whatsapp-checkout-btn" disabled>
+                تأكيد الطلب وإرساله عبر الواتساب
+            </button>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
