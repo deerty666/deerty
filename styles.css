@@ -1,0 +1,611 @@
+/* ---------------------------------------------------- */
+/* 1. التنسيقات العامة والخطوط */
+/* ---------------------------------------------------- */
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+
+:root {
+    --primary-color: #A30000; /* أحمر داكن */
+    --secondary-color: #FFC300; /* ذهبي/أصفر */
+    --background-light: #F8F8F8; /* خلفية فاتحة */
+    --text-dark: #333;
+    --text-light: #FFF;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Cairo', sans-serif;
+}
+
+body {
+    background-color: var(--background-light);
+    color: var(--text-dark);
+    direction: rtl;
+    padding-bottom: 60px; /* مساحة لشريط التنقل السفلي */
+}
+
+/* ---------------------------------------------------- */
+/* 2. رأس الصفحة (Header) */
+/* ---------------------------------------------------- */
+
+header {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    text-align: center;
+}
+
+.restaurant-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.restaurant-header .logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 5px;
+    border: 3px solid var(--secondary-color);
+}
+
+.restaurant-header h1 {
+    font-size: 1.5rem;
+    margin-bottom: 2px;
+}
+
+.restaurant-header p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* ---------------------------------------------------- */
+/* 3. شريط التحكم والفئات العلوية */
+/* ---------------------------------------------------- */
+
+.top-controls {
+    position: sticky;
+    top: 0;
+    background-color: var(--background-light);
+    z-index: 10;
+    padding: 10px 0;
+    box-shadow: 0 1px 3px var(--shadow-color);
+}
+
+.search-bar {
+    display: flex;
+    margin: 0 15px 10px 15px;
+    background-color: #FFF;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.search-bar input {
+    flex-grow: 1;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    background: transparent;
+    outline: none;
+    text-align: right;
+}
+
+.search-bar .search-icon {
+    padding: 10px 15px;
+    color: #999;
+}
+
+.main-categories-scroll {
+    display: flex;
+    overflow-x: auto;
+    padding: 0 10px;
+    gap: 15px;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+}
+
+.main-categories-scroll::-webkit-scrollbar {
+    display: none; /* إخفاء شريط التمرير في المتصفحات التي تدعمه */
+}
+
+.category-icon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-dark);
+    padding: 5px;
+    transition: transform 0.2s;
+    min-width: 70px; /* لضمان عرض الأيقونات */
+}
+
+.category-icon-item .icon-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #FFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    box-shadow: 0 2px 5px var(--shadow-color);
+    transition: background-color 0.3s;
+}
+
+.category-icon-item span {
+    font-size: 0.8rem;
+    margin-top: 5px;
+    font-weight: 400;
+}
+
+.category-icon-item.active-icon .icon-circle {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+/* ---------------------------------------------------- */
+/* 4. قائمة الطعام (Menu Items) */
+/* ---------------------------------------------------- */
+
+.content-wrapper {
+    padding: 15px;
+}
+
+.category-section h2 {
+    font-size: 1.4rem;
+    margin: 20px 0 15px 0;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 5px;
+}
+
+.menu-item {
+    display: flex;
+    background-color: #FFF;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px var(--shadow-color);
+    align-items: center;
+}
+
+.menu-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-left: 10px; /* مسافة بين الصورة والتفاصيل */
+}
+
+.menu-item .item-details {
+    flex-grow: 1;
+}
+
+.menu-item h3 {
+    font-size: 1rem;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.menu-item .description {
+    font-size: 0.8rem;
+    color: #777;
+    margin-bottom: 5px;
+}
+
+.menu-item .price {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.item-actions {
+    display: flex;
+    align-items: center;
+}
+
+.add-to-cart-btn {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #FDD835;
+}
+
+/* ---------------------------------------------------- */
+/* 5. شريط التنقل السفلي (Bottom Nav) */
+/* ---------------------------------------------------- */
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 55px;
+    background-color: #FFF;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 50; /* أقل من المودال */
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #999;
+    font-size: 0.75rem;
+    position: relative;
+    transition: color 0.2s;
+}
+
+.nav-item.active-nav, .nav-item:hover {
+    color: var(--primary-color);
+}
+
+.nav-item .icon {
+    font-size: 1.2rem;
+    margin-bottom: 2px;
+}
+
+.cart-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    min-width: 20px;
+    text-align: center;
+}
+
+
+/* ---------------------------------------------------- */
+/* 6. النافذة المنبثقة للخيارات (Item Options Modal) */
+/* ---------------------------------------------------- */
+
+/* تم إضافة التنسيقات الأساسية أعلاه في <style> لضمان التشغيل */
+
+.item-options-content {
+    background-color: #FFF;
+    width: 100%;
+    max-width: 500px;
+    max-height: 80vh; 
+    padding: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    position: relative;
+    overflow-y: auto;
+}
+
+.item-options-content h2 {
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.item-options-content .description {
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 15px;
+}
+
+.item-options-content hr {
+    border: 0;
+    border-top: 1px solid #EEE;
+    margin: 15px 0;
+}
+
+.options-group {
+    margin-bottom: 20px;
+}
+
+.options-group h4 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    border-right: 3px solid var(--secondary-color);
+    padding-right: 8px;
+    font-weight: 700;
+}
+
+.option-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 8px;
+    border: 1px solid #EEE;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.option-label:hover {
+    background-color: #FAFAFA;
+}
+
+.option-label input[type="radio"] {
+    display: none;
+}
+
+.option-label input[type="radio"]:checked + .option-details::before {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.option-details {
+    position: relative;
+    padding-right: 25px;
+    font-size: 0.95rem;
+    font-weight: 400;
+}
+
+.option-details::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    border: 2px solid #CCC;
+    border-radius: 50%;
+    background-color: #FFF;
+}
+
+.option-label input[type="radio"]:checked + .option-details::before {
+    content: '';
+    background-color: var(--primary-color);
+}
+
+.option-label span {
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #999;
+    cursor: pointer;
+    z-index: 10;
+}
+
+#confirm-add-to-cart-btn {
+    width: 100%;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#confirm-add-to-cart-btn:hover {
+    background-color: #8D0000;
+}
+
+/* ---------------------------------------------------- */
+/* 7. النافذة المنبثقة للسلة (Cart Modal) */
+/* ---------------------------------------------------- */
+
+.cart-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none; 
+    justify-content: center;
+    align-items: flex-end;
+    z-index: 900;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: translateY(100%);
+}
+
+.cart-overlay.show {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.cart-content {
+    background-color: #FFF;
+    width: 100%;
+    max-width: 500px;
+    max-height: 85vh; 
+    padding: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    position: relative;
+    overflow-y: auto;
+}
+
+.cart-content h2 {
+    font-size: 1.4rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    border-bottom: 1px solid #EEE;
+    padding-bottom: 5px;
+}
+
+.order-type-selector {
+    display: flex;
+    margin-bottom: 15px;
+    border: 1px solid #EEE;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.checkout-option-btn {
+    flex-grow: 1;
+    padding: 10px;
+    border: none;
+    background-color: #F9F9F9;
+    color: #777;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.checkout-option-btn.selected {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border: 1px solid var(--secondary-color);
+}
+
+.cart-items {
+    min-height: 100px;
+    padding-bottom: 10px;
+}
+
+.empty-cart-message {
+    text-align: center;
+    color: #999;
+    padding: 30px 0;
+}
+
+.cart-item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #EEE;
+}
+
+.item-name-options {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.item-quantity {
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-left: 10px;
+    font-size: 1rem;
+}
+
+.item-name-options-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.item-title {
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.item-options {
+    font-size: 0.75rem;
+    color: #999;
+}
+
+.item-price-controls {
+    display: flex;
+    align-items: center;
+}
+
+.item-price {
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-left: 15px;
+    min-width: 70px; /* لضبط تنسيق السعر */
+    text-align: right;
+}
+
+.quantity-controls {
+    display: flex;
+    border: 1px solid #DDD;
+    border-radius: 5px;
+}
+
+.quantity-btn {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    padding: 5px 8px;
+    cursor: pointer;
+}
+
+.cart-summary-footer {
+    padding-top: 15px;
+    border-top: 1px solid #EEE;
+}
+
+.cart-summary-footer p {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+    margin-bottom: 8px;
+}
+
+.cart-summary-footer p span:first-child {
+    color: #777;
+}
+
+.cart-summary-footer p span:last-child {
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.cart-summary-footer hr {
+    border: 0;
+    border-top: 1px dashed #DDD;
+    margin: 10px 0;
+}
+
+#cart-total-price {
+    font-size: 1.2rem;
+    color: var(--primary-color) !important;
+}
+
+.whatsapp-btn {
+    width: 100%;
+    background-color: #25D366;
+    color: #FFF;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-top: 15px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.whatsapp-btn:disabled {
+    background-color: #B0E0BC;
+    cursor: not-allowed;
+}
