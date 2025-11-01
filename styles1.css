@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap');
+
+body {
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.restaurant-header {
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.menu-items {
+    padding: 10px;
+}
+
+.category-section h2 {
+    color: #B8860B;
+    margin-top: 20px;
+    border-bottom: 2px solid #B8860B;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.menu-item img {
+    width: 90px;
+    height: 90px;
+    margin-left: 10px;
+    object-fit: cover;
+}
+
+.item-details {
+    flex-grow: 1;
+    text-align: right;
+}
+
+.item-actions button {
+    background-color: #8B4513;
+    color: #fff;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cart-overlay, .item-options-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.cart-overlay.show, .item-options-overlay.show {
+    display: flex;
+}
+
+.cart-content, .item-options-content {
+    background: #fff;
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 10px;
+}
