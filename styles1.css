@@ -1,0 +1,376 @@
+/* ---------------------------------- */
+/* 1. التنسيقات الأساسية للجوال */
+/* ---------------------------------- */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #333; /* خلفية داكنة */
+    color: white; /* لون النص الرئيسي أبيض */
+    direction: rtl; 
+    text-align: right;
+    padding-bottom: 70px; /* مساحة في الأسفل للشريط الثابت */
+}
+
+/* ---------------------------------- */
+/* 2. رأس المطعم (Header) */
+/* ---------------------------------- */
+.restaurant-header {
+    background-color: #222;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+.restaurant-header .logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-bottom: 5px;
+}
+.restaurant-header h1 {
+    font-size: 1.4em;
+    margin: 0;
+}
+.restaurant-header p {
+    font-size: 0.9em;
+    color: #bbb;
+}
+
+/* ---------------------------------- */
+/* 3. شريط البحث والتصنيفات العلوية (التصميم الدائري الجديد) */
+/* ---------------------------------- */
+.top-controls {
+    padding: 10px 0 10px 0; 
+    background-color: #333;
+}
+.search-bar {
+    position: relative;
+    margin: 0 15px 10px 15px; /* تباعد جانبي للبحث */
+}
+.search-bar input {
+    width: 100%;
+    padding: 10px 15px;
+    padding-right: 40px; 
+    border-radius: 25px;
+    border: none;
+    background-color: #444;
+    color: white;
+    font-size: 1em;
+}
+.search-bar input::placeholder {
+    color: #999;
+}
+.search-bar .search-icon {
+    position: absolute;
+    top: 50%;
+    left: 15px; 
+    transform: translateY(-50%);
+    color: #999;
+}
+
+/* شريط التمرير الأفقي للأيقونات */
+.main-categories-scroll.categories-icons {
+    display: flex;
+    overflow-x: auto;
+    padding: 0 15px 5px 15px; 
+    gap: 15px; 
+}
+.main-categories-scroll::-webkit-scrollbar {
+    display: none; 
+}
+
+/* تنسيق أيقونة التصنيف بالكامل (الرابط) */
+.category-icon-item {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    font-size: 0.9em;
+    font-weight: bold;
+    text-align: center;
+    transition: opacity 0.2s;
+}
+.category-icon-item .label {
+    margin-top: 5px;
+}
+
+/* تنسيق الدائرة الحاضنة للصورة */
+.icon-circle {
+    width: 70px; 
+    height: 70px;
+    border-radius: 50%;
+    background-color: #555; 
+    overflow: hidden;
+    margin-bottom: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid transparent; /* إطار للاكتيف */
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.icon-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* تنسيق أيقونة "الكل" المميزة */
+.icon-circle.all-icon {
+    background-color: #964B00; 
+}
+
+/* تأثير التحديد (Active State) */
+.category-icon-item.active-icon .icon-circle {
+    border-color: #ffc107; /* حافة ذهبية دالة على الاختيار */
+    box-shadow: 0 0 10px rgba(255, 165, 0, 0.8);
+}
+.category-icon-item.active-icon .label {
+    color: #ffc107;
+}
+
+/* ---------------------------------- */
+/* 4. تنسيق القائمة الرئيسية (Main Content) */
+/* ---------------------------------- */
+main.menu-items {
+    padding: 0 15px 15px 15px; 
+}
+.category-section h2 {
+    color: #ffc107;
+    padding: 20px 0 10px 0;
+    border-bottom: 1px solid #444;
+    margin-bottom: 15px;
+    font-size: 1.6em;
+}
+
+/* تنسيق بطاقات الأصناف الجديدة */
+.menu-item {
+    background-color: #444;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.menu-item img {
+    width: 100%;
+    height: 180px; 
+    object-fit: cover;
+    display: block;
+}
+
+.item-details {
+    padding: 15px;
+    text-align: center;
+}
+
+.item-details h3 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #fff;
+}
+
+.item-details .description {
+    font-size: 1em;
+    color: #bbb;
+    margin: 5px 0 10px 0;
+}
+
+.item-details .price {
+    font-weight: bold;
+    font-size: 1.8em;
+    color: #ffc107; /* سعر بلون ذهبي واضح */
+}
+
+.item-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding-bottom: 15px;
+}
+
+.add-to-cart-btn, .favorite-btn {
+    background-color: #964B00;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2em;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+.add-to-cart-btn:hover {
+    background-color: #a0522d;
+}
+
+/* ---------------------------------- */
+/* 5. شريط التنقل السفلي الثابت (Bottom Nav) */
+/* ---------------------------------- */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #222;
+    height: 60px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #999;
+    font-size: 0.8em;
+    transition: color 0.2s;
+    position: relative;
+}
+
+.nav-item.active-nav {
+    color: #ffc107;
+}
+
+.nav-item .icon {
+    font-size: 1.4em;
+    margin-bottom: 2px;
+}
+
+/* شارة عدد الأصناف في السلة */
+.cart-badge {
+    position: absolute;
+    top: -5px;
+    right: 5px;
+    background-color: #dc3545;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.7em;
+    min-width: 10px;
+    text-align: center;
+}
+
+/* ---------------------------------- */
+/* 6. نافذة السلة المنبثقة (Cart Overlay/Modal) */
+/* ---------------------------------- */
+.cart-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+    display: none; 
+    justify-content: center;
+    align-items: flex-end; 
+}
+
+.cart-overlay.show {
+    display: flex; 
+}
+
+.cart-content {
+    background-color: #fff;
+    color: #333;
+    width: 100%;
+    max-height: 80vh; 
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-content h2 {
+    color: #964B00;
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: right;
+}
+
+.cart-items {
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    padding-top: 10px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+    color: #999;
+}
+
+/* تنسيق عناصر السلة داخل النافذة المنبثقة */
+.cart-item-entry {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px dashed #eee; 
+}
+.item-subtotal {
+    font-weight: bold;
+    color: #964B00; 
+}
+.remove-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* تنسيق إجمالي السلة وزر الواتساب في التذييل المنبثق */
+.cart-summary-footer {
+    padding-top: 15px;
+    border-top: 2px solid #964B00;
+}
+.cart-summary-footer p {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+}
+.cart-summary-footer span {
+    color: #dc3545;
+}
+.whatsapp-btn {
+    display: block; 
+    width: 100%;
+    padding: 15px;
+    margin-top: 10px;
+    text-align: center;
+    background-color: #25D366; 
+    color: white;
+    text-decoration: none; 
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+.whatsapp-btn[disabled] {
+    background-color: #cccccc; 
+    cursor: not-allowed; 
+    opacity: 0.6;
+}
