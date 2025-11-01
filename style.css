@@ -1,0 +1,312 @@
+/* استيراد خط جميل عربي */
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl;
+    margin: 0;
+    background-color: #f7f7f7;
+    text-align: right;
+    color: #333;
+    padding-bottom: 80px; /* مساحة للسلة السفلى */
+}
+
+/* رأس الصفحة */
+.restaurant-header {
+    background-color: #b71c1c;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+.restaurant-header .logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+.restaurant-header h1 {
+    margin: 10px 0 5px;
+    font-size: 1.8em;
+}
+
+/* البحث والتصنيفات */
+.top-controls {
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    padding: 10px;
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: #f1f1f1;
+    border-radius: 25px;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+}
+.search-bar input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 8px;
+    outline: none;
+}
+.search-icon {
+    color: #999;
+}
+
+/* تصنيفات الأيقونات */
+.main-categories-scroll {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    padding-bottom: 5px;
+}
+.category-icon-item {
+    text-align: center;
+    color: #333;
+    text-decoration: none;
+    flex: 0 0 auto;
+}
+.icon-circle {
+    background: #fff;
+    border-radius: 50%;
+    padding: 10px;
+    width: 55px;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.icon-circle img {
+    width: 30px;
+}
+.category-icon-item span {
+    font-size: 0.85em;
+}
+.active-icon .icon-circle {
+    background-color: #b71c1c;
+}
+.active-icon span {
+    color: #b71c1c;
+    font-weight: 700;
+}
+
+/* الأقسام */
+.category-section {
+    padding: 15px;
+}
+.category-section h2 {
+    color: #b71c1c;
+    border-right: 5px solid #b71c1c;
+    padding-right: 10px;
+    margin-bottom: 15px;
+}
+
+/* عناصر المنيو */
+.menu-item {
+    background: #fff;
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.menu-item img {
+    width: 90px;
+    height: 90px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+.item-details {
+    flex: 1;
+}
+.item-details h3 {
+    margin: 0 0 5px;
+}
+.description {
+    font-size: 0.85em;
+    color: #777;
+}
+.price {
+    font-weight: 700;
+    color: #b71c1c;
+}
+.item-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.add-to-cart-btn,
+.favorite-btn {
+    background: #f1f1f1;
+    border: none;
+    border-radius: 8px;
+    padding: 8px;
+    cursor: pointer;
+    font-size: 1em;
+}
+.add-to-cart-btn:hover {
+    background: #b71c1c;
+    color: white;
+}
+
+/* الخصم */
+.discount-badge {
+    background: #e53935;
+    color: #fff;
+    font-size: 0.75em;
+    padding: 3px 8px;
+    border-radius: 10px;
+    margin-right: 5px;
+}
+
+/* السلة السفلية */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-around;
+    border-top: 1px solid #ddd;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+    padding: 8px 0;
+}
+.nav-item {
+    text-decoration: none;
+    color: #555;
+    font-size: 0.9em;
+    text-align: center;
+}
+.nav-item i {
+    display: block;
+    font-size: 1.2em;
+    margin-bottom: 3px;
+}
+.active-nav {
+    color: #b71c1c;
+}
+.cart-badge {
+    background-color: #b71c1c;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.75em;
+    position: relative;
+    top: -8px;
+    right: -5px;
+}
+
+/* مودال السلة */
+.cart-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 999;
+}
+.cart-content {
+    background: #fff;
+    width: 90%;
+    max-width: 400px;
+    margin: 60px auto;
+    border-radius: 12px;
+    padding: 20px;
+    position: relative;
+}
+.cart-items {
+    max-height: 250px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+}
+.cart-summary-footer p {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+}
+.whatsapp-btn {
+    background-color: #25d366;
+    color: #fff;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1em;
+}
+.checkout-option-btn.selected {
+    background-color: #b71c1c;
+    color: #fff;
+}
+
+/* مودال التخصيص */
+.item-options-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 999;
+}
+.item-options-content {
+    background: #fff;
+    width: 90%;
+    max-width: 400px;
+    margin: 60px auto;
+    border-radius: 12px;
+    padding: 20px;
+    position: relative;
+}
+.option-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f9f9f9;
+    border-radius: 8px;
+    padding: 8px;
+    margin-bottom: 5px;
+}
+.close-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    border: none;
+    background: none;
+    font-size: 1.3em;
+    color: #b71c1c;
+    cursor: pointer;
+}
+
+/* أزرار خيارات الطلب */
+.checkout-option-btn {
+    border: 1px solid #b71c1c;
+    border-radius: 8px;
+    padding: 6px 12px;
+    margin: 4px;
+    cursor: pointer;
+}
+
+/* عرض العناصر عند فتح المودال */
+.show {
+    display: block !important;
+}
+
+/* الجوال */
+@media (max-width: 600px) {
+    .menu-item {
+        flex-direction: row;
+    }
+    .restaurant-header h1 {
+        font-size: 1.5em;
+    }
+}
