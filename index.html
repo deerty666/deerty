@@ -1,0 +1,68 @@
+    <div id="item-options-overlay" class="item-options-overlay">
+        <div class="item-options-content">
+            <button class="close-btn" onclick="closeItemOptionsModal()"><i class="fas fa-times"></i></button>
+            <h2>تخصيص الصنف</h2>
+            <h3 id="option-item-name">اسم الصنف</h3>
+            <p id="option-item-description" style="font-size: 0.9em; color: #777; margin-bottom: 20px;"></p>
+            
+            <input type="hidden" id="base-item-price" value="0">
+            <input type="hidden" id="base-item-name" value="">
+
+            <div class="options-group">
+                <h4>1. اختر الحجم</h4>
+                <label class="option-label">
+                    <div class="option-details">
+                        نص (السعر الأساسي)
+                    </div>
+                    <input type="radio" name="size" value="نص" checked data-price-modifier="0" onchange="updateOptionTotal()">
+                </label>
+                <label class="option-label">
+                    <div class="option-details">
+                        كامل (+ 22 ريال)
+                    </div>
+                    <input type="radio" name="size" value="كامل" data-price-modifier="22" onchange="updateOptionTotal()">
+                </label>
+                </div>
+
+            <div class="options-group">
+                <h4>2. اختر نوع الأرز</h4>
+                <label class="option-label">
+                    <div class="option-details">
+                        رز شعبي (مجاني)
+                    </div>
+                    <input type="radio" name="rice" value="شعبي" checked data-price-modifier-half="0" data-price-modifier-full="0" data-price-modifier-nafal="0" data-price-modifier-tais-full="0" data-price-modifier-tais-half="0" data-price-modifier-tais-quarter="0" onchange="updateOptionTotal()">
+                </label>
+                
+                <label class="option-label">
+                    <div class="option-details">
+                        رز بشاور (<span class="rice-beshawer-price">إضافة مخصص</span> ريال)
+                    </div>
+                    <input type="radio" name="rice" value="بشاور" data-price-modifier-half="1" data-price-modifier-full="4" data-price-modifier-nafal="5" data-price-modifier-tais-full="50" data-price-modifier-tais-half="25" data-price-modifier-tais-quarter="13" onchange="updateOptionTotal()">
+                </label>
+                 
+                <label class="option-label">
+                    <div class="option-details">
+                         رز مندي (<span class="rice-mandi-price">إضافة مخصص</span> ريال)
+                    </div>
+                    <input type="radio" name="rice" value="مندي" data-price-modifier-half="1" data-price-modifier-full="4" data-price-modifier-nafal="5" data-price-modifier-tais-full="50" data-price-modifier-tais-half="25" data-price-modifier-tais-quarter="13" onchange="updateOptionTotal()">
+                </label>
+                
+                 <label class="option-label">
+                    <div class="option-details">
+                         رز مثلوثه (<span class="rice-mathloutha-price">إضافة مخصص</span> ريال)
+                    </div>
+                    <input type="radio" name="rice" value="مثلوثه" data-price-modifier-half="1" data-price-modifier-full="4" data-price-modifier-nafal="5" data-price-modifier-tais-full="50" data-price-modifier-tais-half="25" data-price-modifier-tais-quarter="13" onchange="updateOptionTotal()">
+                </label>
+            </div>
+            
+            <button id="confirm-add-to-cart-btn" onclick="confirmAddToCart()">
+                أضف إلى السلة (<span id="option-final-price">0.00</span> ريال)
+            </button>
+        </div>
+    </div>
+    
+    ```
+
+الآن، يجب أن يعمل المتجر بشكل كامل: تفتح النافذة، تستقبل البيانات، وتطبق أسعار الأرز لجميع الأصناف (دجاج، نفر، تيس).
+
+إذا واجهت أي مشكلة بعد تطبيق الكود كاملاً، **الرجاء إرسال صورة لرسالة الخطأ الحمراء في "وحدة التحكم (Console)"** إذا أمكن، لتحديد الخطأ بدقة.
