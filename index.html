@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مطاعم سحايب ديرتي</title>
+    <link rel="stylesheet" href="styles1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <header class="restaurant-header">
+        <img src="https://i.ibb.co/L84m4mR/restaurant-logo.png" alt="شعار مطاعم سحايب ديرتي" class="logo">
+        <h1>مطاعم سحايب ديرتي</h1>
+        <p>مأكولات شعبية ومندي</p>
+    </header>
+
+    <main class="menu-items">
+        <section id="chicken" class="category-section">
+            <h2>الدجاج والأرز</h2>
+            
+            <div class="menu-item" data-name="دجاج شواية" data-price="24">
+                <img src="https://ymenu.food/media/gallery/دجاج/شواية-31718742_small.webp" alt="دجاج شواية">
+                <div class="item-details">
+                    <h3>دجاج شواية</h3>
+                    <p class="price">من 24 ريال</p>
+                    <p class="description">سعر نصف حبة مع رز شعبي. انقر للإضافة لتخصيص الحجم ونوع الرز.</p>
+                </div>
+                <div class="item-actions">
+                    <button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button>
+                </div>
+            </div>
+
+            <div class="menu-item" data-name="دجاج مظبي" data-price="24">
+                <img src="https://ymenu.food/media/gallery/دجاج/مظبي-c0e481e1_small.webp" alt="دجاج مظبي">
+                <div class="item-details">
+                    <h3>دجاج مظبي</h3>
+                    <p class="price">من 24 ريال</p>
+                    <p class="description">سعر نصف حبة مع رز شعبي. انقر للإضافة لتخصيص الحجم ونوع الرز.</p>
+                </div>
+                <div class="item-actions">
+                    <button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <section id="appetizers" class="category-section">
+            <h2>المقبلات</h2>
+            <div class="menu-item" data-name="سلطة خضراء" data-price="8">
+                <img src="https://i.ibb.co/0Fq7b7f/salad.jpg" alt="سلطة خضراء">
+                <div class="item-details">
+                    <h3>سلطة خضراء</h3>
+                    <p class="price">8 ريال</p>
+                    <p class="description">خضروات طازجة مع صلصة الليمون والزيت.</p>
+                </div>
+                <div class="item-actions">
+                    <button class="add-to-cart-btn" onclick="addToCart(this)"><i class="fas fa-plus"></i></button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- السلة -->
+    <div class="cart-overlay" id="cart-overlay">
+        <div class="cart-content">
+            <button class="close-btn" onclick="closeCartModal()"><i class="fas fa-times"></i></button>
+            <h2>🛒 سلة الطلبات</h2>
+            <div class="order-type-selector">
+                <button id="delivery-option" class="checkout-option-btn selected" onclick="selectOrderType('توصيل', this)">
+                    <i class="fas fa-motorcycle"></i> توصيل
+                </button>
+                <button id="pickup-option" class="checkout-option-btn" onclick="selectOrderType('استلام من المطعم', this)">
+                    <i class="fas fa-store"></i> استلام من المطعم
+                </button>
+            </div>
+
+            <div class="cart-items" id="cart-items"></div>
+
+            <div class="cart-summary-footer">
+                <p>الإجمالي الفرعي: <span id="cart-subtotal-price">0 ريال</span></p>
+                <p>رسوم التوصيل: <span id="delivery-fee-display">مجاني</span></p>
+                <p>الإجمالي الكلي: <span id="cart-total-price">0 ريال</span></p>
+                
+                <button id="whatsapp-checkout-btn" class="whatsapp-btn" onclick="sendWhatsAppOrder()" disabled>
+                    <i class="fab fa-whatsapp"></i> تأكيد الطلب وإرساله عبر الواتساب
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة خيارات الدجاج -->
+    <div class="item-options-overlay" id="item-options-overlay">
+        <div class="item-options-content">
+            <button class="close-options-btn" onclick="closeItemOptionsModal()"><i class="fas fa-times"></i></button>
+            
+            <h3 id="option-item-name">اسم الصنف</h3>
+            <p id="option-item-description">وصف الصنف هنا</p>
+
+            <input type="hidden" id="base-item-price">
+            <input type="hidden" id="base-item-name">
+
+            <div class="options-group">
+                <h4>اختر الحجم</h4>
+                <label>
+                    <input type="radio" name="size" value="نص" data-price-modifier="0" checked onchange="updateOptionTotal()"> نص
+                </label>
+                <label>
+                    <input type="radio" name="size" value="كامل" data-price-modifier="25" onchange="updateOptionTotal()"> كامل (+25 ريال)
+                </label>
+            </div>
+
+            <div class="options-group">
+                <h4>اختر نوع الرز</h4>
+                <label>
+                    <input type="radio" name="rice" value="شعبي" data-price-modifier="0" checked onchange="updateOptionTotal()"> شعبي
+                </label>
+                <label>
+                    <input type="radio" name="rice" value="بشاور" data-price-modifier="4" onchange="updateOptionTotal()"> بشاور (+4 ريال)
+                </label>
+                <label>
+                    <input type="radio" name="rice" value="مندي" data-price-modifier="4" onchange="updateOptionTotal()"> مندي (+4 ريال)
+                </label>
+            </div>
+
+            <button id="confirm-add-to-cart-btn" onclick="confirmAddToCart()" disabled>
+                <span id="option-final-price">0</span> ريال - أضف إلى السلة
+            </button>
+        </div>
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item active-nav">
+            <i class="fas fa-home icon"></i>
+            <span>الرئيسية</span>
+        </a>
+        <a href="#" class="nav-item" onclick="openCartModal()">
+            <i class="fas fa-shopping-cart icon"></i>
+            <span>السلة</span>
+            <span class="cart-badge" id="cart-badge">0</span>
+        </a>
+    </nav>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
