@@ -1,0 +1,98 @@
+// ملف script.js
+
+let cart = [];
+let currentItem = {};
+
+function openCartModal() {
+    document.getElementById('cart-overlay').style.display = 'flex';
+    renderCart();
+}
+
+function closeCartModal() {
+    document.getElementById('cart-overlay').style.display = 'none';
+}
+
+function addToCart(button) {
+    const itemEl = button.closest('.menu-item');
+    const name = itemEl.dataset.name;
+    const price = parseFloat(itemEl.dataset.price);
+    
+    if(itemEl.closest('#chicken') || itemEl.closest('#meats')) {
+        // افتح نافذة خيارات الحجم والرز
+        currentItem = {name, price, element: itemEl};
+        openItemOptionsModal(name, price);
+    } else {
+        cart.push({name, price});
+        updateCartBadge();
+    }
+}
+
+function updateCartBadge() {
+    document.getElementById('cart-badge').innerText = cart.length;
+}
+
+function renderCart() {
+    const cartItemsEl = document.getElementById('cart-items');
+    cartItemsEl.innerHTML = '';
+    let subtotal = 0;
+    cart.forEach(item => {
+        subtotal += item.price;
+        const div = document.createElement('div');
+        div.innerHTML = `${item.name} - ${item.price} ريال`;
+        cartItemsEl.appendChild(div);
+    });
+    document.getElementById('cart-subtotal-price').innerText = subtotal + ' ريال';
+    document.getElementById('cart-total-price').innerText = subtotal + ' ريال';
+    document.getElementById('whatsapp-checkout-btn').disabled = cart.length === 0;
+}
+
+function openItemOptionsModal(name, price) {
+    document.getElementById('item-options-overlay').style.display = 'flex';
+    document.getElementById('option-item-name').innerText = name;
+    document.getElementById('option-final-price').innerText = price;
+    document.getElementById('base-item-price').value = price;
+    document.getElementById('base-item-name').value = name;
+    document.getElementById('confirm-add-to-cart-btn').disabled = false;
+}
+
+function closeItemOptionsModal() {
+    document.getElementById('item-options-overlay').style.display = 'none';
+}
+
+function updateOptionTotal() {
+    const basePrice = parseFloat(document.getElementById('base-item-price').value);
+    const size = document.querySelector('input[name="size"]:checked').value;
+    const rice = document.querySelector('input[name="rice"]:checked');
+    
+    let finalPrice = basePrice;
+    if(size === 'كامل') {
+        finalPrice += parseFloat(document.querySelector('input[name="size"][value="كامل"]').dataset.priceModifier);
+    }
+    if(rice) {
+        if(size === 'نص') finalPrice += parseFloat(rice.dataset.priceModifierHalf);
+        else finalPrice += parseFloat(rice.dataset.priceModifierFull);
+    }
+    document.getElementById('option-final-price').innerText = finalPrice;
+}
+
+function confirmAddToCart() {
+    const name = document.getElementById('base-item-name').value;
+    const price = parseFloat(document.getElementById('option-final-price').innerText);
+    cart.push({name, price});
+    updateCartBadge();
+    closeItemOptionsModal();
+}
+
+function selectOrderType(type, btn) {
+    document.querySelectorAll('.checkout-option-btn').forEach(el => el.classList.remove('selected'));
+    btn.classList.add('selected');
+}
+
+function sendWhatsAppOrder() {
+    let message = 'طلب من مطاعم سحايب ديرتي:\n';
+    cart.forEach(item => {
+        message += `${item.name} - ${item.price} ريال\n`;
+    });
+    const url = `https://wa.me/966536803598?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+}
