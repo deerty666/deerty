@@ -1,0 +1,92 @@
+/* ... [الكود السابق بالكامل] ... */
+
+/* --- تعديلات التجاوب (Mobile Optimization) --- */
+
+@media (max-width: 600px) {
+    
+    /* 1. حل مشكلة شريط السلة (Bottom Nav) */
+    /* نزيد المسافة السفلية لضمان أن الشريط لا يغطي المحتوى ولا يختفي */
+    body {
+        padding-bottom: 80px; 
+    }
+
+    /* تصغير العناوين في الهيدر */
+    .restaurant-header h1 {
+        font-size: 1.2rem;
+    }
+    
+    /* تقليل حشو شريط التحكم العلوي */
+    .top-controls {
+        padding: 10px 0;
+    }
+
+    .search-bar {
+        margin: 0 15px 10px 15px;
+    }
+
+    /* 2. تحسين تنسيق بطاقات الطعام (Menu Item) */
+    .menu-item {
+        flex-wrap: wrap; /* السماح للعناصر بالنزول لسطر جديد */
+        padding: 10px;
+    }
+    
+    .menu-item img {
+        width: 60px;
+        min-width: 60px;
+        height: 60px;
+    }
+
+    .item-details {
+        margin-left: 5px;
+    }
+
+    .item-details h3 {
+        font-size: 1rem;
+    }
+    
+    .item-details .description {
+        font-size: 0.8rem;
+    }
+
+    /* 3. إعادة ترتيب السعر والأزرار في الأسفل لسهولة القراءة */
+    .menu-item > .price {
+        /* السعر الذي يظهر في الأصناف العادية */
+        width: 100%; 
+        order: 4; /* إجباره على النزول لأسفل */
+        text-align: left;
+        margin: 10px 0 0 0;
+        padding-top: 5px;
+        border-top: 1px dashed #eee;
+    }
+    
+    .item-details .price {
+        /* السعر الذي يظهر في الأصناف المخفضة */
+        width: 100%; 
+        order: 4;
+        text-align: right;
+    }
+
+    .item-actions {
+        order: 5; /* إجباره على النزول لأسفل */
+        margin-right: auto; /* دفعه لليسار */
+        flex-direction: row; /* ترتيب الأزرار أفقياً في الأسفل */
+        align-items: center;
+        width: 100%;
+        justify-content: flex-end; /* وضعها في أقصى اليسار */
+        padding-top: 10px;
+    }
+    
+    .favorite-btn {
+        margin-right: 15px;
+        margin-top: 0;
+    }
+
+    /* تصغير ارتفاع شريط التنقل نفسه ليتناسب مع الجوال */
+    .bottom-nav {
+        height: 55px;
+    }
+    
+    .nav-item {
+        font-size: 0.75rem;
+    }
+}
