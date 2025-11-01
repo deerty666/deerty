@@ -1,0 +1,234 @@
+/* ===========================
+   التنسيقات العامة
+=========================== */
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fdf5e6;
+    direction: rtl;
+}
+
+h1, h2, h3, h4 {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ===========================
+   رأس الصفحة
+=========================== */
+.restaurant-header {
+    text-align: center;
+    background-color: #ff9800;
+    color: #fff;
+    padding: 10px;
+}
+
+.restaurant-header .logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-bottom: 5px;
+}
+
+/* ===========================
+   قائمة الأقسام
+=========================== */
+.categories {
+    display: flex;
+    justify-content: space-around;
+    background-color: #fff8e1;
+    padding: 5px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.categories a {
+    padding: 8px 12px;
+    border-radius: 20px;
+    background-color: #fff3e0;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.categories a:hover, .categories a.active {
+    background-color: #ffb74d;
+    color: #fff;
+}
+
+/* ===========================
+   الأصناف
+=========================== */
+.menu-items {
+    padding: 10px;
+}
+
+.category-section {
+    margin-bottom: 20px;
+}
+
+.menu-item {
+    background-color: #fff;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 10px;
+    border-radius: 10px;
+    padding: 10px;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.menu-item img {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.menu-item h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.menu-item .price {
+    font-weight: bold;
+    color: #ff5722;
+}
+
+.menu-item button {
+    background-color: #ff9800;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.menu-item button:hover {
+    background-color: #fb8c00;
+}
+
+/* ===========================
+   أزرار السلة العائمة
+=========================== */
+.cart-btn {
+    position: fixed;
+    bottom: 70px;
+    right: 20px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    z-index: 1000;
+}
+
+.cart-btn .cart-badge {
+    background-color: #ff5722;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+/* ===========================
+   النوافذ المنبثقة
+=========================== */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right:0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.popup {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    max-height: 90%;
+    overflow-y: auto;
+    position: relative;
+}
+
+.popup h2 {
+    margin-bottom: 10px;
+    color: #ff5722;
+}
+
+.popup-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.popup button {
+    background-color: #ff9800;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.popup button:hover {
+    background-color: #fb8c00;
+}
+
+.options-group {
+    margin: 10px 0;
+}
+
+.options-group label {
+    display: block;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+/* ===========================
+   شريط الأسفل
+=========================== */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #fff3e0;
+    display: flex;
+    justify-content: space-around;
+    padding: 8px 0;
+    border-top: 1px solid #ccc;
+}
+
+.bottom-nav .nav-item {
+    text-align: center;
+    font-size: 12px;
+    color: #555;
+    flex: 1;
+}
+
+.bottom-nav .nav-item i {
+    font-size: 20px;
+    display: block;
+    margin-bottom: 3px;
+}
+
+.bottom-nav .nav-item.active-nav {
+    color: #ff5722;
+}
