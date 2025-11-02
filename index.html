@@ -1,391 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مطاعم ومطابخ سحايب ديرتي</title>
-    
-    <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#4A423A"> 
-    
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
-</head>
-<body>
-
-    <div id="splash-screen">
-        <img src="logo.png" alt="شعار مطاعم سحايب ديرتي" class="splash-logo">
-        <h1>مطاعم سحايب ديرتي</h1>
-    </div>
-
-    <header class="main-header">
-        <img src="logo.png" alt="شعار مطاعم سحايب ديرتي" class="logo-img">
-        <div class="brand-name">مطاعم سحايب ديرتي</div>
-        <div class="search-bar">
-            <input type="text" placeholder="ابحث عن مشروب أو وجبة...">
-            <span class="search-icon">🔍</span>
-        </div>
-    </header>
-
-    <main class="content">
-
-        <div class="category-grid">
-            <div class="category-item" onclick="window.location.hash='#appetizers'">
-                <img src="appetizer-icon.png" alt="المقبلات">
-                المقبلات
-            </div>
-            <div class="category-item favorite-item">
-                <span class="favorite-icon">❤️</span>
-                المفضلة (0)
-            </div>
-            <div class="category-item all-item active-category" onclick="window.location.hash='#chicken'">
-                الكل
-            </div>
-        </div>
-        
-        <div class="highlight-dish">
-            <img src="khiyar-laban.jpg" alt="صورة خيار باللبن" class="dish-image">
-            <div class="dish-title">خيار باللبن</div>
-        </div>
-        
-        <a id="chicken"><h2>قسم وجبات الدجاج</h2></a>
-        
-        <div class="menu-card" data-item-id="D01" data-base-price="46">
-            <h3 class="item-title">حبه كامل شوايه</h3>
-            <div class="base-price"><span class="price-label">مع رز شعبي:</span><span class="price-value">٤٦ ريال</span></div>
-            
-            <div class="options-group">
-                <h4>اختر نوع الأرز:</h4>
-                <div class="option"><label>رز بشاور</label><span class="price-add">+٤ ريال</span><input type="radio" name="rice-D01" value="bashawer" data-add-price="4"></div>
-                <div class="option"><label>رز مندي</label><span class="price-add">+٤ ريال</span><input type="radio" name="rice-D01" value="mandi-rice" data-add-price="4"></div>
-                <div class="option"><label>مثلوثه</label><span class="price-add">+٤ ريال</span><input type="radio" name="rice-D01" value="mathloutha" data-add-price="4"></div>
-            </div>
-            
-            <button class="add-to-cart-btn">إضافة إلى السلة</button>
-        </div>
-        
-        <div class="menu-card" data-item-id="D02" data-base-price="24">
-            <h3 class="item-title">نص حبه شوايه</h3>
-            <div class="base-price"><span class="price-label">مع رز شعبي:</span><span class="price-value">٢٤ ريال</span></div>
-            <div class="options-group">
-                <h4>تغيير نوع الأرز (إضافة):</h4>
-                <div class="option"><label>رز بشاور</label><span class="price-add">+١ ريال</span><input type="radio" name="rice-D02" value="bashawer" data-add-price="1"></div>
-                <div class="option"><label>رز مندي</label><span class="price-add">+١ ريال</span><input type="radio" name="rice-D02" value="mandi-rice" data-add-price="1"></div>
-                <div class="option"><label>مثلوثه</label><span class="price-add">+١ ريال</span><input type="radio" name="rice-D02" value="mathloutha" data-add-price="1"></div>
-            </div>
-            <button class="add-to-cart-btn">إضافة إلى السلة</button>
-        </div>
-        
-        <div class="menu-card" data-item-id="D03" data-base-price="46">
-            <h3 class="item-title">حبه كامل مظبي</h3>
-            <div class="base-price"><span class="price-label">مع رز شعبي:</span><span class="price-value">٤٦ ريال</span></div>
-            <div class="options-group">
-                <h4>تغيير نوع الأرز (إضافة):</h4>
-                <div class="option"><label>رز بشاور</label><span class="price-add">+٤ ريال</span><input type="radio" name="rice-D03" value="bashawer" data-add-price="4"></div>
-                <div class="option"><label>رز مندي</label><span class="price-add">+٤ ريال</span><input type="radio" name="rice-D03" value="mandi-rice" data-add-price="4"></div>
-                <div class="option"><label>مثلوثه</label><span class="price-add">+٤ ريال</span><input type="radio" name="rice-D03" value="mathloutha" data-add-price="4"></div>
-            </div>
-            <button class="add-to-cart-btn">إضافة إلى السلة</button>
-        </div>
-        
-        <div class="menu-card" data-item-id="D04" data-base-price="24">
-            <h3 class="item-title">نص حبه مظبي</h3>
-            <div class="base-price"><span class="price-label">مع رز شعبي:</span><span class="price-value">٢٤ ريال</span></div>
-            <div class="options-group">
-                <h4>تغيير نوع الأرز (إضافة):</h4>
-                <div class="option"><label>رز بشاور</label><span class="price-add">+١ ريال</span><input type="radio" name="rice-D04" value="bashawer" data-add-price="1"></div>
-                <div class="option"><label>رز مندي</label><span class="price-add">+١ ريال</span><input type="radio" name="rice-D04" value="mandi-rice" data-add-price="1"></div>
-                <div class="option"><label>مثلوثه</label><span class="price-add">+١ ريال</span><input type="radio" name="rice-D04" value="mathloutha" data-add-price="1"></div>
-            </div>
-            <button class="add-to-cart-btn">إضافة إلى السلة</button>
-        </div>
-        
-        <div class="menu-card" data-item-id="D05" data-base-price="46">
-            <h3 class="item-title">حبه كامل مندي</h3>
-            <div class="base-price"><span class="price-label">مع رز شعبي:</span><span class="price-value">٤٦ ريال</span></div>
-            <div class="options-group">
-                <h4>تغيير نوع الأرز (إضافة):</h4>
-                <div class="option"><label>رز بشاور</label><span class="price-add">+٤ ريال</span><input type="radio" name="rice-D05" value="bashawer" data-add-price="4"></div>
-                <div class="option"><label>رز مندي</label><span class="price-add">+٤ ريال</span><input type="radio" name="rice-D05" value="mandi-rice" data-add-price="4"></div>
-                <div class="option"><label>مثلوثه</label><span class="price-add">+٤ ريال</span><input type="radio" name="rice-D05" value="mathloutha" data-add-price="4"></div>
-            </div>
-            <button class="add-to-cart-btn">إضافة إلى السلة</button>
-        </div>
-        
-        <div class="menu-card" data-item-id="D06" data-base-price="24">
-            <h3 class="item-title">نص حبه مندي</h3>
-            <div class="base-price"><span class="price-label">مع رز شعبي:</span><span class="price-value">٢٤ ريال</span></div>
-            <div class="options-group">
-                <h4>تغيير نوع الأرز (إضافة):</h4>
-                <div class="option"><label>رز بشاور</label><span class="price-add">+١ ريال</span><input type="radio" name="rice-D06" value="bashawer" data-add-price="1"></div>
-                <div class="option"><label>رز مندي</label><span class="price-add">+١ ريال</span><input type="radio" name="rice-D06" value="mandi-rice" data-add-price="1"></div>
-                <div class="option"><label>مثلوثه</label><span class="price-add">+١ ريال</span><input type="radio" name="rice-D06" value="mathloutha" data-add-price="1"></div>
-            </div>
-            <button class="add-to-cart-btn">إضافة إلى السلة</button>
-        </div>
-
-        <div class="menu-card" data-item-id="D07" data-base-price="46">
-            <h3 class="item-title">حبه كامل مدفون</h3>
-            <div class="base-price"><span class="price-label">مع رز شعبي:</span><span class="price-value">٤٦ ريال</span></div>
-            <div class="options-group">
-                <h4>تغيير نوع الأرز (إضافة):</h4>
-                <div class="option"><label>رز بشاور</label><span class="price-add">+٤ ريال</span><input type="radio" name="rice-D07" value="bashawer" data-add-price="4"></div>
-                <div class="option"><label>رز مندي</label><span class="price-add">+٤ ريال</span><input type="radio" name="rice-D07" value="mandi-rice" data-add-price="4"></div>
-                <div class="option"><label>مثلوثه</label><span class="price-add">+٤ ريال</span><input type="radio" name="rice-D07" value="mathloutha" data-add-price="4"></div>
-            </div>
-            <button class="add-to-cart-btn">إضافة إلى السلة</button>
-        </div>
-
-        <div class="menu-card" data-item-id="D08" data-base-price="24">
-            <h3 class="item-title">نص حبه مدفون</h3>
-            <div class="base-price"><span class="price-label">مع رز شعبي:</span><span class="price-value">٢٤ ريال</span></div>
-            <div class="options-group">
-                <h4>تغيير نوع الأرز (إضافة):</h4>
-                <div class="option"><label>رز بشاور</label><span class="price-add">+١ ريال</span><input type="radio" name="rice-D08" value="bashawer" data-add-price="1"></div>
-                <div class="option"><label>رز مندي</label><span class="price-add">+١ ريال</span><input type="radio" name="rice-D08" value="mandi-rice" data-add-price="1"></div>
-                <div class="option"><label>مثلوثه</label><span class="price-add">+١ ريال</span><input type="radio" name="rice-D08" value="mathloutha" data-add-price="1"></div>
-            </div>
-            <button class="add-to-cart-btn">إضافة إلى السلة</button>
-        </div>
-
-        <div class="menu-card simple-item" data-item-id="D09" data-base-price="50">
-            <h3 class="item-title">حبه دجاج مقلوبه</h3>
-            <div class="base-price"><span class="price-value">٥٠ ريال</span></div>
-            <button class="add-to-cart-btn">إضافة إلى السلة</button>
-        </div>
-
-        <div class="menu-card simple-item" data-item-id="D10" data-base-price="25">
-            <h3 class="item-title">نص دجاج مقلوبه</h3>
-            <div class="base-price"><span class="price-value">٢٥ ريال</span></div>
-            <button class="add-to-cart-btn">إضافة إلى السلة</button>
-        </div>
-
-        <div class="menu-card simple-item" data-item-id="D11" data-base-price="50">
-            <h3 class="item-title">حبه دجاج مضغوط</h3>
-            <div class="base-price"><span class="price-value">٥٠ ريال</span></div>
-            <button class="add-to-cart-btn">إضافة إلى السلة</button>
-        </div>
-        
-        <div class="menu-card simple-item" data-item-id="D12" data-base-price="25">
-            <h3 class="item-title">نص حبه مضغوط</h3>
-            <div class="base-price"><span class="price-value">٢٥ ريال</span></div>
-            <button class="add-to-cart-btn">إضافة إلى السلة</button>
-        </div>
-
-        <div class="menu-card simple-item" data-item-id="D13" data-base-price="50">
-            <h3 class="item-title">حبه دجاج زربيان</h3>
-            <div class="base-price"><span class="price-value">٥٠ ريال</span></div>
-            <button class="add-to-cart-btn">إضافة إلى السلة</button>
-        </div>
-
-        <div class="menu-card simple-item" data-item-id="D14" data-base-price="25">
-            <h3 class="item-title">نص حبه زربيان</h3>
-            <div class="base-price"><span class="price-value">٢٥ ريال</span></div>
-            <button class="add-to-cart-btn">إضافة إلى السلة</button>
-        </div>
-        
-        <a id="meat"><h2>قسم اللحم</h2></a>
-
-        <div class="menu-card" data-item-id="M01" data-base-price="1550">
-            <h3 class="item-title">تيس مندي كامل</h3>
-            <div class="base-price"><span class="price-label">مع رز شعبي:</span><span class="price-value">١٥٥٠ ريال</span></div>
-            <div class="options-group">
-                <h4>تغيير نوع الأرز (إضافة):</h4>
-                <div class="option"><label>رز بشاور</label><span class="price-add">+٥٠ ريال</span><input type="radio" name="rice-M01" value="bashawer" data-add-price="50"></div>
-                <div class="option"><label>رز مندي</label><span class="price-add">+٥٠ ريال</span><input type="radio" name="rice-M01" value="mandi-rice" data-add-price="50"></div>
-            </div>
-            <button class="add-to-cart-btn">إضافة إلى السلة</button>
-        </div>
-        
-        <div class="menu-card" data-item-id="M02" data-base-price="750">
-            <h3 class="item-title">نص تيس مندي</h3>
-            <div class="base-price"><span class="price-label">مع رز شعبي:</span><span class="price-value">٧٥٠ ريال</span></div>
-            <div class="options-group">
-                <h4>تغيير نوع الأرز (إضافة):</h4>
-                <div class="option"><label>رز بشاور</label><span class="price-add">+٢٥ ريال</span><input type="radio" name="rice-M02" value="bashawer" data-add-price="25"></div>
-                <div class="option"><label>رز مندي</label><span class="price-add">+٢٥ ريال</span><input type="radio" name="rice-M02" value="mandi-rice" data-add-price="25"></div>
-            </div>
-            <button class="add-to-cart-btn">إضافة إلى السلة</button>
-        </div>
-        
-        <div class="menu-card" data-item-id="M03" data-base-price="375">
-            <h3 class="item-title">ربع تيس مندي</h3>
-            <div class="base-price"><span class="price-label">مع رز شعبي:</span><span class="price-value">٣٧٥ ريال</span></div>
-            <div class="options-group">
-                <h4>تغيير نوع الأرز (إضافة):</h4>
-                <div class="option"><label>رز بشاور</label><span class="price-add">+١٣ ريال</span><input type="radio" name="rice-M03" value="bashawer" data-add-price="13"></div>
-                <div class="option"><label>رز مندي</label><span class="price-add">+١٣ ريال</span><input type="radio" name="rice-M03" value="mandi-rice" data-add-price="13"></div>
-            </div>
-            <button class="add-to-cart-btn">إضافة إلى السلة</button>
-        </div>
-
-        <div class="menu-card" data-item-id="M04" data-base-price="85">
-            <h3 class="item-title">نفر لحم مندي</h3>
-            <div class="base-price"><span class="price-label">مع رز شعبي:</span><span class="price-value">٨٥ ريال</span></div>
-            <div class="options-group">
-                <h4>تغيير نوع الأرز (إضافة):</h4>
-                <div class="option"><label>رز بشاور</label><span class="price-add">+٥ ريال</span><input type="radio" name="rice-M04" value="bashawer" data-add-price="5"></div>
-                <div class="option"><label>رز مندي</label><span class="price-add">+٥ ريال</span><input type="radio" name="rice-M04" value="mandi-rice" data-add-price="5"></div>
-            </div>
-            <button class="add-to-cart-btn">إضافة إلى السلة</button>
-        </div>
-        
-        <div class="menu-card" data-item-id="M05" data-base-price="50">
-            <h3 class="item-title">نفر حاشي مكموت</h3>
-            <div class="base-price"><span class="price-label">مع رز شعبي:</span><span class="price-value">٥٠ ريال</span></div>
-            <div class="options-group">
-                <h4>تغيير نوع الأرز (إضافة):</h4>
-                <div class="option"><label>رز بشاور</label><span class="price-add">+٣ ريال</span><input type="radio" name="rice-M05" value="bashawer" data-add-price="3"></div>
-                <div class="option"><label>رز مندي</label><span class="price-add">+٣ ريال</span><input type="radio" name="rice-M05" value="mandi-rice" data-add-price="3"></div>
-            </div>
-            <button class="add-to-cart-btn">إضافة إلى السلة</button>
-        </div>
-
-        <div class="menu-card simple-item" data-item-id="M06" data-base-price="68">
-            <h3 class="item-title">نفر لحم برمه نعيمي مع رز شعبي ومرق</h3>
-            <div class="base-price"><span class="price-value">٦٨ ريال</span></div>
-            <button class="add-to-cart-btn">إضافة إلى السلة</button>
-        </div>
-        
-        <a id="grills"><h2>قسم المشويات</h2></a>
-        
-        <div class="menu-card simple-item" data-item-id="G01" data-base-price="150"><h3 class="item-title">كيلو كباب لحم</h3><div class="base-price"><span class="price-value">١٥٠ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="G02" data-base-price="76"><h3 class="item-title">نص كيلو كباب لحم</h3><div class="base-price"><span class="price-value">٧٦ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="G03" data-base-price="38"><h3 class="item-title">نفر كباب لحم</h3><div class="base-price"><span class="price-value">٣٨ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-
-        <div class="menu-card simple-item" data-item-id="G04" data-base-price="120"><h3 class="item-title">كيلو كباب دجاج</h3><div class="base-price"><span class="price-value">١٢٠ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="G05" data-base-price="60"><h3 class="item-title">نص كيلو كباب دجاج</h3><div class="base-price"><span class="price-value">٦٠ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="G06" data-base-price="30"><h3 class="item-title">نفر كباب دجاج</h3><div class="base-price"><span class="price-value">٣٠ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        
-        <div class="menu-card simple-item" data-item-id="G07" data-base-price="180"><h3 class="item-title">كيلو أوصال لحم</h3><div class="base-price"><span class="price-value">١٨٠ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="G08" data-base-price="90"><h3 class="item-title">نص كيلو أوصال لحم</h3><div class="base-price"><span class="price-value">٩٠ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="G09" data-base-price="45"><h3 class="item-title">نفر أوصال لحم</h3><div class="base-price"><span class="price-value">٤٥ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-
-        <div class="menu-card simple-item" data-item-id="G10" data-base-price="120"><h3 class="item-title">كيلو شيش طاووق</h3><div class="base-price"><span class="price-value">١٢٠ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="G11" data-base-price="60"><h3 class="item-title">نص كيلو شيش طاووق</h3><div class="base-price"><span class="price-value">٦٠ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="G12" data-base-price="30"><h3 class="item-title">نفر شيش طاووق</h3><div class="base-price"><span class="price-value">٣٠ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        
-        <div class="menu-card simple-item" data-item-id="G13" data-base-price="130"><h3 class="item-title">كيلو مشكل مشاوي</h3><div class="base-price"><span class="price-value">١٣٠ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="G14" data-base-price="70"><h3 class="item-title">نص كيلو مشكل مشاوي</h3><div class="base-price"><span class="price-value">٧٠ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="G15" data-base-price="35"><h3 class="item-title">نفر مشكل مشاوي</h3><div class="base-price"><span class="price-value">٣٥ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-
-        <a id="stews"><h2>قسم الإيدامات</h2></a>
-        
-        <div class="menu-card simple-item" data-item-id="E01" data-base-price="10"><h3 class="item-title">ملوخية</h3><div class="base-price"><span class="price-value">١٠ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="E02" data-base-price="10"><h3 class="item-title">بامية</h3><div class="base-price"><span class="price-value">١٠ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="E03" data-base-price="10"><h3 class="item-title">مشكل خضار</h3><div class="base-price"><span class="price-value">١٠ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="E04" data-base-price="10"><h3 class="item-title">مشكل فران</h3><div class="base-price"><span class="price-value">١٠ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="E05" data-base-price="12"><h3 class="item-title">مسقع</h3><div class="base-price"><span class="price-value">١٢ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-
-
-        <a id="sides"><h2>قسم الأطباق الجانبية</h2></a>
-        
-        <div class="menu-card simple-item" data-item-id="S01" data-base-price="10"><h3 class="item-title">جريش كبير</h3><div class="base-price"><span class="price-value">١٠ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="S02" data-base-price="5"><h3 class="item-title">جريش صغير</h3><div class="base-price"><span class="price-value">٥ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="S03" data-base-price="10"><h3 class="item-title">قرصان كبير</h3><div class="base-price"><span class="price-value">١٠ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="S04" data-base-price="5"><h3 class="item-title">قرصان صغير</h3><div class="base-price"><span class="price-value">٥ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="S05" data-base-price="3"><h3 class="item-title">طحينة</h3><div class="base-price"><span class="price-value">٣ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="S06" data-base-price="3"><h3 class="item-title">سلطة حارة</h3><div class="base-price"><span class="price-value">٣ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="S07" data-base-price="10"><h3 class="item-title">نفر رز شعبي</h3><div class="base-price"><span class="price-value">١٠ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="S08" data-base-price="10"><h3 class="item-title">نفر رز بشاور</h3><div class="base-price"><span class="price-value">١٠ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="S09" data-base-price="10"><h3 class="item-title">نفر رز مندي</h3><div class="base-price"><span class="price-value">١٠ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        
-        <a id="appetizers"><h2>قسم المقبلات</h2></a>
-        
-        <div class="menu-card simple-item" data-item-id="A01" data-base-price="13"><h3 class="item-title">سلطة خضراء وسط</h3><div class="base-price"><span class="price-value">١٣ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="A02" data-base-price="7"><h3 class="item-title">خيار باللبن صغير</h3><div class="base-price"><span class="price-value">٧ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="A03" data-base-price="10"><h3 class="item-title">خيار باللبن وسط</h3><div class="base-price"><span class="price-value">١٠ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="A04" data-base-price="7"><h3 class="item-title">حمص صغير</h3><div class="base-price"><span class="price-value">٧ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="A05" data-base-price="13"><h3 class="item-title">حمص وسط</h3><div class="base-price"><span class="price-value">١٣ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="A06" data-base-price="7"><h3 class="item-title">متبل صغير</h3><div class="base-price"><span class="price-value">٧ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="A07" data-base-price="13"><h3 class="item-title">متبل وسط</h3><div class="base-price"><span class="price-value">١٣ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="A08" data-base-price="7"><h3 class="item-title">تبولة صغير</h3><div class="base-price"><span class="price-value">٧ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="A09" data-base-price="13"><h3 class="item-title">تبولة وسط</h3><div class="base-price"><span class="price-value">١٣ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="A10" data-base-price="7"><h3 class="item-title">سلطة روسية صغير</h3><div class="base-price"><span class="price-value">٧ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="A11" data-base-price="13"><h3 class="item-title">سلطة روسية وسط</h3><div class="base-price"><span class="price-value">١٣ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="A12" data-base-price="7"><h3 class="item-title">سلطة أمريكية صغير</h3><div class="base-price"><span class="price-value">٧ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="A13" data-base-price="13"><h3 class="item-title">سلطة أمريكية وسط</h3><div class="base-price"><span class="price-value">١٣ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="A14" data-base-price="13"><h3 class="item-title">مشكل مقبلات</h3><div class="base-price"><span class="price-value">١٣ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-
-        <a id="dessert"><h2>قسم الكنافة</h2></a>
-        
-        <div class="menu-card simple-item" data-item-id="K01" data-base-price="10"><h3 class="item-title">كنافة بالقشطة</h3><div class="base-price"><span class="price-value">١٠ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="K02" data-base-price="12"><h3 class="item-title">كنافة جلاكسي</h3><div class="base-price"><span class="price-value">١٢ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="K03" data-base-price="12"><h3 class="item-title">كنافة نوتيلا</h3><div class="base-price"><span class="price-value">١٢ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-
-        <a id="drinks"><h2>قسم المشروبات</h2></a>
-        
-        <div class="menu-card simple-item" data-item-id="L01" data-base-price="3"><h3 class="item-title">ببسي صغير</h3><div class="base-price"><span class="price-value">٣ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="L02" data-base-price="6"><h3 class="item-title">ببسي وسط</h3><div class="base-price"><span class="price-value">٦ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="L03" data-base-price="9"><h3 class="item-title">ببسي كبير</h3><div class="base-price"><span class="price-value">٩ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        
-        <div class="menu-card simple-item" data-item-id="L04" data-base-price="3"><h3 class="item-title">حمضيات صغير</h3><div class="base-price"><span class="price-value">٣ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="L05" data-base-price="6"><h3 class="item-title">حمضيات وسط</h3><div class="base-price"><span class="price-value">٦ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="L06" data-base-price="9"><h3 class="item-title">حمضيات كبير</h3><div class="base-price"><span class="price-value">٩ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-
-        <div class="menu-card simple-item" data-item-id="L07" data-base-price="3"><h3 class="item-title">سفن أب صغير</h3><div class="base-price"><span class="price-value">٣ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="L08" data-base-price="6"><h3 class="item-title">سفن أب وسط</h3><div class="base-price"><span class="price-value">٦ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="L09" data-base-price="9"><h3 class="item-title">سفن أب كبير</h3><div class="base-price"><span class="price-value">٩ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-
-        <div class="menu-card simple-item" data-item-id="L10" data-base-price="2"><h3 class="item-title">لبن مراعي صغير</h3><div class="base-price"><span class="price-value">٢ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="L11" data-base-price="6"><h3 class="item-title">لبن مراعي وسط</h3><div class="base-price"><span class="price-value">٦ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        <div class="menu-card simple-item" data-item-id="L12" data-base-price="11"><h3 class="item-title">لبن مراعي كبير</h3><div class="base-price"><span class="price-value">١١ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-
-        <div class="menu-card simple-item" data-item-id="L13" data-base-price="3"><h3 class="item-title">لبن القرية</h3><div class="base-price"><span class="price-value">٣ ريال</span></div><button class="add-to-cart-btn">إضافة إلى السلة</button></div>
-        
-        <a id="contact"><h2>اتصل بنا</h2></a>
-        <div class="menu-card simple-item">
-            <h3 class="item-title">للتواصل المباشر والاستفسارات</h3>
-            <p>يمكنك إرسال طلبك مباشرة بعد عرضه في السلة، أو الاتصال بنا على الرقم: 9665xxxxxxxx</p>
-        </div>
-
-    </main>
-    
-    <button id="install-app-btn" style="display:none;">تثبيت التطبيق</button>
-    
-    <button id="view-cart-btn">عرض السلة (0)</button>
-
-    <div id="cart-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <h2>سلة مشترياتك</h2>
-            
-            <div id="cart-items-container">
-                <p class="empty-cart-message">سلتك فارغة حالياً. أضف بعض الوجبات اللذيذة!</p>
-            </div>
-            
-            <div class="cart-summary">
-                
-                <h3>طريقة استلام الطلب:</h3>
-                
-                <div class="order-options-in-modal">
-                    <div class="option-radio delivery">
-                        <input type="radio" id="delivery-modal" name="order-method-modal" value="delivery" checked>
-                        <label for="delivery-modal">
-                            <strong>توصيل</strong> <span class="price-add">(+٥ ريال رسوم توصيل)</span>
-                        </label>
-                    </div>
-                    <div class="option-radio pickup">
-                        <input type="radio" id="pickup-modal" name="order-method-modal" value="pickup">
-                        <label for="pickup-modal">
-                            <strong>استلام من المطعم</strong> <span class="price-add">(بدون رسوم)</span>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="totals-display">
-                    <p>إجمالي الوجبات: <span id="subtotal-display">٠ ريال</span></p>
-                    <p>رسوم التوصيل: <span id="delivery-fee-display">٥ ريال</span></p>
-                    <hr>
-                    <p class="final-total">الإجمالي النهائي: <span id="final-total-display">٥ ريال</span></p>
-                </div>
-
-            </div>
-
-            <button id="send-order-btn">إرسال الطلب عبر واتساب</button>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
-</body>
-</html>
