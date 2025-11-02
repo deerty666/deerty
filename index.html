@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قائمة سحايب ديرتي</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="mobile-nav">
+        <div class="brand-name">مطاعم ومطابخ سحايب ديرتي</div>
+        
+        <button class="menu-toggle" aria-label="Toggle Navigation">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        
+        <nav class="nav-links">
+            <ul>
+                <li><a href="#home">الرئيسية</a></li> 
+                <li><a href="#chicken">وجبات الدجاج</a></li> 
+                <li><a href="#meat">وجبات اللحم</a></li>
+                <li><a href="#appetizers">المقبلات</a></li>
+                <li><a href="#drinks">المشروبات</a></li>
+                <li><a href="#contact">اتصل بنا</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="content">
+        
+        <button id="view-cart-btn">عرض السلة (0)</button>
+
+        <h2>قسم وجبات الدجاج</h2>
+        
+        <div class="menu-card" data-item-id="D01" data-base-price="46">
+            <h3 class="item-title">حبه كامل شوايه</h3>
+            
+            <div class="base-price">
+                <span class="price-label">مع رز شعبي:</span>
+                <span class="price-value">٤٦ ريال</span>
+            </div>
+            
+            <div class="options-group">
+                <h4>تغيير نوع الأرز (إضافة):</h4>
+                <div class="option">
+                    <label>رز بشاور</label>
+                    <span class="price-add">+٤ ريال</span>
+                    <input type="radio" name="rice-D01" value="bashawer" data-add-price="4" checked>
+                </div>
+                <div class="option">
+                    <label>رز مندي</label>
+                    <span class="price-add">+٤ ريال</span>
+                    <input type="radio" name="rice-D01" value="mandi-rice" data-add-price="4">
+                </div>
+                <div class="option">
+                    <label>مثلوثه</label>
+                    <span class="price-add">+٤ ريال</span>
+                    <input type="radio" name="rice-D01" value="mathloutha" data-add-price="4">
+                </div>
+            </div>
+            
+            <button class="add-to-cart-btn">إضافة إلى السلة</button>
+        </div>
+        </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
