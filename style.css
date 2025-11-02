@@ -1,0 +1,303 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
+
+/* الألوان الجديدة: #4A423A (البني الداكن) و #C9A676 (الذهبي المطفأ) */
+
+body {
+    margin: 0;
+    font-family: 'Tajawal', Arial, sans-serif; 
+    background-color: #f8f8f8;
+    direction: rtl; 
+    text-align: right;
+    
+    /* المساحة المحجوزة لزر السلة الثابت */
+    padding-bottom: 90px; 
+}
+
+/* ----------------------------------------------------------------- */
+/* شريط التنقل العلوي */
+/* ----------------------------------------------------------------- */
+.mobile-nav {
+    background-color: #4A423A; /* البني الداكن */
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo-img {
+    height: 40px; 
+    width: auto;
+    margin-left: 10px; 
+}
+
+.brand-name { font-size: 1.4rem; font-weight: bold; }
+
+.nav-links {
+    position: absolute;
+    top: 100%; 
+    left: 0;
+    right: 0;
+    background-color: #4A423A; /* البني الداكن */
+    overflow: hidden;
+    max-height: 0; 
+    transition: max-height 0.3s ease-in-out;
+}
+
+.nav-links.open {
+    max-height: 300px; 
+}
+
+.nav-links ul { list-style: none; padding: 0; margin: 0; }
+.nav-links li a { display: block; padding: 10px 20px; color: white; text-decoration: none; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+.nav-links li a:hover { 
+    background-color: #3D352E; /* بني أغمق للتأثير */
+}
+.menu-toggle { display: flex; flex-direction: column; justify-content: space-between; width: 30px; height: 21px; cursor: pointer; }
+.menu-toggle .bar { height: 3px; background-color: white; border-radius: 10px; transition: all 0.3s ease-in-out; }
+
+/* ----------------------------------------------------------------- */
+/* تنسيق المحتوى والبطاقات */
+/* ----------------------------------------------------------------- */
+.content { padding: 20px; }
+.content h2 {
+    color: #4A423A; /* البني الداكن */
+    text-align: center;
+    margin-bottom: 25px;
+    border-bottom: 3px solid #C9A676; /* الذهبي المطفأ */
+    padding-bottom: 10px;
+}
+
+/* تنسيق البطاقة (Menu Card) */
+.menu-card {
+    background-color: white;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-right: 5px solid #4A423A; /* البني الداكن */
+}
+.item-title {
+    color: #4A423A; /* البني الداكن */
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+.base-price { font-size: 1.1rem; font-weight: bold; color: #333; margin-bottom: 10px; }
+.price-value { color: #A93226; } /* تم الإبقاء على سعر الوجبة الأساسي باللون الأحمر الداكن للميزة */
+
+/* خيارات التعديل والإضافة (الهيكل القديم) */
+.options-group { border-top: 1px dashed #ccc; padding-top: 10px; margin-top: 10px; }
+.options-group h4 { color: #4A423A; /* البني الداكن */ margin-top: 0; }
+.option { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; }
+.option label { flex-grow: 1; margin-left: 10px; }
+.price-add { color: #588F27; font-weight: bold; font-size: 0.9rem; width: 60px; text-align: left; }
+.option input[type="radio"] { margin-right: 10px; transform: scale(1.2); }
+
+/* تنسيق الخيارات كبطاقات (الهيكل الجديد) */
+.main-options-group {
+    padding: 10px 0;
+}
+.main-options-group h4 { 
+    color: #4A423A; 
+    text-align: right;
+    margin-bottom: 10px;
+}
+.option-card {
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 10px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.option-card:has(input:checked) {
+    background-color: #C9A676; /* تلوين الخلفية عند الاختيار */
+    border-color: #4A423A;
+}
+.option-card label {
+    flex-grow: 1;
+    font-weight: bold;
+    color: #4A423A;
+}
+.option-card input[type="radio"] {
+    margin-left: 10px;
+    transform: scale(1.1);
+}
+.price-display {
+    font-weight: bold;
+    color: #A93226; /* سعر إضافي بلون مميز */
+}
+
+
+/* زر الإضافة إلى السلة */
+.add-to-cart-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #C9A676; /* الذهبي المطفأ */
+    color: #4A423A; /* البني الداكن لنص الزر */
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.2s;
+    font-weight: bold;
+}
+.add-to-cart-btn:hover { background-color: #B89569; } /* ذهبي أغمق للتأثير */
+
+/* ----------------------------------------------------------------- */
+/* زر عرض السلة الثابت في الأسفل */
+/* ----------------------------------------------------------------- */
+#view-cart-btn {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    padding: 15px;
+    background-color: #4A423A; /* البني الداكن */
+    color: white;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1002; 
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* ----------------------------------------------------------------- */
+/* تنسيقات السلة المنبثقة (Modal) */
+/* ----------------------------------------------------------------- */
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 2000; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6); 
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%; 
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    position: relative;
+    max-height: 80vh; 
+    overflow-y: auto;
+}
+
+.modal-content h2 {
+    color: #4A423A; /* البني الداكن */
+    border-bottom: 2px solid #C9A676; /* الذهبي المطفأ */
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+}
+
+.close-btn {
+    color: #aaa;
+    float: left; 
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #4A423A; /* البني الداكن */
+    text-decoration: none;
+}
+
+.cart-item-details strong { 
+    display: block; 
+    color: #4A423A; /* البني الداكن */
+}
+
+/* تنسيق التحكم بالكمية */
+.quantity-control {
+    display: flex;
+    align-items: center;
+    background-color: #eee;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+.quantity-btn {
+    background-color: #C9A676; /* الذهبي المطفأ */
+    color: #4A423A; /* البني الداكن */
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: 0.2s;
+}
+.quantity-btn:hover { background-color: #B89569; }
+
+.item-price {
+    font-weight: bold;
+    color: #A93226;
+    width: 60px;
+    text-align: left;
+}
+
+/* تنسيق الإجماليات */
+.cart-summary {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 2px solid #4A423A; /* البني الداكن */
+}
+
+.cart-summary h3 {
+    margin-top: 0;
+    font-size: 1.1em;
+    color: #4A423A; /* البني الداكن */
+}
+
+.final-total {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #A93226; 
+}
+
+/* تنسيق زر الإرسال النهائي */
+#send-order-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #4A423A; /* البني الداكن */
+    color: white;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    border-radius: 5px;
+    transition: 0.2s;
+}
+
+/* الرسالة عند السلة الفارغة */
+.empty-cart-message {
+    text-align: center;
+    color: #888;
+    padding: 20px 0;
+    border: 1px dashed #ccc;
+    border-radius: 5px;
+}
