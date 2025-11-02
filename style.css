@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
+
+/* الألوان: #1A4314 (الأخضر الداكن) و #D4AF37 (الذهبي) */
+
+body {
+    margin: 0;
+    font-family: 'Tajawal', Arial, sans-serif; 
+    background-color: #f8f8f8;
+    direction: rtl; 
+    text-align: right;
+    
+    /* FIX: تقليل المساحة المحجوزة، تكفي فقط لزر السلة الثابت */
+    padding-bottom: 90px; 
+}
+
+/* شريط التنقل العلوي */
+.mobile-nav {
+    /* ... (التنسيق كما هو) ... */
+}
+
+/* FIX: تنسيق قائمة الروابط في القائمة العلوية */
+.nav-links {
+    /* الروابط مخفية افتراضياً */
+    position: absolute;
+    top: 100%; /* تظهر أسفل الـ header */
+    left: 0;
+    right: 0;
+    background-color: #1A4314;
+    overflow: hidden;
+    max-height: 0; /* الإخفاء باستخدام ارتفاع صفري */
+    transition: max-height 0.3s ease-in-out;
+}
+
+.nav-links.open {
+    max-height: 300px; /* الإظهار عند تطبيق كلاس 'open' */
+}
+/* ... (بقية تنسيقات القائمة العلوية) ... */
+
+/* ... (تنسيقات البطاقات والقسم الأساسي كما هي) ... */
+
+
+/* ======================= تنسيق خيارات الطلب (الجديد) ======================= */
+.order-options {
+    /* FIX: إزالة التثبيت وجعلها تتدفق مع المحتوى */
+    position: relative; 
+    bottom: auto; /* مهم لإزالة التثبيت */
+    
+    /* إضافة حدود وهوامش عادية */
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 20px 10px;
+    z-index: auto;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.order-options h3 {
+    /* ... (كما هو) ... */
+}
+
+/* ... (بقية تنسيقات .option-radio كما هي) ... */
+
+
+/* زر عرض السلة الثابت في الأسفل */
+#view-cart-btn {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    /* ... (بقية التنسيق كما هو) ... */
+}
