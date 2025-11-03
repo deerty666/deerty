@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>قائمة مطاعم ومطابخ سحايب ديرتي</title>
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="Logo2.png" type="image/png">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+<script>
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js')
+    .then(() => console.log('Service Worker Registered'))
+    .catch(err => console.log('SW registration failed:', err));
+}
+</script>
+<style>
+body { font-family: 'Tajawal', sans-serif; margin:0; background:#f7f7f7; }
+header { background:#4A423A; color:#fff; padding:10px; text-align:center; }
+.menu-section { padding:10px; }
+.menu-section h2 { border-bottom:2px solid #C9A676; padding-bottom:5px; margin-bottom:10px; }
+.menu-item { display:flex; align-items:center; justify-content:space-between; margin:5px 0; background:#fff; padding:5px; border-radius:8px; box-shadow:0 2px 4px rgba(0,0,0,0.1); }
+.menu-item img { width:60px; height:60px; border-radius:8px; object-fit:cover; margin-left:10px; }
+.menu-item span { flex:1; }
+.menu-item button { background:#C9A676; border:none; border-radius:5px; padding:5px 10px; cursor:pointer; color:#fff; font-weight:bold; }
+#cart { position:fixed; bottom:10px; right:10px; background:#C9A676; color:#fff; padding:10px 15px; border-radius:50px; cursor:pointer; font-weight:bold; box-shadow:0 2px 6px rgba(0,0,0,0.2);}
+.install-prompt { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); display:flex; align-items:center; justify-content:center; z-index:1000; }
+.install-box { background:#fff; padding:20px; border-radius:10px; text-align:center; max-width:300px; }
+.install-box button { margin:5px; padding:8px 12px; border:none; border-radius:5px; cursor:pointer; }
+.install-box #installBtn { background:#4A423A; color:#fff; }
+.install-box #dismissBtn { background:#C9A676; color:#fff; }
+</style>
+</head>
+<body>
+<header>
+<h1>مطاعم ومطابخ سحايب ديرتي</h1>
+</header>
+
+<main>
+
+<!-- قسم الدجاج -->
+<section class="menu-section">
+<h2>قسم الدجاج</h2>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>نص حبه مظبي رز شعبي</span><span>٢٤</span><button onclick="addToCart('نص حبه مظبي رز شعبي',24)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>نص حبه مندي رز شعبي</span><span>٢٤</span><button onclick="addToCart('نص حبه مندي رز شعبي',24)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>حبه كامل مدفون رز شعبي</span><span>٤٦</span><button onclick="addToCart('حبه كامل مدفون رز شعبي',46)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>نص حبه مدفون رز شعبي</span><span>٢٤</span><button onclick="addToCart('نص حبه مدفون رز شعبي',24)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>نص دجاج مقلوبه</span><span>٢٥</span><button onclick="addToCart('نص دجاج مقلوبه',25)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>حبه دجاج مضغوط</span><span>٥٠</span><button onclick="addToCart('حبه دجاج مضغوط',50)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>نص حبه مضغوط</span><span>٢٥</span><button onclick="addToCart('نص حبه مضغوط',25)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>حبه دجاج زربيان</span><span>٥٠</span><button onclick="addToCart('حبه دجاج زربيان',50)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>نص حبه زربيان</span><span>٢٥</span><button onclick="addToCart('نص حبه زربيان',25)">+</button></div>
+</section>
+
+<!-- قسم الحم -->
+<section class="menu-section">
+<h2>قسم الحم</h2>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>نص تيس مندي رز شعبي</span><span>٧٥٠</span><button onclick="addToCart('نص تيس مندي رز شعبي',750)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>ربع تيس مندي رز شعبي</span><span>٣٧٥</span><button onclick="addToCart('ربع تيس مندي رز شعبي',375)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>نفر حاشي مكموت رز شعبي</span><span>٥٠</span><button onclick="addToCart('نفر حاشي مكموت رز شعبي',50)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>نفر لحم برمه نعيمي مع رز شعبي ومرق</span><span>٦٨</span><button onclick="addToCart('نفر لحم برمه نعيمي مع رز شعبي ومرق',68)">+</button></div>
+</section>
+
+<!-- قسم الاطباق الجانبيه -->
+<section class="menu-section">
+<h2>قسم الاطباق الجانبيه</h2>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>جريش صغير</span><span>٥</span><button onclick="addToCart('جريش صغير',5)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>قرصان كبير</span><span>١٠</span><button onclick="addToCart('قرصان كبير',10)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>قرصان صغير</span><span>٥</span><button onclick="addToCart('قرصان صغير',5)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>طحينه</span><span>٣</span><button onclick="addToCart('طحينه',3)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>سلطه حار</span><span>٣</span><button onclick="addToCart('سلطه حار',3)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>نفر رز شعبي</span><span>١٠</span><button onclick="addToCart('نفر رز شعبي',10)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>نفر رز بشاور</span><span>١٠</span><button onclick="addToCart('نفر رز بشاور',10)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>نفر رز مندي</span><span>١٠</span><button onclick="addToCart('نفر رز مندي',10)">+</button></div>
+</section>
+
+<!-- قسم المشروبات -->
+<section class="menu-section">
+<h2>قسم المشروبات</h2>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>ببسي وسط</span><span>٦</span><button onclick="addToCart('ببسي وسط',6)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>ببسي كبير</span><span>٩</span><button onclick="addToCart('ببسي كبير',9)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>حمضيات صغير</span><span>٣</span><button onclick="addToCart('حمضيات صغير',3)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>حمضيات وسط</span><span>٦</span><button onclick="addToCart('حمضيات وسط',6)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>حمضيات كبير</span><span>٩</span><button onclick="addToCart('حمضيات كبير',9)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>سفن صغير</span><span>٣</span><button onclick="addToCart('سفن صغير',3)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>سفن وسط</span><span>٦</span><button onclick="addToCart('سفن وسط',6)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>سفن كبير</span><span>٩</span><button onclick="addToCart('سفن كبير',9)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>لبن مراعي صغير</span><span>٢</span><button onclick="addToCart('لبن مراعي صغير',2)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>لبن مراعي وسط</span><span>٦</span><button onclick="addToCart('لبن مراعي وسط',6)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>لبن مراعي كبير</span><span>١١</span><button onclick="addToCart('لبن مراعي كبير',11)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>لبن قريه</span><span>٣</span><button onclick="addToCart('لبن قريه',3)">+</button></div>
+</section>
+
+<!-- قسم الايدامات -->
+<section class="menu-section">
+<h2>قسم الايدامات</h2>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>ملوخيه</span><span>١٠</span><button onclick="addToCart('ملوخيه',10)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>باميه</span><span>١٠</span><button onclick="addToCart('باميه',10)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>مشكل خضار</span><span>١٠</span><button onclick="addToCart('مشكل خضار',10)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>مشكل فران</span><span>١٠</span><button onclick="addToCart('مشكل فران',10)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>مسقع</span><span>١٢</span><button onclick="addToCart('مسقع',12)">+</button></div>
+</section>
+
+<!-- قسم المقبلات -->
+<section class="menu-section">
+<h2>قسم المقبلات</h2>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>سلطه خضرا وسط</span><span>١٣</span><button onclick="addToCart('سلطه خضرا وسط',13)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>خيار لبن صغير</span><span>٧</span><button onclick="addToCart('خيار لبن صغير',7)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>خيار لبن وسط</span><span>١٠</span><button onclick="addToCart('خيار لبن وسط',10)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>حمص صغير</span><span>٧</span><button onclick="addToCart('حمص صغير',7)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>حمص وسط</span><span>١٣</span><button onclick="addToCart('حمص وسط',13)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>متبل صغير</span><span>٧</span><button onclick="addToCart('متبل صغير',7)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>متبل وسط</span><span>١٣</span><button onclick="addToCart('متبل وسط',13)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>تبوله صغير</span><span>٧</span><button onclick="addToCart('تبوله صغير',7)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>تبوله وسط</span><span>١٣</span><button onclick="addToCart('تبوله وسط',13)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>سلطه روسيه صغير</span><span>٧</span><button onclick="addToCart('سلطه روسيه صغير',7)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>سلطه روسيه وسط</span><span>١٣</span><button onclick="addToCart('سلطه روسيه وسط',13)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>سلطه امريكيه صغير</span><span>٧</span><button onclick="addToCart('سلطه امريكيه صغير',7)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>سلطه امريكيه وسط</span><span>١٣</span><button onclick="addToCart('سلطه امريكيه وسط',13)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>مشكل مقبلات</span><span>١٣</span><button onclick="addToCart('مشكل مقبلات',13)">+</button></div>
+</section>
+
+<!-- قسم الكنافه -->
+<section class="menu-section">
+<h2>قسم الكنافه</h2>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>كنافه قشطه</span><span>١٠</span><button onclick="addToCart('كنافه قشطه',10)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>كنافه جلاكسي</span><span>١٢</span><button onclick="addToCart('كنافه جلاكسي',12)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>كنافه نوتيلا</span><span>١٢</span><button onclick="addToCart('كنافه نوتيلا',12)">+</button></div>
+</section>
+
+<!-- قسم المشويات -->
+<section class="menu-section">
+<h2>قسم المشويات</h2>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>كيلو كباب لحم</span><span>١٥٠</span><button onclick="addToCart('كيلو كباب لحم',150)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>نص كيلو كباب لحم</span><span>٧٦</span><button onclick="addToCart('نص كيلو كباب لحم',76)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>نفر كباب لحم</span><span>٣٨</span><button onclick="addToCart('نفر كباب لحم',38)">+</button></div>
+
+<div class="menu-item"><img src="placeholder.png" alt=""><span>كيلو كباب دجاج</span><span>١٢٠</span><button onclick="addToCart('كيلو كباب دجاج',120)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>نص كيلو كباب دجاج</span><span>٦٠</span><button onclick="addToCart('نص كيلو كباب دجاج',60)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>نفر كباب دجاج</span><span>٣٠</span><button onclick="addToCart('نفر كباب دجاج',30)">+</button></div>
+
+<div class="menu-item"><img src="placeholder.png" alt=""><span>كيلو اوصل لحم</span><span>١٨٠</span><button onclick="addToCart('كيلو اوصل لحم',180)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>نص كيلو اوصل لحم</span><span>٩٠</span><button onclick="addToCart('نص كيلو اوصل لحم',90)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>نفر اوصل الحم</span><span>٤٥</span><button onclick="addToCart('نفر اوصل الحم',45)">+</button></div>
+
+<div class="menu-item"><img src="placeholder.png" alt=""><span>كيلو شيش طاوق</span><span>١٢٠</span><button onclick="addToCart('كيلو شيش طاوق',120)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>نص كيلو شيش طاوق</span><span>٦٠</span><button onclick="addToCart('نص كيلو شيش طاوق',60)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>نفر شيش طاوق</span><span>٣٠</span><button onclick="addToCart('نفر شيش طاوق',30)">+</button></div>
+
+<div class="menu-item"><img src="placeholder.png" alt=""><span>كيلو مشكل مشاوي</span><span>١٣٠</span><button onclick="addToCart('كيلو مشكل مشاوي',130)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>نص كيلو مشكل</span><span>٧٠</span><button onclick="addToCart('نص كيلو مشكل',70)">+</button></div>
+<div class="menu-item"><img src="placeholder.png" alt=""><span>نفر مشكل</span><span>٣٥</span><button onclick="addToCart('نفر مشكل',35)">+</button></div>
+</section>
+
+</main>
+
+<!-- زر السلة لإرسال الطلب للواتس -->
+<div id="cart" onclick="sendOrder()">🛒 إرسال الطلب</div>
+
+<!-- نافذة منبثقة لتثبيت التطبيق -->
+<div id="installPrompt" class="install-prompt">
+  <div class="install-box">
+    <h3>هل ترغب بتثبيت تطبيق مطاعم ومطابخ سحايب ديرتي؟ 🍽️</h3>
+    <p>استمتع بتصفح أسرع وبدون إنترنت بعد التثبيت.</p>
+    <div class="buttons">
+      <button id="installBtn">تثبيت الآن</button>
+      <button id="dismissBtn">لاحقًا</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let deferredPrompt;
+const installPrompt = document.getElementById('installPrompt');
+const installBtn = document.getElementById('installBtn');
+const dismissBtn = document.getElementById('dismissBtn');
+
+installPrompt.style.display = 'none';
+
+if (!localStorage.getItem('installDismissed')) {
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installPrompt.style.display = 'flex';
+  });
+}
+
+installBtn.addEventListener('click', async () => {
+  installPrompt.style.display = 'none';
+  deferredPrompt.prompt();
+  const choiceResult = await deferredPrompt.userChoice;
+  deferredPrompt = null;
+});
+
+dismissBtn.addEventListener('click', () => {
+  installPrompt.style.display = 'none';
+  localStorage.setItem('installDismissed', 'true');
+});
+
+// سلة الطلبات
+let cartItems = [];
+
+function addToCart(name, price) {
+  cartItems.push({name, price});
+  alert(name + " تم إضافته للسلة");
+}
+
+// إرسال الطلب للواتس
+function sendOrder() {
+  if(cartItems.length === 0) { alert("السلة فارغة"); return; }
+  let message = "طلب من مطاعم ومطابخ سحايب ديرتي:%0A";
+  cartItems.forEach(item => { message += `${item.name} - ${item.price} ريال%0A`; });
+  let whatsappNumber = "0536803598"; // رقم المطعم
+  window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
+  cartItems = [];
+}
+</script>
+</body>
+</html>
