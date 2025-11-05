@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مطاعم ومطابخ سحايب ديرتي</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#4A423A">
+
+  <style>
+    body {
+      font-family: 'Tajawal', sans-serif;
+      margin: 0;
+      background-color: #fff;
+      text-align: center;
+    }
+
+    /* تصميم البانر */
+    #installBanner {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: linear-gradient(90deg, #d4af37, #b7950b);
+      color: white;
+      padding: 12px 10px;
+      font-size: 18px;
+      font-weight: bold;
+      z-index: 9999;
+      animation: slideDown 0.6s ease forwards;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
+    #installBanner button {
+      background-color: white;
+      color: #4A423A;
+      border: none;
+      padding: 8px 16px;
+      font-size: 16px;
+      border-radius: 8px;
+      font-weight: bold;
+      margin-right: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    #installBanner button:hover {
+      background-color: #f4e3b2;
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-100%); }
+      to { transform: translateY(0); }
+    }
+
+    /* محتوى الصفحة */
+    .content {
+      padding: 100px 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- بانر التثبيت -->
+  <div id="installBanner">
+    📲 هل ترغب بتثبيت تطبيق "ديرتي"؟
+    <button id="installBtn">تثبيت التطبيق</button>
+  </div>
+
+  <!-- محتوى الصفحة -->
+  <div class="content">
+    <h1>مرحبًا بك في مطاعم ومطابخ سحايب ديرتي</h1>
+    <p>استمتع بأشهى الأطباق الشعبية والأكلات المميزة</p>
+    <img src="Logo2.png" alt="شعار ديرتي" width="150">
+  </div>
+
+  <!-- كود PWA -->
+  <script>
+    // تسجيل Service Worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js')
+        .then(() => console.log('✅ Service Worker مسجل'))
+        .catch(err => console.log('❌ فشل التسجيل:', err));
+    }
+
+    // منطق التثبيت
+    let deferredPrompt;
+    const banner = document.getElementById('installBanner');
+    const installBtn = document.getElementById('installBtn');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      banner.style.display = 'flex';
+      banner.style.justifyContent = 'center';
+      banner.style.alignItems = 'center';
+    });
+
+    installBtn.addEventListener('click', async () => {
+      banner.style.display = 'none';
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      if (outcome === 'accepted') {
+        console.log('✅ تم التثبيت');
+      } else {
+        console.log('❌ تم إلغاء التثبيت');
+      }
+      deferredPrompt = null;
+    });
+  </script>
+</body>
+</html>
