@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>سحايب ديرتي POS - الإصدار الجديد</title>
+
+<!-- مكتبة QR Code تعمل بدون إنترنت -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<style>
+    :root {
+        --primary: #1e3a8a;
+        --accent: #f59e0b;
+        --success: #10b981;
+        --danger: #ef4444;
+        --light: #f8fafc;
+    }
+
+    body { 
+        font-family: 'Segoe UI', Tahoma, Arial, sans-serif; 
+        background: linear-gradient(135deg, #e0f2fe, #f1f5f9); 
+        margin: 0; padding: 12px; 
+        direction: rtl; color: #1e2937;
+    }
+    .container { 
+        display: flex; gap: 18px; flex-wrap: wrap; 
+        max-width: 1450px; margin: 0 auto;
+    }
+    .panel { 
+        background: white; 
+        padding: 22px; 
+        border-radius: 20px; 
+        flex: 1; 
+        min-width: 340px; 
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+        border: 1px solid #e2e8f0;
+    }
+
+    h2, h3 { color: var(--primary); }
+    .cat, .item { 
+        padding: 14px; border-radius: 12px; 
+        cursor: pointer; font-weight: bold; 
+        transition: all 0.2s;
+    }
+    .cat { background: var(--primary); color: white; min-width: 100px; text-align: center; }
+    .item { background: #f1f5f9; border: 2px solid #cbd5e1; text-align: center; font-size: 14.5px; }
+    .item:hover { border-color: var(--accent); transform: scale(1.03); }
+
+    .line { 
+        display: flex; justify-content: space-between; align-items: center; 
+        padding: 8px 0; font-size: 15.5px; border-bottom: 1px dashed #94a3b8;
+    }
+    .dots { flex: 1; border-bottom: 2px dotted #64748b; margin: 0 10px; }
+    
+    button {
+        border: none; padding: 12px 18px; border-radius: 12px; 
+        font-weight: bold; cursor: pointer; transition: 0.2s;
+    }
+    .qty-btn { background: #e2e8f0; padding: 6px 12px; font-size: 16px; }
+
+    @media print {
+        @page { size: 80mm auto; margin: 0; }
+        .no-print { display: none !important; }
+        body, .panel { background: white; box-shadow: none; padding: 5px; width: 74mm; margin: 0 auto; }
+        #printArea { font-size: 14px; }
+        .line { font-size: 15px; }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <!-- لوحة إدارة القائمة -->
+    <div class="panel no-print">
+        <h3>📋 إدارة القائمة</h3>
+        <div id="cats" style="margin-bottom:15px;"></div>
+        <hr>
+        <div id="items"></div>
+        <hr>
+        <div style="background:#f8fafc; padding:18px; border-radius:16px;">
+            <h4>إضافة جديد</h4>
+            <input id="catName" placeholder="اسم القسم الجديد" style="width:100%; padding:10px; margin:6px 0;">
+            <button onclick="addCat()" style="background:var(--accent); color:white; width:100%;">➕ إضافة قسم</button>
+            
+            <br><br>
+            <select id="catSelect" style="width:100%; padding:10px;"></select>
+            <input id="itemName" placeholder="اسم الصنف" style="width:100%; padding:10px; margin:6px 0;">
+            <input id="itemPrice" type="number" placeholder="السعر (ر.س)" style="width:100%; padding:10px;">
+            <button onclick="addItem()" style="background:var(--success); color:white; width:100%;">➕ إضافة صنف</button>
+        </div>
+    </div>
+
+    <!-- منطقة الفاتورة -->
+    <div class="panel" id="printArea">
+        <div style="text-align:center; margin-bottom:20px;">
+            <img src="logo.png" alt="شعار سحايب ديرتي" style="width:130px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.1);">
+            <h2 style="margin:12px 0 6px; color:var(--primary);">سحايب ديرتي</h2>
+            <div style="background:#1e3a8a; color:white; display:inline-block; padding:6px 24px; border-radius:30px; font-size:15px;">
+                فاتورة مؤقتة - رقم: <strong id="inv">1013</strong>
+            </div>
+        </div>
+
+        <div class="no-print" style="margin:15px 0;">
+            <input id="cName" placeholder="اسم العميل أو الموعد" style="width:100%; padding:12px; margin-bottom:8px; border-radius:12px; border:1px solid #cbd5e1;">
+            <input id="cPhone" placeholder="رقم الجوال (بدون 966)" style="width:100%; padding:12px; margin-bottom:8px; border-radius:12px; border:1px solid #cbd5e1;">
+            
+            <div style="border:2px solid #e2e8f0; padding:14px; border-radius:16px;">
+                <label><input type="radio" name="dType" id="takeaway" checked onclick="toggleDelivery(false)"> استلام 🏪</label>
+                <label style="margin-right:25px;"><input type="radio" name="dType" id="delivery" onclick="toggleDelivery(true)"> توصيل 🚗</label>
+                <div id="deliveryInput" style="display:none; margin-top:12px;">
+                    رسوم التوصيل: <input id="deliveryFee" type="number" value="0" onchange="updateCart()" style="width:90px; padding:8px;"> ر.س<br>
+                    <input id="cLoc" placeholder="العنوان الكامل" style="width:100%; margin-top:8px; padding:10px;">
+                </div>
+            </div>
+        </div>
+
+        <div id="cart" style="min-height:150px;"></div>
+        
+        <div class="line" style="font-size:1.8em; font-weight:bold; margin-top:15px; color:var(--primary);">
+            <span>الإجمالي</span>
+            <span id="totalDisplay">0.00</span> <span style="font-size:0.65em;">ر.س</span>
+        </div>
+
+        <div style="text-align:center; margin:25px 0 15px;">
+            <p style="font-weight:bold; color:#334155;">لمتابعة العروض والطلبات حمل تطبيقنا 📱</p>
+            <div id="qrcode" style="margin:15px auto; width:160px; height:160px; background:white; padding:10px; border:2px solid #e2e8f0; border-radius:12px;"></div>
+            <p style="font-size:13px; color:#64748b;">شكراً لثقتكم 💙</p>
+        </div>
+
+        <div class="no-print" style="display:flex; gap:12px; flex-wrap:wrap;">
+            <button onclick="printInvoice()" style="background:var(--primary); color:white; flex:1; font-size:16px;">🖨️ طباعة الفاتورة</button>
+            <button onclick="sendWhats()" style="background:var(--success); color:white; flex:1; font-size:16px;">📲 إرسال واتساب</button>
+            <button onclick="clearCart()" style="background:#64748b; color:white;">فاتورة جديدة</button>
+        </div>
+    </div>
+</div>
+
+<script>
+// بيانات
+let data = JSON.parse(localStorage.getItem("menu")) || [];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let inv = parseInt(localStorage.getItem("inv")) || 1013;
+let appQrUrl = localStorage.getItem("appQrUrl") || "https://yourapp.com";
+let activeCat = 0;
+
+function save() { localStorage.setItem("menu", JSON.stringify(data)); }
+function saveCart() { localStorage.setItem("cart", JSON.stringify(cart)); }
+
+// توليد QR Code محليًا (يعمل بدون نت)
+function generateQR() {
+    const container = document.getElementById("qrcode");
+    container.innerHTML = "";
+    new QRCode(container, {
+        text: appQrUrl,
+        width: 160,
+        height: 160,
+        colorDark: "#1e3a8a",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+    });
+}
+
+// باقي الدوال (render, showItems, addCart, updateCart ... إلخ) محسنة
+function render() {
+    document.getElementById("inv").innerText = inv;
+    
+    let catsDiv = document.getElementById("cats");
+    let select = document.getElementById("catSelect");
+    catsDiv.innerHTML = ""; select.innerHTML = "";
+
+    data.forEach((c, i) => {
+        catsDiv.innerHTML += `<div style="display:inline-flex; margin:5px;"><div class="cat" onclick="activeCat=\( {i};render()"> \){c.name}</div></div>`;
+        select.innerHTML += `<option value="\( {i}"> \){c.name}</option>`;
+    });
+
+    showItems();
+    updateCart();
+    generateQR();   // توليد QR محلي
+}
+
+function showItems() {
+    let div = document.getElementById("items");
+    div.innerHTML = "";
+    if (!data[activeCat]) return;
+    data[activeCat].items.forEach((it, idx) => {
+        div.innerHTML += `
+            <div style="display:inline-flex; margin:6px; align-items:center;">
+                <div class="item" onclick="addCart('${it.name.replace(/'/g,"\\'")}', \( {it.price})"> \){it.name}<br><strong>${it.price} ر.س</strong></div>
+                <button onclick="editItem(\( {activeCat}, \){idx})" style="margin:0 4px; background:#f59e0b; color:white;">✏️</button>
+                <button onclick="deleteItemFromMenu(${idx})" style="background:#ef4444; color:white;">🗑️</button>
+            </div>`;
+    });
+}
+
+function addCart(name, price) {
+    const exist = cart.findIndex(item => item.name === name);
+    if (exist !== -1) cart[exist].qty++;
+    else cart.push({name, price, qty:1, note:""});
+    saveCart();
+    updateCart();
+}
+
+function updateCart() {
+    let div = document.getElementById("cart");
+    div.innerHTML = "";
+    let total = 0;
+
+    cart.forEach((it, i) => {
+        const itemTotal = it.price * it.qty;
+        total += itemTotal;
+        div.innerHTML += `
+            <div class="line">
+                <span>${it.name} × ${it.qty}</span>
+                <span class="dots"></span>
+                <span>${itemTotal.toFixed(2)}</span>
+            </div>
+            <div style="text-align:center; margin-bottom:10px;" class="no-print">
+                <button onclick="changeQty(${i},1)" class="qty-btn">+</button>
+                <button onclick="changeQty(${i},-1)" class="qty-btn">-</button>
+                <button onclick="addNote(${i})" style="margin:0 6px; font-size:13px;">📝</button>
+                <button onclick="removeItem(${i})" style="background:#ef4444; color:white; font-size:13px;">حذف</button>
+            </div>`;
+    });
+
+    if (document.getElementById("delivery").checked) {
+        total += parseFloat(document.getElementById("deliveryFee").value) || 0;
+    }
+    document.getElementById("totalDisplay").innerText = total.toFixed(2);
+}
+
+function changeQty(i, delta) {
+    cart[i].qty += delta;
+    if (cart[i].qty < 1) cart.splice(i,1);
+    saveCart();
+    updateCart();
+}
+
+function addNote(i) {
+    let note = prompt("أدخل ملاحظة:", cart[i].note || "");
+    if (note !== null) {
+        cart[i].note = note;
+        saveCart();
+        updateCart();
+    }
+}
+
+function removeItem(i) {
+    if (confirm("حذف الصنف؟")) {
+        cart.splice(i,1);
+        saveCart();
+        updateCart();
+    }
+}
+
+function printInvoice() {
+    window.print();
+    inv++;
+    localStorage.setItem("inv", inv);
+    render();
+}
+
+function sendWhats() {
+    let phone = document.getElementById("cPhone").value.trim();
+    if (!phone) return alert("أدخل رقم الجوال!");
+    if (phone.startsWith("0")) phone = phone.substring(1);
+
+    let msg = `*فاتورة سحايب ديرتي*%0Aرقم: ${document.getElementById("inv").innerText}%0A`;
+    cart.forEach(it => {
+        msg += `• ${it.name} × ${it.qty} = ${(it.price*it.qty).toFixed(2)} ر.س%0A`;
+    });
+    msg += `الإجمالي: *${document.getElementById("totalDisplay").innerText} ر.س*%0A`;
+    msg += `شكراً 💙%0A${appQrUrl}`;
+
+    window.open(`https://wa.me/966\( {phone}?text= \){encodeURIComponent(msg)}`);
+}
+
+function toggleDelivery(show) {
+    document.getElementById("deliveryInput").style.display = show ? "block" : "none";
+    updateCart();
+}
+
+function clearCart() {
+    if (confirm("فاتورة جديدة؟")) {
+        cart = [];
+        saveCart();
+        updateCart();
+    }
+}
+
+// دوال الإدارة
+function addCat() {
+    let n = document.getElementById("catName").value.trim();
+    if (n) {
+        data.push({name: n, items: []});
+        save();
+        render();
+        document.getElementById("catName").value = "";
+    }
+}
+
+function addItem() {
+    let c = document.getElementById("catSelect").value;
+    let n = document.getElementById("itemName").value.trim();
+    let p = parseFloat(document.getElementById("itemPrice").value);
+    if (n && p) {
+        data[c].items.push({name:n, price:p});
+        save();
+        render();
+        document.getElementById("itemName").value = "";
+        document.getElementById("itemPrice").value = "";
+    }
+}
+
+function editItem(catIdx, itemIdx) {
+    let item = data[catIdx].items[itemIdx];
+    let n = prompt("الاسم الجديد:", item.name);
+    let p = prompt("السعر الجديد:", item.price);
+    if (n && p) {
+        data[catIdx].items[itemIdx] = {name: n.trim(), price: parseFloat(p)};
+        save();
+        render();
+    }
+}
+
+function deleteItemFromMenu(idx) {
+    if (confirm("حذف الصنف نهائياً؟")) {
+        data[activeCat].items.splice(idx, 1);
+        save();
+        render();
+    }
+}
+
+// تهيئة
+render();
+
+// Service Worker بسيط للعمل بدون نت
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+}
+</script>
+</body>
+</html>
