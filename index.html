@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سحايب ديرتي POS - النسخة الاحترافية</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="panel no-print">
+        <h3>📂 إدارة القائمة</h3>
+        <div id="cats"></div>
+        <hr>
+        <div id="items"></div>
+        <hr>
+        <div class="admin-box">
+            <h4>إضافة وإدارة</h4>
+            <div class="input-group">
+                <input id="catName" placeholder="اسم القسم الجديد">
+                <button onclick="addCat()">➕ قسم</button>
+            </div>
+            <br>
+            <div class="input-group">
+                <select id="catSelect"></select>
+                <input id="itemName" placeholder="الصنف">
+                <input id="itemPrice" type="number" placeholder="السعر" style="width:70px">
+                <button onclick="addItem()">➕ صنف</button>
+            </div>
+            <hr>
+            <p style="font-size: 12px; color: #7f8c8d; text-align: center;">رابط التطبيق مثبت برمجياً.</p>
+        </div>
+    </div>
+
+    <div class="panel" id="printArea">
+        <div class="receipt-header">
+            <img src="logo.png" class="logo" alt="شعار سحايب ديرتي">
+            <div class="receipt-title">فاتورة حجز مؤقتة</div>
+            <h2 class="restaurant-name">سحايب ديرتي</h2>
+            <p>رقم الفاتورة: <span id="inv">1013</span></p>
+            <hr class="receipt-divider">
+        </div>
+
+        <div class="no-print customer-info">
+            <input id="cName" placeholder="الموعد / اسم العميل" class="full-width">
+            <input id="cPhone" placeholder="جوال العميل (966...)" class="full-width" type="tel">
+            <div class="delivery-toggle">
+                <label><input type="radio" name="dType" id="takeaway" checked onclick="toggleDelivery(false)"> استلام 🏠</label>
+                <label><input type="radio" name="dType" id="delivery" onclick="toggleDelivery(true)"> توصيل 🚗</label>
+                
+                <div id="deliveryInput" style="display:none;" class="delivery-details">
+                    <div class="line">
+                        <span>رسوم التوصيل:</span>
+                        <input id="deliveryFee" type="number" value="0" onchange="updateCart()" style="width:70px">
+                    </div>
+                    <input id="cLoc" placeholder="موقع العميل / العنوان" class="full-width">
+                </div>
+            </div>
+        </div>
+
+        <div id="cart"></div>
+        
+        <hr class="receipt-divider">
+        
+        <div class="line total-line">
+            <span>الإجمالي النهائي:</span>
+            <span class="dots"></span>
+            <span id="totalDisplay">0.00</span>
+        </div>
+
+        <div class="receipt-footer">
+            <p class="promo-text">لمتابعة العروض حمل تطبيقنا 📲</p>
+            <div id="appQrContainer" class="qr-container"></div>
+            <p class="thank-you-text">شكراً لزيارتكم 💙</p>
+        </div>
+
+        <div class="no-print action-buttons">
+            <button onclick="printInvoice()" class="btn-print">🖨️ طباعة</button>
+            <button onclick="sendWhats()" class="btn-whatsapp">📲 واتساب</button>
+            <button onclick="clearCart()" class="btn-new">🗑️ جديد</button>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
