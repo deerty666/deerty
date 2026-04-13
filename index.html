@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سحايب ديرتي POS - النسخة النهائية</title>
+    <style>
+        :root {
+            --primary-blue: #2c3e50;
+            --accent-blue: #3498db;
+            --bg-color: #f4f7f9;
+            --white: #ffffff;
+        }
+
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; display: flex; height: 100vh; background: var(--bg-color); overflow: hidden; }
+
+        /* 🛒 السلة الجانبية (الفاتورة) */
+        .sidebar { width: 380px; background: var(--white); border-left: 2px solid #ddd; display: flex; flex-direction: column; box-shadow: -2px 0 10px rgba(0,0,0,0.1); }
+        .sidebar-header { padding: 15px; background: var(--primary-blue); color: white; text-align: center; }
+        
+        /* حقول البيانات العلوية */
+        .client-info { padding: 10px; background: #ebf2f7; border-bottom: 1px solid #ccc; }
+        .client-info input { width: 95%; padding: 8px; margin: 4px 0; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; }
+
+        .cart-content { flex: 1; overflow-y: auto; padding: 5px; }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 8px; border-bottom: 1px dotted #bbb; font-size: 14px; position: relative; }
+        
+        /* 🟦 منطقة المنتجات */
+        .main { flex: 1; display: flex; flex-direction: column; padding: 15px; overflow-y: auto; }
+        .categories { display: flex; gap: 8px; margin-bottom: 15px; overflow-x: auto; padding-bottom: 5px; }
+        .cat-btn { padding: 8px 16px; border: 2px solid var(--accent-blue); background: white; color: var(--accent-blue); border-radius: 20px; cursor: pointer; font-weight: bold; white-space: nowrap; }
+        .cat-btn.active { background: var(--accent-blue); color: white; }
+
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px; }
+        .prod-card { background: white; padding: 15px; border-radius: 10px; text-align: center; cursor: pointer; border-bottom: 3px solid var(--accent-blue); box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+
+        /* التوصيل والإجمالي */
+        .delivery-section { padding: 10px; background: #f9f9f9; border-top: 1px solid #ddd; font-size: 14px; }
+        .footer-total { padding: 15px; background: var(--white); border-top: 2px solid var(--primary-blue); }
+        
+        .btn { width: 100%; padding: 10px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; margin-top: 5px; color: white; }
+        
+        .delete-btn { color: #e74c3c; cursor: pointer; font-weight: bold; margin-right: 10px; display: none; }
+
+        /* 🖨️ تنسيق الطباعة الحرارية */
+        @media print {
+            body { background: white; }
+            .main, .no-print { display: none !important; }
+            .sidebar { width: 100%; border: none; box-shadow: none; }
+            .sidebar-header, .client-info, .cart-item, .delivery-section, .footer-total { padding: 2px !important; margin: 0 !important; }
+            .cart-item { border-bottom: 1px solid #000; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <div class="sidebar-header">
+        <h3 style="margin:0">سحايب ديرتي 💙</h3>
+        <small>رقم الطلب: <span id="invDisplay">1001</span></small>
+    </div>
+
+    <div class="client-info">
+        <input id="custPhone" type="tel" placeholder="📱 رقم جوال العميل (بدون صفر)">
+        <input id="custTime" type="text" placeholder="📅 الموعد (مثلاً: اليوم بعد العصر)">
+        <input id="custLoc" type="text" placeholder="📍 موقع العميل / العنوان">
+    </div>
+
+    <div id="cartItems" class="cart-content">
+        </div>
+
+    <div class="delivery-section">
+        <div class="no-print">
+            <label><input type="radio" name="dType" value="0" checked onchange="updateTotal()"> استلام 🏠</label>
+            <label><input type="radio" name="dType" value="1" onchange="toggleDel(true)"> توصيل 🚗</label>
+            <span id="delInputBox" style="display:none">
+                <input id="delFee" type="number" placeholder="الرسوم" style="width:50px" oninput="updateTotal()">
+            </span>
+        </div>
+        <div id="printInfo" style="margin-top:5px; font-size:12px;"></div>
+    </div>
+
+    <div class="footer-total">
+        <div style="display:flex; justify-content:space-between; font-weight:bold; font-size:1.2em;">
+            <span>الإجمالي:</span>
+            <span><span id="finalTotal">0.00</span> ر.س</span>
+        </div>
+        <button class="btn no-print" style="background:#2c3e50" onclick="printOrder()">🖨️ طباعة</button>
+        <button class="btn no-print" style="background:#27ae60" onclick="sendWhatsApp()">📲 واتساب</button>
+        <button class="btn no-print" style="background:#95a5a6" onclick="clearCart()">🗑️ جديد</button>
+    </div>
+</div>
+
+<div class="main">
+    <div id="catList" class="categories"></div>
+    <div id="prodGrid" class="products-grid"></div>
+
+    <div class="no-print" style="margin-top:30px; padding:15px; background:white; border-radius:10px; border:1px dashed #3498db;">
+        <button id="lockBtn" onclick="toggleLock()" style="background:#f39c12; color:white; border:none; padding:8px 15px; border-radius:5px; cursor:pointer;">🔓 فتح تعديل القائمة</button>
+        <div id="adminPanel" style="display:none; margin-top:15px;">
+            <input id="newCat" placeholder="اسم القسم"> <button onclick="addCat()">+ قسم</button>
+            <hr>
+            <select id="catSel"></select>
+            <input id="pName" placeholder="اسم الصنف">
+            <input id="pPrice" type="number" placeholder="السعر">
+            <button onclick="addProd()">+ صنف</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let db = JSON.parse(localStorage.getItem('sahaib_db')) || [{name: "العامة", items: []}];
+    let cart = [];
+    let curCat = 0;
+    let isLocked = true;
+    let inv = localStorage.getItem('sahaib_inv') || 1001;
+
+    function init() {
+        renderCats();
+        renderProds();
+        document.getElementById('invDisplay').innerText = inv;
+    }
+
+    function renderCats() {
+        const list = document.getElementById('catList');
+        const sel = document.getElementById('catSel');
+        list.innerHTML = ''; sel.innerHTML = '';
+        db.forEach((c, i) => {
+            list.innerHTML += `<button class="cat-btn ${i==curCat?'active':''}" onclick="setCat(${i})">${c.name}</button>`;
+            sel.innerHTML += `<option value="${i}">${c.name}</option>`;
+        });
+    }
+
+    function renderProds() {
+        const grid = document.getElementById('prodGrid');
+        grid.innerHTML = '';
+        db[curCat].items.forEach((p, i) => {
+            grid.innerHTML += `
+                <div class="prod-card" onclick="addToCart('${p.name}', ${p.price})">
+                    <span class="delete-btn" onclick="event.stopPropagation(); deleteItem(${i})">❌</span>
+                    <b>${p.name}</b><br><small>${p.price} ر.س</small>
+                </div>`;
+        });
+        document.querySelectorAll('.delete-btn').forEach(b => b.style.display = isLocked ? 'none' : 'inline');
+    }
+
+    function addToCart(name, price) {
+        cart.push({name, price, id: Date.now()}); // إضافة كسطر منفصل دائماً
+        renderCart();
+    }
+
+    function renderCart() {
+        const cont = document.getElementById('cartItems');
+        cont.innerHTML = '';
+        cart.forEach((item, i) => {
+            cont.innerHTML += `
+                <div class="cart-item">
+                    <span>${item.name}</span>
+                    <span>${item.price} ر.س <span class="no-print" style="cursor:pointer; color:red; margin-right:10px;" onclick="removeLine(${i})">🗑️</span></span>
+                </div>`;
+        });
+        updateTotal();
+    }
+
+    function removeLine(i) { cart.splice(i, 1); renderCart(); }
+
+    function updateTotal() {
+        let sum = cart.reduce((a, b) => a + b.price, 0);
+        let del = 0;
+        if(document.querySelector('input[name="dType"]:checked').value == "1") {
+            del = parseFloat(document.getElementById('delFee').value) || 0;
+        }
+        document.getElementById('finalTotal').innerText = (sum + del).toFixed(2);
+        
+        // تحديث بيانات الطباعة
+        let info = `📍 الموقع: ${document.getElementById('custLoc').value}<br>📅 الموعد: ${document.getElementById('custTime').value}`;
+        if(del > 0) info += `<br>🚗 رسوم التوصيل: ${del} ر.س`;
+        document.getElementById('printInfo').innerHTML = info;
+    }
+
+    function toggleDel(s) { document.getElementById('delInputBox').style.display = s?'inline':'none'; updateTotal(); }
+    function setCat(i) { curCat = i; renderCats(); renderProds(); }
+    function toggleLock() { 
+        isLocked = !isLocked; 
+        document.getElementById('adminPanel').style.display = isLocked?'none':'block';
+        document.getElementById('lockBtn').innerText = isLocked?'🔓 فتح تعديل القائمة':'🔒 قفل القائمة';
+        renderProds();
+    }
+
+    function addCat() { let n=document.getElementById('newCat').value; if(n){db.push({name:n,items:[]});save();renderCats();}}
+    function addProd() {
+        let c=document.getElementById('catSel').value, n=document.getElementById('pName').value, p=document.getElementById('pPrice').value;
+        if(n&&p){db[c].items.push({name:n,price:parseFloat(p)});save();renderProds();}
+    }
+    function deleteItem(i) { if(confirm("حذف؟")){db[curCat].items.splice(i,1);save();renderProds();}}
+    function save() { localStorage.setItem('sahaib_db', JSON.stringify(db)); }
+
+    function printOrder() { window.print(); inv++; localStorage.setItem('sahaib_inv', inv); document.getElementById('invDisplay').innerText = inv; }
+
+    function sendWhatsApp() {
+        let phone = document.getElementById('custPhone').value;
+        if(!phone) return alert("يرجى إدخال رقم الجوال");
+        let msg = `🧾 *طلب جديد - سحايب ديرتي*%0A%0A`;
+        cart.forEach(i => msg += `• ${i.name} : ${i.price} ر.س%0A`);
+        msg += `%0A📅 *الموعد:* ${document.getElementById('custTime').value}`;
+        msg += `%0A📍 *الموقع:* ${document.getElementById('custLoc').value}`;
+        msg += `%0A💰 *الإجمالي النهائي: ${document.getElementById('finalTotal').innerText} ر.س*`;
+        window.open(`https://wa.me/966${phone}?text=${msg}`);
+    }
+
+    function clearCart() { if(confirm("بدء طلب جديد؟")){cart=[]; renderCart();}}
+
+    init();
+</script>
+</body>
+</html>
