@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سحايب ديرتي - كاشير</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+            #printArea { width: 80mm; margin: 0 auto; padding: 5mm; font-size: 13px; }
+            .item { display: flex; justify-content: space-between; margin: 6px 0; }
+            .total { font-size: 16px; font-weight: bold; }
+        }
+        .note { font-size: 12px; color: #555; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- لوحة الإدارة -->
+    <div class="sidebar no-print">
+        <h2>📋 إدارة القائمة</h2>
+        <div id="categories"></div>
+        <hr>
+        <div id="menuItems"></div>
+        
+        <div class="admin">
+            <h3>➕ إضافة</h3>
+            <input id="newCat" placeholder="اسم القسم الجديد">
+            <button onclick="addCategory()">إضافة قسم</button>
+            
+            <select id="catSelect"></select>
+            <input id="newItemName" placeholder="اسم الصنف">
+            <input id="newItemPrice" type="number" placeholder="السعر">
+            <button onclick="addMenuItem()">إضافة صنف</button>
+        </div>
+    </div>
+
+    <!-- منطقة الفاتورة -->
+    <div class="main" id="printArea">
+        <div class="receipt-header">
+            <img src="logo.png" alt="شعار" class="logo">
+            <h1>سحايب ديرتي</h1>
+            <div class="special-box">فاتورة حجز مواقته</div>
+            <p><strong>رقم المطعم:</strong> 0112020203</p>
+            <p>رقم الفاتورة: <span id="invoiceNum">AUTO</span> | <span id="currentDate"></span></p>
+            <hr>
+        </div>
+
+        <div class="customer-info no-print">
+            <input id="custName" placeholder="اسم العميل" class="input">
+            <input id="custPhone" placeholder="جوال العميل (966...)" class="input">
+            <input id="custAddress" placeholder="العنوان" class="input">
+            <input id="custTime" type="datetime-local" class="input">
+        </div>
+
+        <div id="cartItems"></div>
+
+        <div class="total-section">
+            <div class="total-line">
+                <span>الإجمالي:</span>
+                <span id="grandTotal">0.00</span>
+            </div>
+        </div>
+
+        <div class="receipt-footer">
+            <p>شكراً لثقتكم 💙</p>
+            <p>للاستفسار: 0112020203</p>
+        </div>
+
+        <div class="actions no-print">
+            <button onclick="printReceipt()" class="btn print">🖨️ طباعة 80mm</button>
+            <button onclick="sendToWhatsApp()" class="btn whatsapp">📲 واتساب</button>
+            <button onclick="clearAll()" class="btn clear">فاتورة جديدة</button>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
