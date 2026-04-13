@@ -128,3 +128,32 @@ header {
     cursor: pointer;
     color: #e74c3c;
 }
+.main-content {
+    display: flex;
+    gap: 20px;
+    height: calc(100vh - 120px);
+}
+
+.left-panel {
+    flex: 1;
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    overflow-y: auto;
+}
+
+.right-panel {
+    width: 380px;
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    overflow-y: auto;
+}
+
+.cart {
+    min-height: 300px;
+    max-height: 400px;
+    overflow-y: auto;
+}
