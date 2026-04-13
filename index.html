@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سحايب ديرتي - كاشير Offline</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+            #printArea { width: 80mm; margin: 0 auto; padding: 5mm; font-size: 13px; line-height: 1.4; }
+            .cart-item { border-bottom: 1px dashed #000; padding: 5px 0; }
+        }
+        .full-width { width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 5px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- الجانب الأيسر: إدارة القائمة -->
+    <div class="sidebar no-print">
+        <h2>📋 إدارة القائمة</h2>
+        
+        <h3>➕ إضافة قسم جديد</h3>
+        <input id="newCat" class="full-width" placeholder="اسم القسم (مثال: مشروبات)">
+        <button onclick="addCategory()" style="width:100%; padding:10px; background:#28a745; color:white; border:none; border-radius:5px; margin:8px 0;">إضافة القسم</button>
+        
+        <h3>➕ إضافة صنف</h3>
+        <select id="catSelect" class="full-width"></select>
+        <input id="newItemName" class="full-width" placeholder="اسم الصنف">
+        <input id="newItemPrice" type="number" class="full-width" placeholder="السعر (ريال)">
+        <button onclick="addMenuItem()" style="width:100%; padding:10px; background:#007bff; color:white; border:none; border-radius:5px;">إضافة الصنف</button>
+
+        <hr>
+        <h3>الأقسام والأصناف الحالية</h3>
+        <div id="menuList"></div>
+    </div>
+
+    <!-- منطقة الفاتورة الرئيسية -->
+    <div class="main" id="printArea">
+        <div class="receipt-header">
+            <img src="logo.png" alt="شعار سحايب ديرتي" class="logo" style="width:150px;">
+            <h1>سحايب ديرتي</h1>
+            <div class="special-box">فاتورة حجز مواقته</div>
+            <p><strong>رقم المطعم: 0112020203</strong></p>
+            <p>رقم الفاتورة: <span id="invoiceNum">AUTO</span> — <span id="currentDate"></span></p>
+            <hr>
+        </div>
+
+        <div class="customer-info no-print">
+            <input id="custName" class="full-width" placeholder="اسم العميل">
+            <input id="custPhone" class="full-width" placeholder="جوال العميل (966...)">
+            <input id="custAddress" class="full-width" placeholder="العنوان">
+            <input id="custTime" type="datetime-local" class="full-width">
+        </div>
+
+        <div id="cartItems"></div>
+
+        <div class="total-section">
+            <div class="total-line">
+                <strong>الإجمالي:</strong>
+                <strong id="grandTotal">0.00 ريال</strong>
+            </div>
+        </div>
+
+        <div class="receipt-footer">
+            <p>شكراً لثقتكم 💙</p>
+            <p>للحجز والاستفسار: 0112020203</p>
+        </div>
+
+        <div class="actions no-print">
+            <button onclick="printReceipt()" class="btn print">🖨️ طباعة 80mm</button>
+            <button onclick="sendToWhatsApp()" class="btn whatsapp">📲 واتساب</button>
+            <button onclick="clearAll()" class="btn clear">🗑️ فاتورة جديدة</button>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
