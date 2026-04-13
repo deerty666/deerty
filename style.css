@@ -1,0 +1,16 @@
+/* style.css */
+.container { display: flex; height: 100vh; }
+.sidebar { width: 350px; background: white; padding: 10px; border-left: 1px solid #ddd; }
+.main-content { flex: 1; padding: 20px; overflow-y: auto; }
+
+/* إعدادات الطباعة لضمان التوسيط ومنع القص */
+@media print {
+    .no-print { display: none; }
+    body { margin: 0; padding: 0; }
+    .sidebar { 
+        width: 80mm; /* عرض ورق طابعات الكاشير القياسي */
+        margin: 0 auto; /* توسيط الفاتورة */
+        border: none;
+    }
+    #cartItems { width: 100%; text-align: center; }
+}
