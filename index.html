@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سحايب ديرتي - كاشير احترافي</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @media print {
+            .no-print, .modal { display: none !important; }
+            #printArea { width: 80mm; margin: 0 auto; padding: 6mm; font-size: 13.5px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="app">
+    <header>
+        <img src="logo.png" alt="شعار" class="logo-header">
+        <div>
+            <h1>سحايب ديرتي</h1>
+            <p>نظام الكاشير الاحترافي</p>
+        </div>
+        <button onclick="openAdminModal()" class="admin-btn">⚙️ إدارة القائمة</button>
+    </header>
+
+    <div class="main-content">
+        
+        <!-- الجانب الأيسر: معلومات العميل + السلة -->
+        <div class="left-panel">
+            <div class="receipt-header">
+                <img src="logo.png" class="logo">
+                <h2>سحايب ديرتي</h2>
+                <div class="special-box">فاتورة حجز مواقته</div>
+                <p class="restaurant-number">رقم المطعم: <strong>0112020203</strong></p>
+                <p id="currentDate"></p>
+                <hr>
+            </div>
+
+            <!-- نوع الطلب -->
+            <div class="delivery-type">
+                <button onclick="setOrderType('takeaway')" id="btn-takeaway" class="type-btn active">🏠 استلام</button>
+                <button onclick="setOrderType('delivery')" id="btn-delivery" class="type-btn">🚗 توصيل</button>
+            </div>
+
+            <!-- رسوم التوصيل -->
+            <div id="delivery-fee-section" class="delivery-fee" style="display:none;">
+                <label>رسوم التوصيل:</label>
+                <input id="deliveryFee" type="number" value="15" min="0" onchange="updateTotal()" class="fee-input">
+                <span>ريال</span>
+            </div>
+
+            <!-- معلومات العميل -->
+            <div class="customer">
+                <input id="custName" placeholder="اسم العميل" class="input">
+                <input id="custPhone" placeholder="جوال العميل (050...)" class="input">
+                <input id="custAddress" placeholder="العنوان" class="input">
+                <input id="custTime" type="datetime-local" class="input">
+            </div>
+
+            <!-- السلة -->
+            <div id="cart" class="cart"></div>
+
+            <!-- الإجمالي -->
+            <div class="total-fancy">
+                <span>الإجمالي النهائي</span>
+                <span id="grandTotal">0.00 ريال</span>
+            </div>
+
+            <div class="actions">
+                <button onclick="printReceipt()" class="btn print">🖨️ طباعة</button>
+                <button onclick="sendToWhatsApp()" class="btn whatsapp">📲 واتساب</button>
+                <button onclick="clearCart()" class="btn clear">🗑️ جديد</button>
+            </div>
+        </div>
+
+        <!-- الجانب الأيمن: قائمة الأصناف -->
+        <div class="right-panel">
+            <h3>📋 القائمة</h3>
+            <div id="menuContainer"></div>
+        </div>
+    </div>
+</div>
+
+<!-- نافذة الإدارة -->
+<div id="adminModal" class="modal">
+    <div class="modal-content">
+        <span onclick="closeAdminModal()" class="close">×</span>
+        <h2>⚙️ إدارة القائمة</h2>
+        <!-- باقي المحتوى موجود في script.js -->
+        <div class="admin-section">
+            <h3>إضافة قسم</h3>
+            <input id="newCatName" class="input" placeholder="اسم القسم">
+            <button onclick="addCategory()" class="btn">إضافة</button>
+        </div>
+        <div class="admin-section">
+            <h3>الأقسام</h3>
+            <div id="adminCategoriesList"></div>
+        </div>
+        <div class="admin-section">
+            <h3>إضافة صنف</h3>
+            <select id="adminCatSelect" class="input"></select>
+            <input id="newItemNameAdmin" class="input" placeholder="اسم الصنف">
+            <input id="newItemPriceAdmin" type="number" class="input" placeholder="السعر">
+            <button onclick="addItemFromAdmin()" class="btn">إضافة الصنف</button>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
