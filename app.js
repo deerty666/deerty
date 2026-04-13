@@ -41,3 +41,17 @@ renderCategories();
 }
 
 }
+// وظيفة حذف قسم من المستودع
+function deleteCategory(index) {
+    if (confirm("هل أنت متأكد من حذف هذا القسم؟")) {
+        // 1. إزالة القسم من القائمة
+        db.categories.splice(index, 1);
+        
+        // 2. تحديث المستودع الدائم
+        saveToStorage();
+        
+        // 3. إعادة عرض القائمة المحدثة
+        renderCategories();
+    }
+}
+
