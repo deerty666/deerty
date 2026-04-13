@@ -1,16 +1,19 @@
-/* style.css */
+body { font-family: sans-serif; margin: 0; background: #f4f7f9; }
 .container { display: flex; height: 100vh; }
-.sidebar { width: 350px; background: white; padding: 10px; border-left: 1px solid #ddd; }
-.main-content { flex: 1; padding: 20px; overflow-y: auto; }
 
-/* إعدادات الطباعة لضمان التوسيط ومنع القص */
+.sidebar { width: 350px; background: white; border-left: 2px solid #ddd; padding: 20px; text-align: center; }
+.main-content { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; }
+
+#categoriesNav { display: flex; gap: 10px; margin-bottom: 20px; }
+.cat-btn { padding: 10px 20px; border: none; border-radius: 20px; cursor: pointer; background: #3498db; color: white; }
+
+#productsGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; }
+.prod-card { background: white; padding: 15px; border-radius: 10px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); cursor: pointer; }
+
+#adminSection { background: #fff; padding: 20px; margin-top: auto; border-top: 2px solid #3498db; }
+
 @media print {
     .no-print { display: none; }
-    body { margin: 0; padding: 0; }
-    .sidebar { 
-        width: 80mm; /* عرض ورق طابعات الكاشير القياسي */
-        margin: 0 auto; /* توسيط الفاتورة */
-        border: none;
-    }
-    #cartItems { width: 100%; text-align: center; }
+    .sidebar { width: 80mm; margin: 0 auto; border: none; }
+    body { background: white; }
 }
