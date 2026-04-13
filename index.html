@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>سحايب ديرتي POS</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<style>
+    :root {
+        --primary: #1e40af;
+        --accent: #f59e0b;
+        --success: #10b981;
+        --danger: #ef4444;
+    }
+
+    body { 
+        font-family: 'Segoe UI', Arial, sans-serif; 
+        background: #f1f5f9; 
+        margin: 0; padding: 8px; 
+        direction: rtl; 
+    }
+    .container { display: flex; gap: 12px; flex-wrap: wrap; }
+    .panel { 
+        background: white; 
+        border-radius: 20px; 
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1); 
+        padding: 18px; 
+        flex: 1; 
+        min-width: 320px;
+    }
+
+    .cat-btn {
+        background: var(--primary);
+        color: white;
+        border: none;
+        padding: 14px 18px;
+        margin: 6px 4px;
+        border-radius: 12px;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .item-btn {
+        background: #f8fafc;
+        border: 2px solid #e2e8f0;
+        padding: 14px 10px;
+        margin: 6px 4px;
+        border-radius: 12px;
+        text-align: center;
+        font-size: 14.5px;
+        cursor: pointer;
+        min-width: 110px;
+    }
+    .item-btn:hover { border-color: var(--accent); }
+
+    .cart-item {
+        background: #f8fafc;
+        padding: 12px;
+        margin: 8px 0;
+        border-radius: 12px;
+        border-right: 4px solid var(--accent);
+    }
+
+    button {
+        padding: 12px 20px;
+        border-radius: 12px;
+        font-weight: bold;
+        cursor: pointer;
+        border: none;
+    }
+
+    @media print {
+        .no-print { display: none !important; }
+        body { background: white; padding: 10px; }
+        #printArea { width: 74mm; margin: 0 auto; font-size: 14px; }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="panel no-print">
+        <h3 style="text-align:center; color:var(--primary);">إدارة القائمة 📋</h3>
+        
+        <div id="cats" style="text-align:center; margin:15px 0;"></div>
+        
+        <hr>
+        
+        <div id="items" style="text-align:center;"></div>
+
+        <hr>
+        <div style="background:#f8fafc; padding:18px; border-radius:16px;">
+            <h4>إضافة جديد</h4>
+            
+            <input id="catName" placeholder="اسم القسم الجديد" style="width:100%; padding:12px; margin:8px 0; border-radius:12px; border:1px solid #cbd5e1;">
+            <button onclick="addCat()" style="background:var(--accent); color:white; width:100%;">➕ إضافة قسم</button>
+
+            <br><br>
+            <select id="catSelect" style="width:100%; padding:12px; border-radius:12px;"></select>
+            
+            <input id="itemName" placeholder="اسم الصنف" style="width:100%; padding:12px; margin:8px 0; border-radius:12px;">
+            <input id="itemPrice" type="number" placeholder="السعر بالريال" style="width:100%; padding:12px; border-radius:12px;">
+            <button onclick="addItem()" style="background:var(--success); color:white; width:100%; margin-top:8px;">➕ إضافة صنف</button>
+        </div>
+    </div>
+
+    <div class="panel" id="printArea">
+        <div style="text-align:center;">
+            <img src="logo.png" style="width:110px; border-radius:12px;" alt="شعار">
+            <h2 style="margin:10px 0; color:var(--primary);">سحايب ديرتي</h2>
+            <p style="background:var(--primary); color:white; padding:8px; border-radius:30px; display:inline-block;">
+                رقم الفاتورة: <strong id="inv">1013</strong>
+            </p>
+        </div>
+
+        <div class="no-print" style="margin:20px 0;">
+            <input id="cName" placeholder="اسم العميل أو الموعد" style="width:100%; padding:12px; border-radius:12px; margin-bottom:8px;">
+            <input id="cPhone" placeholder="رقم الجوال (بدون 966)" style="width:100%; padding:12px; border-radius:12px; margin-bottom:8px;">
+            
+            <div style="border:2px solid #e2e8f0; padding:15px; border-radius:16px;">
+                <label><input type="radio" name="dType" id="takeaway" checked onclick="toggleDelivery(false)"> استلام</label><br>
+                <label><input type="radio" name="dType" id="delivery" onclick="toggleDelivery(true)"> توصيل</label>
+                
+                <div id="deliveryInput" style="display:none; margin-top:12px;">
+                    رسوم التوصيل: <input id="deliveryFee" type="number" value="0" onchange="updateCart()" style="width:80px;"> ر.س
+                    <input id="cLoc" placeholder="العنوان" style="width:100%; margin-top:8px; padding:10px; border-radius:10px;">
+                </div>
+            </div>
+        </div>
+
+        <div id="cart"></div>
+
+        <div style="font-size:1.8em; font-weight:bold; text-align:center; margin:20px 0; color:var(--primary);">
+            الإجمالي: <span id="totalDisplay">0.00</span> ر.س
+        </div>
+
+        <div style="text-align:center; margin:20px 0;">
+            <p style="font-weight:bold;">لمتابعة العروض حمل تطبيقنا</p>
+            <div id="qrcode" style="margin:12px auto; width:150px; height:150px; padding:10px; background:white; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.1);"></div>
+        </div>
+
+        <div class="no-print" style="display:flex; gap:10px;">
+            <button onclick="printInvoice()" style="background:var(--primary); color:white; flex:1;">🖨️ طباعة</button>
+            <button onclick="sendWhats()" style="background:var(--success); color:white; flex:1;">📲 واتساب</button>
+            <button onclick="clearCart()" style="background:#64748b; color:white;">جديد</button>
+        </div>
+    </div>
+</div>
+
+<script>
+// ==================== البيانات ====================
+let data = JSON.parse(localStorage.getItem("menu")) || [];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let inv = parseInt(localStorage.getItem("inv")) || 1013;
+let appQrUrl = localStorage.getItem("appQrUrl") || "https://your-app-link.com";
+let activeCat = 0;
+
+function save() { localStorage.setItem("menu", JSON.stringify(data)); }
+function saveCart() { localStorage.setItem("cart", JSON.stringify(cart)); }
+
+// ==================== QR Code بدون نت ====================
+function generateQR() {
+    document.getElementById("qrcode").innerHTML = "";
+    new QRCode(document.getElementById("qrcode"), {
+        text: appQrUrl,
+        width: 150,
+        height: 150,
+        colorDark: "#1e40af",
+        colorLight: "#ffffff"
+    });
+}
+
+// ==================== عرض الأقسام والأصناف ====================
+function render() {
+    document.getElementById("inv").innerText = inv;
+
+    // الأقسام
+    let catsHTML = "";
+    data.forEach((cat, i) => {
+        // تم تصحيح الصيغة هنا من \) {i} إلى ${i} ومن \) {cat.name} إلى ${cat.name}
+        catsHTML += `<button class="cat-btn" onclick="activeCat=${i}; render()">${cat.name}</button>`;
+    });
+    document.getElementById("cats").innerHTML = catsHTML;
+
+    // القائمة المنسدلة
+    let select = document.getElementById("catSelect");
+    select.innerHTML = "";
+    data.forEach((cat, i) => {
+        // تم تصحيح الصيغة هنا أيضاً
+        select.innerHTML += `<option value="${i}">${cat.name}</option>`;
+    });
+
+    showItems();
+    updateCart();
+    generateQR();
+}
+
+function showItems() {
+    let html = "";
+    if (data[activeCat]) {
+        data[activeCat].items.forEach((item, idx) => {
+            // تم تصحيح الصيغة هنا لعرض اسم الصنف وسعره بشكل صحيح
+            html += `
+                <button class="item-btn" onclick="addCart('${item.name}', ${item.price})">
+                    ${item.name}<br><strong>${item.price} ر.س</strong>
+                </button>`;
+        });
+    }
+    document.getElementById("items").innerHTML = html;
+}
+
+function addCart(name, price) {
+    let existing = cart.findIndex(i => i.name === name);
+    if (existing >= 0) {
+        cart[existing].qty++;
+    } else {
+        cart.push({name, price, qty: 1, note: ""});
+    }
+    saveCart();
+    updateCart();
+}
+
+function updateCart() {
+    let html = "";
+    let total = 0;
+
+    cart.forEach((item, i) => {
+        let itemTotal = item.price * item.qty;
+        total += itemTotal;
+
+        html += `
+            <div class="cart-item">
+                <strong>${item.name}</strong> × ${item.qty} = ${itemTotal.toFixed(2)} ر.س
+                <div style="margin-top:8px;" class="no-print">
+                    <button onclick="changeQty(${i},1)" style="background:#10b981;color:white;">+</button>
+                    <button onclick="changeQty(${i},-1)" style="background:#ef4444;color:white;">-</button>
+                    <button onclick="addNote(${i})" style="margin:0 8px;">ملاحظة</button>
+                    <button onclick="removeItem(${i})" style="background:var(--danger);color:white;">حذف</button>
+                </div>
+            </div>`;
+    });
+
+    if (document.getElementById("delivery").checked) {
+        total += parseFloat(document.getElementById("deliveryFee").value) || 0;
+    }
+
+    document.getElementById("cart").innerHTML = html;
+    document.getElementById("totalDisplay").innerText = total.toFixed(2);
+}
+
+function changeQty(i, delta) {
+    cart[i].qty += delta;
+    if (cart[i].qty < 1) cart.splice(i, 1);
+    saveCart();
+    updateCart();
+}
+
+function addNote(i) {
+    let note = prompt("أدخل الملاحظة:", cart[i].note || "");
+    if (note !== null) {
+        cart[i].note = note;
+        saveCart();
+        updateCart();
+    }
+}
+
+function removeItem(i) {
+    if (confirm("حذف الصنف من الفاتورة؟")) {
+        cart.splice(i, 1);
+        saveCart();
+        updateCart();
+    }
+}
+
+function printInvoice() {
+    window.print();
+    inv++;
+    localStorage.setItem("inv", inv);
+    render();
+}
+
+function sendWhats() {
+    let phone = document.getElementById("cPhone").value.trim();
+    if (!phone) return alert("يرجى إدخال رقم الجوال");
+    if (phone.startsWith("0")) phone = phone.substring(1);
+
+    let msg = `*فاتورة سحايب ديرتي*%0Aرقم الفاتورة: ${document.getElementById("inv").innerText}%0A`;
+    cart.forEach(it => {
+        msg += `• ${it.name} × ${it.qty} = ${(it.price * it.qty).toFixed(2)} ر.س%0A`;
+    });
+    msg += `*الإجمالي: ${document.getElementById("totalDisplay").innerText} ر.س*%0Aشكراً 💙`;
+
+    // تم تصحيح الصيغة هنا لإرسال رقم الجوال بشكل صحيح
+    window.open(`https://wa.me/966${phone}?text=${encodeURIComponent(msg)}`);
+}
+
+function toggleDelivery(show) {
+    document.getElementById("deliveryInput").style.display = show ? "block" : "none";
+    updateCart();
+}
+
+function clearCart() {
+    if (confirm("بدء فاتورة جديدة؟")) {
+        cart = [];
+        saveCart();
+        updateCart();
+    }
+}
+
+// دوال الإضافة والتعديل
+function addCat() {
+    let name = document.getElementById("catName").value.trim();
+    if (name) {
+        data.push({name: name, items: []});
+        save();
+        render();
+        document.getElementById("catName").value = "";
+    }
+}
+
+function addItem() {
+    let catIndex = document.getElementById("catSelect").value;
+    let name = document.getElementById("itemName").value.trim();
+    let price = parseFloat(document.getElementById("itemPrice").value);
+
+    if (name && price) {
+        data[catIndex].items.push({name: name, price: price});
+        save();
+        render();
+        document.getElementById("itemName").value = "";
+        document.getElementById("itemPrice").value = "";
+    }
+}
+
+// تهيئة التطبيق
+render();
+</script>
+</body>
+</html>
