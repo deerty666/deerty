@@ -16,7 +16,17 @@
         <main class="main-content no-print">
             <nav id="categoriesNav"></nav>
             <section id="productsGrid"></section>
-            <footer id="adminSection"></footer>
+ <footer id="adminSection" class="no-print">
+    <h3>🛠️ لوحة الإدارة</h3>
+    
+    <div class="admin-controls">
+        <input type="text" id="catInput" placeholder="اسم القسم الجديد...">
+        <button onclick="addCategory()">+ إضافة قسم</button>
+    </div>
+
+    <div id="categoriesManager"></div>
+</footer>
+           <footer id="adminSection"></footer>
         </main>
     </div>
     <script src="app.js"></script>
