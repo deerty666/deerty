@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سحايب ديرتي - كاشير</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { font-family: Arial, sans-serif; background:#f4f4f4; margin:0; padding:10px; }
+        .container { display:flex; gap:15px; max-width:1300px; margin:auto; }
+        .sidebar { width:320px; background:white; padding:15px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.1); }
+        .main { flex:1; background:white; padding:20px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.1); }
+        .full-width { width:100%; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:6px; font-size:16px; }
+        button { padding:12px; margin:6px 0; border:none; border-radius:6px; cursor:pointer; font-size:16px; width:100%; }
+        .btn-green { background:#28a745; color:white; }
+        .btn-blue { background:#007bff; color:white; }
+        .cart-item { padding:12px; background:#f9f9f9; margin:10px 0; border-radius:8px; }
+        @media print {
+            .no-print { display:none !important; }
+            #printArea { width:80mm; margin:0 auto; padding:5mm; font-size:13px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- الجانب الأيسر: إدارة القائمة -->
+    <div class="sidebar no-print">
+        <h2>📋 إدارة القائمة</h2>
+        
+        <h3>إضافة قسم جديد</h3>
+        <input id="newCat" class="full-width" placeholder="اسم القسم (مثال: مشروبات)">
+        <button onclick="addCategory()" class="btn-green">➕ إضافة القسم</button>
+
+        <hr>
+        <h3>إضافة صنف</h3>
+        <select id="catSelect" class="full-width"></select>
+        <input id="newItemName" class="full-width" placeholder="اسم الصنف">
+        <input id="newItemPrice" type="number" class="full-width" placeholder="السعر بالريال">
+        <button onclick="addMenuItem()" class="btn-blue">➕ إضافة الصنف</button>
+
+        <hr>
+        <div id="menuDisplay" style="margin-top:15px;"></div>
+    </div>
+
+    <!-- منطقة الفاتورة -->
+    <div class="main" id="printArea">
+        <div style="text-align:center; margin-bottom:20px;">
+            <img src="logo.png" alt="شعار سحايب ديرتي" style="width:160px; height:auto;">
+            <h1 style="margin:10px 0 5px;">سحايب ديرتي</h1>
+            
+            <div style="border:3px solid #000; padding:12px; margin:15px 0; font-size:19px; font-weight:bold; background:#f8f8f8;">
+                فاتورة حجز مواقته
+            </div>
+            
+            <p><strong>رقم المطعم: 0112020203</strong></p>
+            <p id="currentDate" style="font-size:15px;"></p>
+            <hr>
+        </div>
+
+        <div class="no-print">
+            <input id="custName" class="full-width" placeholder="اسم العميل">
+            <input id="custPhone" class="full-width" placeholder="جوال العميل (0501234567)">
+            <input id="custAddress" class="full-width" placeholder="العنوان">
+            <input id="custTime" type="datetime-local" class="full-width">
+        </div>
+
+        <div id="cartItems"></div>
+
+        <div style="font-size:22px; text-align:right; margin:25px 0; font-weight:bold; border-top:2px solid #000; padding-top:10px;">
+            الإجمالي: <span id="grandTotal">0.00</span> ريال
+        </div>
+
+        <div class="no-print" style="display:flex; gap:10px; margin-top:20px;">
+            <button onclick="printReceipt()" style="flex:1; background:#28a745; color:white; padding:15px;">🖨️ طباعة 80mm</button>
+            <button onclick="sendToWhatsApp()" style="flex:1; background:#25D366; color:white; padding:15px;">📲 إرسال واتساب</button>
+            <button onclick="clearCart()" style="flex:1; background:#dc3545; color:white; padding:15px;">🗑️ فاتورة جديدة</button>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
