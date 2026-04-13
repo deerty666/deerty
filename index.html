@@ -2,31 +2,47 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>سحايب ديرتي - POS</title>
+    <title>سحايب ديرتي - نظام البيع</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <aside class="sidebar" id="printArea">
-            <div id="invoiceHeader"></div>
-            <div id="cartItems"></div>
-            <div id="invoiceFooter"></div>
+            <div id="invoiceHeader">
+                <h2>سحايب ديرتي 💙</h2>
+                <p>فاتورة حجز مؤقت</p>
+            </div>
+            <div id="cartItems">
+                </div>
+            <div id="invoiceFooter">
+                <h3 id="totalDisplay">الإجمالي: 0.00 ر.س</h3>
+            </div>
         </aside>
 
         <main class="main-content no-print">
-            <nav id="categoriesNav"></nav>
-            <section id="productsGrid"></section>
- <footer id="adminSection" class="no-print">
-    <h3>🛠️ لوحة الإدارة</h3>
-    
-    <div class="admin-controls">
-        <input type="text" id="catInput" placeholder="اسم القسم الجديد...">
-        <button onclick="addCategory()">+ إضافة قسم</button>
-    </div>
+            <nav id="categoriesNav">
+                </nav>
+            
+            <section id="productsGrid">
+                </section>
 
-    <div id="categoriesManager"></div>
-</footer>
-           <footer id="adminSection"></footer>
+            <footer id="adminSection">
+                <h3>🛠️ لوحة الإدارة</h3>
+                
+                <div class="admin-controls">
+                    <input type="text" id="catInput" placeholder="اسم القسم الجديد...">
+                    <button onclick="addCategory()">+ إضافة قسم</button>
+                </div>
+                <div id="categoriesManager"></div>
+
+                <div class="admin-controls" style="margin-top: 20px; border-top: 1px dashed #ccc; padding-top: 10px;">
+                    <h4>🍎 إضافة صنف جديد</h4>
+                    <select id="prodCatSelect"></select>
+                    <input type="text" id="prodNameInput" placeholder="اسم الصنف">
+                    <input type="number" id="prodPriceInput" placeholder="السعر">
+                    <button onclick="addProduct()">+ إضافة صنف</button>
+                </div>
+            </footer>
         </main>
     </div>
     <script src="app.js"></script>
