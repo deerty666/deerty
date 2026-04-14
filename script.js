@@ -115,30 +115,76 @@ function setOrderType(type) {
 }
 
 function printReceipt() {
-    const printContent = document.getElementById('printArea').innerHTML;
+    // 1. بناء جدول الأصناف بشكل نصي نظيف
+    let itemsRows = '';
+    cart.forEach(item => {
+        itemsRows += `
+            <tr style="border-bottom: 1px dashed #ddd;">
+                <td style="padding: 8px 0;">${item.name}</td>
+                <td style="text-align: center;">${item.qty}</td>
+                <td style="text-align: left;">${(item.price * item.qty).toFixed(2)}</td>
+            </tr>`;
+    });
+
+    // 2. الحصول على البيانات الإضافية
+    const customerName = document.getElementById('custName').value || 'عميل';
+    const total = document.getElementById('grandTotal').textContent;
+    const date = new Date().toLocaleString('ar-SA');
+    const type = (orderType === 'delivery') ? 'توصيل' : 'استلام';
+
+    // 3. فتح نافذة الطباعة وتنسيقها
     const win = window.open('', '', 'height=600,width=400');
-    
     win.document.write(`
         <html dir="rtl">
         <head>
+            <title>فاتورة سحايب ديرتي</title>
             <style>
-                body { font-family: Arial; width: 80mm; padding: 5px; }
-                table { width: 100%; border-collapse: collapse; }
-                .no-print { display: none; }
+                body { font-family: Arial, sans-serif; width: 80mm; margin: 0 auto; padding: 10px; color: #333; }
+                .header { text-align: center; margin-bottom: 20px; }
+                table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+                th { border-bottom: 2px solid #000; text-align: right; padding: 5px; }
+                .total-box { margin-top: 20px; text-align: left; font-size: 1.2em; font-weight: bold; border-top: 2px solid #000; padding-top: 10px; }
+                .info { font-size: 0.9em; margin-bottom: 5px; }
             </style>
         </head>
         <body>
-            ${printContent}
+            <div class="header">
+                <h2>سحايب ديرتي</h2>
+                <p>فاتورة حجز مؤقت</p>
+            </div>
+            <div class="info">التاريخ: ${date}</div>
+            <div class="info">نوع الطلب: ${type}</div>
+            <div class="info">العميل: ${customerName}</div>
+            <hr>
+            <table>
+                <thead>
+                    <tr>
+                        <th>الصنف</th>
+                        <th style="text-align: center;">الكمية</th>
+                        <th style="text-align: left;">السعر</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${itemsRows}
+                </tbody>
+            </table>
+            <div class="total-box">
+                الإجمالي النهائي: ${total}
+            </div>
+            <p style="text-align: center; margin-top: 30px; font-size: 0.8em;">شكراً لتعاملكم معنا</p>
         </body>
         </html>
     `);
 
     win.document.close();
+    
+    // الانتظار قليلاً لضمان تحميل النصوص ثم الطباعة
     setTimeout(() => {
         win.print();
         win.close();
-    }, 300);
+    }, 500);
 }
+
 
 
 function sendToWhatsApp() {
