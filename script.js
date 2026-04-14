@@ -115,41 +115,49 @@ function setOrderType(type) {
 }
 
 function printReceipt() {
-    // 1. بناء جدول الأصناف بشكل نصي نظيف
+    // 1. بناء جدول الأصناف بشكل نصي نظيف لإظهار السعر والكمية والصنف
     let itemsRows = '';
     cart.forEach(item => {
+        const itemTotal = (item.price * item.qty).toFixed(2); // حساب إجمالي الصنف
         itemsRows += `
-            <tr style="border-bottom: 1px dashed #ddd;">
-                <td style="padding: 8px 0;">${item.name}</td>
+            <tr style="border-bottom: 1px dashed #ddd; font-size: 14px;">
+                <td style="padding: 10px 0; font-weight: bold;">${item.name}</td>
                 <td style="text-align: center;">${item.qty}</td>
-                <td style="text-align: left;">${(item.price * item.qty).toFixed(2)}</td>
+                <td style="text-align: left;">${itemTotal} ر.س</td>
             </tr>`;
     });
 
     // 2. الحصول على البيانات الإضافية
     const customerName = document.getElementById('custName').value || 'عميل';
-    const total = document.getElementById('grandTotal').textContent;
+    const total = document.getElementById('grandTotal').textContent; // هذا هو الإجمالي النهائي
     const date = new Date().toLocaleString('ar-SA');
     const type = (orderType === 'delivery') ? 'توصيل' : 'استلام';
 
-    // 3. فتح نافذة الطباعة وتنسيقها
+    // 3. فتح نافذة الطباعة الجديدة وتنسيقها بشكل كامل
+    // فتح نافذة بيضاء تماماً
     const win = window.open('', '', 'height=600,width=400');
     win.document.write(`
         <html dir="rtl">
         <head>
             <title>فاتورة سحايب ديرتي</title>
             <style>
-                body { font-family: Arial, sans-serif; width: 80mm; margin: 0 auto; padding: 10px; color: #333; }
-                .header { text-align: center; margin-bottom: 20px; }
-                table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-                th { border-bottom: 2px solid #000; text-align: right; padding: 5px; }
-                .total-box { margin-top: 20px; text-align: left; font-size: 1.2em; font-weight: bold; border-top: 2px solid #000; padding-top: 10px; }
-                .info { font-size: 0.9em; margin-bottom: 5px; }
+                /* تأكد من أن الخلفية بيضاء لإخفاء الطول الزائد */
+                body { font-family: Arial, sans-serif; width: 80mm; margin: 0 auto; padding: 20px; color: #333; background: #fff; }
+                .header { text-align: center; margin-bottom: 30px; }
+                .header p { font-size: 14px; margin: 5px 0; }
+                table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+                th { border-bottom: 2px solid #000; text-align: right; padding: 8px; font-size: 16px; font-weight: bold; }
+                /* تنسيق صندوق الإجمالي لإظهاره بشكل بارز */
+                .total-box { margin-top: 25px; text-align: left; font-size: 1.4em; font-weight: bold; border-top: 3px solid #000; padding-top: 15px; }
+                .info { font-size: 0.9em; margin-bottom: 8px; }
+                /* إخفاء الشعار إذا لم يتم تحميله */
+                #printLogo { display: none; } 
+                /* كود مخصص لجعل الشعار يظهر فقط إذا كان موجوداً */
             </style>
         </head>
         <body>
             <div class="header">
-                <h2>سحايب ديرتي</h2>
+                <div id="logoContainer"></div>
                 <p>فاتورة حجز مؤقت</p>
             </div>
             <div class="info">التاريخ: ${date}</div>
@@ -165,25 +173,42 @@ function printReceipt() {
                     </tr>
                 </thead>
                 <tbody>
-                    ${itemsRows}
-                </tbody>
+                    ${itemsRows} </tbody>
             </table>
             <div class="total-box">
-                الإجمالي النهائي: ${total}
-            </div>
-            <p style="text-align: center; margin-top: 30px; font-size: 0.8em;">شكراً لتعاملكم معنا</p>
+                الإجمالي النهائي: ${total} </div>
+            <p style="text-align: center; margin-top: 40px; font-size: 0.8em;">شكراً لتعاملكم معنا</p>
+
+            <script>
+                // كود جافا سكريبت داخلي لإظهار الشعار إذا تم تحميله بنجاح
+                const logoImg = new Image();
+                logoImg.src = 'logo.png'; // تأكد من اسم ملف الشعار هنا أيضاً
+                logoImg.onload = function() {
+                    const logoContainer = document.getElementById('logoContainer');
+                    const img = document.createElement('img');
+                    img.src = 'logo.png'; // تأكد من اسم ملف الشعار هنا أيضاً
+                    img.style.maxWidth = '150px';
+                    img.style.height = 'auto';
+                    img.style.marginBottom = '10px';
+                    img.style.display = 'block';
+                    img.style.marginLeft = 'auto';
+                    img.style.marginRight = 'auto';
+                    logoContainer.appendChild(img);
+                };
+            </script>
         </body>
         </html>
     `);
 
     win.document.close();
     
-    // الانتظار قليلاً لضمان تحميل النصوص ثم الطباعة
+    // الانتظار قليلاً لضمان تحميل المحتوى ثم الطباعة
     setTimeout(() => {
         win.print();
         win.close();
     }, 500);
 }
+
 
 
 
