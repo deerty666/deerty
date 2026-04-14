@@ -240,3 +240,21 @@ header {
     font-weight: bold;
     opacity: 0.95;
 }
+@media print {
+    /* إخفاء كل محتويات الصفحة لتبقى الورقة بيضاء */
+    body * {
+        visibility: hidden;
+    }
+    /* إظهار منطقة الفاتورة فقط (تأكد أن اسمها في الـ HTML هو printArea) */
+    #printArea, #printArea * {
+        visibility: visible;
+    }
+    /* وضع الفاتورة في زاوية الورقة تماماً لإلغاء الفراغ العلوي */
+    #printArea {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 80mm;
+        margin: 0;
+    }
+}
