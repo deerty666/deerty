@@ -121,12 +121,33 @@ function setOrderType(type) {
 
 function printReceipt() {
     const printContent = document.getElementById('printArea').innerHTML;
-    const originalContent = document.body.innerHTML;
-    document.body.innerHTML = `<div style="width:80mm;margin:0 auto;padding:10px;font-family:Arial;direction:rtl;text-align:right;">${printContent}</div>`;
-    window.print();
-    document.body.innerHTML = originalContent;
-    window.location.reload();
+    // ننشئ نافذة جديدة للطباعة لضمان عدم تأثر تنسيق الصفحة الرئيسية
+    const printWindow = window.open('', '', 'height=600,width=400');
+    
+    printWindow.document.write('<html><head><title>طباعة فاتورة</title>');
+    // إضافة التنسيقات الضرورية للطباعة فقط
+    printWindow.document.write(`
+        <style>
+            body { direction: rtl; font-family: Arial; margin: 0; padding: 0; }
+            .print-container { width: 80mm; padding: 5px; margin: 0 auto; }
+            * { box-sizing: border-box; }
+            @page { margin: 0; } /* إزالة حواف الصفحة الافتراضية للمتصفح */
+        </style>
+    `);
+    printWindow.document.write('</head><body>');
+    printWindow.document.write('<div class="print-container">' + printContent + '</div>');
+    printWindow.document.write('</body></html>');
+    
+    printWindow.document.close();
+    printWindow.focus();
+    
+    // تأخير بسيط للتأكد من تحميل المحتوى قبل الطباعة
+    setTimeout(() => {
+        printWindow.print();
+        printWindow.close();
+    }, 250);
 }
+
 
 function sendToWhatsApp() {
     let phone = document.getElementById('custPhone').value.trim().replace(/\D/g, '');
