@@ -1,0 +1,23 @@
+{
+  "name": "سحايب ديرتي - كاشير",
+  "short_name": "سحايب كاشير",
+  "description": "نظام كاشير احترافي لمطعم سحايب ديرتي",
+  "start_url": "/deerty/",
+  "scope": "/deerty/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2c3e50",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
