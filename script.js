@@ -116,12 +116,30 @@ function setOrderType(type) {
 
 function printReceipt() {
     const printContent = document.getElementById('printArea').innerHTML;
-    const originalContent = document.body.innerHTML;
-    document.body.innerHTML = `<div style="width:80mm;margin:0 auto;padding:8mm 5mm;font-family:Arial;direction:rtl;text-align:right;">${printContent}</div>`;
-    window.print();
-    document.body.innerHTML = originalContent;
-    setTimeout(() => window.location.reload(), 500);
+    const win = window.open('', '', 'height=600,width=400');
+    
+    win.document.write(`
+        <html dir="rtl">
+        <head>
+            <style>
+                body { font-family: Arial; width: 80mm; padding: 5px; }
+                table { width: 100%; border-collapse: collapse; }
+                .no-print { display: none; }
+            </style>
+        </head>
+        <body>
+            ${printContent}
+        </body>
+        </html>
+    `);
+
+    win.document.close();
+    setTimeout(() => {
+        win.print();
+        win.close();
+    }, 300);
 }
+
 
 function sendToWhatsApp() {
     let phone = document.getElementById('custPhone').value.trim().replace(/\D/g, '');
