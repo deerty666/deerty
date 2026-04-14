@@ -172,7 +172,7 @@ ${deliveryInfo}*اسم العميل:* ${customerName}
 *الإجمالي:* ${document.getElementById('grandTotal').textContent}
 
 ندعوك لتثبيت تطبيقنا لطلب أسهل وأسرع:
-https://deerty666.github.io/deerty/`;
+https://deerty666.github.io/menu.html?branch=branch1`;
 
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
