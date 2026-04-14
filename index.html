@@ -39,47 +39,31 @@
     <div class="main-content">
         
         <!-- الجانب الأيسر: الفاتورة والسلة -->
-        <div class="left-panel" id="printArea">
-            <div class="receipt-header">
-                <img src="logo.png" class="logo">
-                <h2>سحايب ديرتي</h2>
-                <div class="special-box">فاتورة حجز مواقته</div>
-                <p class="restaurant-number">رقم المطعم: <strong>0112020203</strong></p>
-                <p id="currentDate"></p>
-                <hr>
-            </div>
+        <div class="left-panel">
+    
+    <div id="printArea" style="background: white;">
+        
+        <div class="receipt-header">
+            <img src="logo.png" class="logo">
+            <h2>سحايب ديرتي</h2>
+            <div class="special-box">فاتورة حجز مؤقتة</div>
+            <p>رقم المطعم: <strong>0112020203</strong></p>
+            <p id="currentDate"></p>
+            <hr>
+        </div>
 
-            <!-- نوع الطلب -->
-            <div class="delivery-type">
-                <button onclick="setOrderType('takeaway')" id="btn-takeaway" class="type-btn active">🏠 استلام</button>
-                <button onclick="setOrderType('delivery')" id="btn-delivery" class="type-btn">🚗 توصيل</button>
-            </div>
+        <div id="cart" class="cart"></div>
 
-            <!-- رسوم التوصيل -->
-            <div id="delivery-fee-section" class="delivery-fee" style="display:none;">
-                <label>رسوم التوصيل:</label>
-                <input id="deliveryFee" type="number" value="15" min="0" onchange="updateTotal()" class="fee-input">
-                <span>ريال</span>
-            </div>
+        <div class="total-fancy">
+            <span>الإجمالي النهائي</span>
+            <span id="grandTotal">0.00 ر.س</span>
+        </div>
 
-            <!-- معلومات العميل -->
-            <div class="customer">
-                <input id="custName" placeholder="اسم العميل" class="input">
-                <input id="custPhone" placeholder="جوال العميل (050...)" class="input">
-                <input id="custAddress" placeholder="العنوان" class="input">
-                <input id="custTime" type="datetime-local" class="input">
-            </div>
+    </div> <div class="no-print">
+        </div>
 
-            <!-- السلة -->
-            <div id="cart" class="cart"></div>
+</div>
 
-            <!-- الإجمالي -->
-            <div class="total-fancy">
-                <span>الإجمالي النهائي</span>
-                <span id="grandTotal">0.00 ر.س</span>
-            </div>
-
-            <div class="actions">
                 <button onclick="printReceipt()" class="btn print">🖨️ طباعة 80mm</button>
                 <button onclick="sendToWhatsApp()" class="btn whatsapp">📲 واتساب</button>
                 <button onclick="clearCart()" class="btn clear">🗑️ فاتورة جديدة</button>
