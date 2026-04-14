@@ -131,7 +131,6 @@ function printReceipt() {
 function sendToWhatsApp() {
     let phone = document.getElementById('custPhone').value.trim().replace(/\D/g, '');
     
-    // تأمين صيغة الرقم الدولي للسعودية
     if (phone.startsWith('0')) phone = '966' + phone.substring(1);
     if (!phone.startsWith('966')) phone = '966' + phone;
 
@@ -144,9 +143,15 @@ function sendToWhatsApp() {
     const time = document.getElementById('custTime').value 
         ? new Date(document.getElementById('custTime').value).toLocaleString('ar-SA') 
         : 'غير محدد';
-    const typeText = (orderType === 'delivery') ? 'توصيل' : 'استلام';
+    
+    // تحديد نص نوع الطلب ورسوم التوصيل
+    const typeText = (orderType === 'delivery') ? 'توصيل 🚗' : 'استلام 🏠';
+    let deliveryInfo = "";
+    if (orderType === 'delivery') {
+        const fee = document.getElementById('deliveryFee').value;
+        deliveryInfo = `*رسوم التوصيل:* ${fee} ر.س\n`;
+    }
 
-    // 1️⃣ تجميع الأصناف بطريقة صحيحة
     let itemsText = '';
     cart.forEach(item => {
         const itemTotal = item.price * item.qty;
@@ -154,13 +159,13 @@ function sendToWhatsApp() {
         if (item.note) itemsText += `  ملاحظة: ${item.note}\n`;
     });
 
-    // 2️⃣ صياغة نص الرسالة باستخدام علامة الـ Backtick (`)
+    // صياغة الرسالة النهائية مع إضافة سطر التوصيل
     const message = `*حجز مؤقت - سحايب ديرتي*
 
 ${itemsText}
-*اسم العميل:* ${customerName}
-*رقم الجوال:* ${phone}
 *نوع الطلب:* ${typeText}
+${deliveryInfo}*اسم العميل:* ${customerName}
+*رقم الجوال:* ${phone}
 *الموعد:* ${time}
 *الموقع:* ${address}
 
@@ -169,10 +174,10 @@ ${itemsText}
 ندعوك لتثبيت تطبيقنا لطلب أسهل وأسرع:
 https://deerty666.github.io/deerty/`;
 
-    // 3️⃣ رابط الواتساب المباشر لفتح محادثة العميل
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
 }
+
 
 
 function clearCart() {
