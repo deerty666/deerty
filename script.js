@@ -143,6 +143,8 @@ function printReceipt() {
 
 function sendToWhatsApp() {
     let phone = document.getElementById('custPhone').value.trim().replace(/\D/g, '');
+    
+    // تأمين صيغة الرقم الدولي للسعودية
     if (phone.startsWith('0')) phone = '966' + phone.substring(1);
     if (!phone.startsWith('966')) phone = '966' + phone;
 
@@ -155,16 +157,17 @@ function sendToWhatsApp() {
     const time = document.getElementById('custTime').value 
         ? new Date(document.getElementById('custTime').value).toLocaleString('ar-SA') 
         : 'غير محدد';
-    const typeText = orderType === 'delivery' ? 'توصيل' : 'استلام';
+    const typeText = (orderType === 'delivery') ? 'توصيل' : 'استلام';
 
+    // 1️⃣ تجميع الأصناف بطريقة صحيحة بدون رموز زائدة
     let itemsText = '';
     cart.forEach(item => {
         const itemTotal = item.price * item.qty;
-        itemsText += `• \( {item.name} (x \){item.qty}) = ${itemTotal} ر.س\n`;
+        itemsText += `• ${item.name} (x${item.qty}) = ${itemTotal} ر.س\n`;
         if (item.note) itemsText += `  ملاحظة: ${item.note}\n`;
     });
 
-        // ابدأ التعديل من هنا (بدل السطر 167 في صورتك)
+    // 2️⃣ صياغة نص الرسالة (تأكد من استخدام علامة ` في بداية ونهاية النص)
     const message = `*حجز مؤقت - سحايب ديرتي*
 
 ${itemsText}
@@ -177,8 +180,12 @@ ${itemsText}
 *الإجمالي:* ${document.getElementById('grandTotal').textContent}
 
 ندعوك لتثبيت تطبيقنا لطلب أسهل وأسرع:
-https://deerty666.github.io/deerty/`; 
-    // ينتهي التعديل هنا، تأكد أنك أغلقت النص بعلامة `
+https://deerty666.github.io/deerty/`;
+
+    // 3️⃣ رابط الواتساب المباشر لفتح محادثة العميل
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+}
 
 
     const url = `https://api.whatsapp.com/send?phone=\( {phone}&text= \){encodeURIComponent(message)}`;
