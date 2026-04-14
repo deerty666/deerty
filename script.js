@@ -188,9 +188,7 @@ https://deerty666.github.io/deerty/`;
 }
 
 
-    const url = `https://api.whatsapp.com/send?phone=\( {phone}&text= \){encodeURIComponent(message)}`;
-    window.open(url, '_blank');
-}
+   
 
 function clearCart() {
     if (confirm("مسح الفاتورة الحالية؟")) {
