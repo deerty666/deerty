@@ -164,6 +164,7 @@ function sendToWhatsApp() {
         if (item.note) itemsText += `  ملاحظة: ${item.note}\n`;
     });
 
+        // ابدأ التعديل من هنا (بدل السطر 167 في صورتك)
     const message = `*حجز مؤقت - سحايب ديرتي*
 
 ${itemsText}
@@ -176,7 +177,9 @@ ${itemsText}
 *الإجمالي:* ${document.getElementById('grandTotal').textContent}
 
 ندعوك لتثبيت تطبيقنا لطلب أسهل وأسرع:
-https://deerty666.github.io/deerty/`;
+https://deerty666.github.io/deerty/`; 
+    // ينتهي التعديل هنا، تأكد أنك أغلقت النص بعلامة `
+
 
     const url = `https://api.whatsapp.com/send?phone=\( {phone}&text= \){encodeURIComponent(message)}`;
     window.open(url, '_blank');
